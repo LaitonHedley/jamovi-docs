@@ -5,62 +5,87 @@
 ==============
 Filtering Data
 ==============
-  Often only a subset of data is needed for an analysis. For example, perhaps only participants who smoke are needed in an analysis.
-  By clicking the data tab and selecting the filter icon, a filter is created and restricts any analyses to only those rows that meet the filter's criteria.
 
-  |Filter_Data|
+Use **Filters** to subset your data for specific analyses without deleting any
+rows. For example, you can restrict an analysis to only participants who smoke,
+or only those within a certain age range.
 
-  The filer used above, ``Smoke == 'Yes'``, has filtered out any participants who do not smoke or rather restricted the data set to only participants who smoke.
-  Below is an example of how this filter has effected the data, the first column shows the rows that are included (with a tick) and which are excluded (with a cross):
+Adding a Filter
+---------------
 
-    .. list-table:: Example of Filtering Data
-      :header-rows: 1
+1. Click the **Data** tab in the ribbon.
+2. Click the **Filters** button. A filter row will appear at the top of your
+   dataset.
+3. Type your criteria into the formula box (e.g., ``Smoke == 'Yes'``).
 
-      * - Filter
-        - Smoke
-        - Outcome
-      * - ✔
-        - Yes
-        - 10
-      * - ✘
-        - No
-        - 4
-      * - ✘
-        - No
-        - 6
-      * - ✔
-        - Yes
-        - 9
-      * - ✔
-        - Yes
-        - 9
+|Filter_Data|
 
+Once applied, the first column of your spreadsheet shows which rows are
+included (✔) and which are excluded (✘). Any analysis or plot you create will
+now only use the included rows.
 
-  Only the data that has a tick (or rather participants who smoke) will be included in analyses and visualisations.
-  It is possible to filter out based on multiple variables by using the ``and`` and ``or`` operators.
-  For example, to filter based on Female Sex and Age of 30 and greater the following filter could be used: ``Sex == 'Female' and Age >= 30``.
-  The same principles can be applied for ``or`` conditions as well and if wishing to filter on the same variable multiple times.
+.. list-table:: Example of Filtering Data
+   :header-rows: 1
 
-  Alternatively, an additional filter can be created by clicking the plus icon in the filter editor.
-  A second filter will appear below the first, and by adding the desired filter criteria such as ``Age >= 30``, the data will be filtered based on both filters.
-  Additionally, we can toggle each filter on and off by clicking the toggle and switching it to active or inactive:
+   * - Filter
+     - Smoke
+     - Outcome
+   * - ✔
+     - Yes
+     - 10
+   * - ✘
+     - No
+     - 4
+   * - ✘
+     - No
+     - 6
+   * - ✔
+     - Yes
+     - 9
+   * - ✔
+     - Yes
+     - 9
 
-  |Toggle_Filter_Data|
+Using Complex Criteria
+----------------------
 
+You can filter based on multiple variables using the ``and`` and ``or``
+operators. For example, to include only female participants aged 30 and over,
+use:
 
-  .. More information about filters can be found in our blog post `here <https://blog.jamovi.org/2018/04/25/jamovi-filters.html>`_.
+``Sex == 'Female' and Age >= 30``
 
+Managing Multiple Filters
+-------------------------
 
-.. I think VFUNCTIONS work the way I would expect them to with filters... but maybe we chat...
-.. . and why you can't use *V functions* in filters (sad face) (we'll need to link to this explanation)
+You can create multiple independent filters by clicking the plus icon (+) in
+the filter editor. Each filter can be toggled on or off using the switch next
+to its name. This allows you to quickly compare different subsets of your data.
+
+|Toggle_Filter_Data|
+
+To remove a filter entirely, open the filter editor and click the red **×**
+icon next to the filter's name. Toggling a filter off temporarily disables it
+without losing the expression — deleting it removes it for good.
+
+.. note::
+   **Variable functions** (e.g., ``VMEAN()``, ``VSTDEV()``) cannot be used
+   directly inside a filter expression. This is because filters exclude data,
+   which would change the very statistic (like the mean) you are trying to
+   filter by, creating a "circular" calculation that never ends.
+
+   If you need to filter based on a whole-column statistic (like "only rows
+   above the mean"), first create a :doc:`Computed Variable <tm_2_computed_variables>`
+   using the V function, then filter based on that new column. This "freezes"
+   the statistic so the filter can use it reliably.
 
 
 .. |Filter_Data| image:: /_images/tr_filter_example.png
-  :alt: How to filter data in jamovi.
-  :class: centered
-  :width: 37%
+   :alt: The filter editor in jamovi with the expression Smoke == 'Yes'.
+   :class: centered
+   :width: 600px
 
 .. |Toggle_Filter_Data| image:: /_images/tr_toggle_filter.png
-  :alt: How to toggle filter on and off in jamovi.
-  :class: centered
-  :width: 37%
+   :alt: Two filters in the filter editor, each with an on/off toggle.
+   :class: centered
+   :width: 600px

@@ -1,35 +1,94 @@
 .. sectionauthor:: Laiton Hedley
 
-
 .. _computed-variables:
 
 ==================
 Computed Variables
 ==================
 
-    Computed variables are used to transform values from the existing columns, creating new columns of data for analysis. For example, a computed column can transform responses to z-scores, or compute a total score from a number of survey items.
+Use **Computed Variables** to create new columns of data by performing
+calculations on existing columns. For example, you can transform responses
+into z-scores or compute a total score by summing several survey items.
 
-    Values are computed using simple formulas such as:
+You can create formulas using existing column names and functions, such as:
 
-        Z(response)
+- ``Z(response)``
+- ``Q1 + Q2 + Q3 + Q4``
 
-        Q1 + Q2 + Q3 + Q4
+Adding a Computed Variable
+--------------------------
 
-    where ``response``, and ``Q1`` .. ``Q4`` refer to existing columns in the data set.
+1. Click the **Data** tab in the ribbon.
+2. Click the **Add** button.
+3. Select **Append** (or **Insert**) under **Computed variables**. A new column
+   will appear in the dataset.
 
-    The simplest way to add a new computed variable to a data set is to select the ``Add`` (variable) button from the ``Data`` tab. Selecting ``Append`` under ``Computed variables`` will add a new computed column to the very right of the data set. To configure the computed variable, select either ``Setup`` from the ``Data`` tab, or double click on the column header. This will the variable editor which looks as follows (for computed variables):
+Configuring Your Variable
+-------------------------
 
-    |computed_screenshot|
+Once you have added a variable, you can configure it using the **variable editor**.
+To open the editor, double-click the column header or click **Setup** in the
+**Data** tab.
 
-    Here the new column can be named and given a description. Selecting the small fx button will bring down a list of the functions available and the list of variables (these can be inserted by double-clicking them). It's also possible to construct a formula by simply typing directly into the formula box.
+|computed_screenshot|
 
-    A number of functions are available in jamovi, see the :ref:`list-of-functions` for details.
+In the variable editor, you can:
 
-    Computed variables are ideal for one-off computations, but where the same computation needs to be applied many times across many columns (For example, reverse scoring a number of responses), creating a computed variable for each column becomes tedious. In contrast, ``Transformed variables`` allow for the same transform to be applied across any number of columns. Further, transformed variables are ideal for "if-then" recoding of variables.
-    See the :ref:`transformed-variables` documentation for more details.
+- **Name your variable**: Type a meaningful name in the top box.
+- **Add a description**: Provide more context in the description field.
+- **Create a formula**: Type your formula directly into the formula box.
+- **Use the function list**: Click the small **fx** button to see a list of
+  available functions and variables. Double-click any item to insert it into
+  your formula.
+
+For a full list of what you can do with formulas, see the :ref:`list-of-functions`.
+
+Example: Sum Score Across Survey Items
+--------------------------------------
+
+Suppose you have three items from a survey scored on a 1–5 Likert scale and
+you want a single overall score per participant. Add a computed variable
+called ``Total_Score`` and use the ``SUM()`` function:
+
+``SUM(Item_1, Item_2, Item_3)``
+
+.. list-table:: Sum score across three items
+   :header-rows: 1
+
+   * - Item_1
+     - Item_2
+     - Item_3
+     - Total_Score
+   * - 4
+     - 5
+     - 3
+     - 12
+   * - 2
+     - 3
+     - 2
+     - 7
+   * - 5
+     - 4
+     - 5
+     - 14
+
+For more examples — including reverse scoring, z-scores, and outlier
+exclusion — see the :ref:`common-data-recipes`.
+
+When to Use Computed Variables
+------------------------------
+
+Computed variables are ideal for one-off calculations. However, if you need to
+apply the same transformation multiple times (for example, reverse scoring ten
+different Likert items), creating a separate computed variable for each can be
+tedious.
+
+In those cases, use :doc:`Transformed Variables <tm_3_transformed_variables>`
+instead. They allow you to define a single rule and apply it across as many
+columns as you like. They are also the best choice for "if-then" recoding.
 
 
 .. |computed_screenshot| image:: ../_images/tr_compute_variable.png
-  :alt: Example transformation variable editor using the computed variable option.
+  :alt: The jamovi variable editor showing the configuration for a computed variable.
   :class: centered
-  :width: 37%
+  :width: 600px

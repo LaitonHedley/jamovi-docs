@@ -1,100 +1,137 @@
 .. sectionauthor:: Laiton Hedley
 
-
-
 .. _transformed-variables:
 
 =====================
 Transformed Variables
 =====================
 
-    ``Transformed variables`` are better suited for more complex transformations (such as reverse scoring and recoding variables) and allow the same transform to be applied across multiple columns of data.
-    To add a new transformed variable to a data set, select the ``Add`` (variable) button from the ``Data`` tab.  Under ``Transformed Variable`` select ``Append``, this will add a new Transformed column to the very right of the data set.
-    To configure the Transformed variable, select either ``Setup`` from the ``Data`` tab, or double click on the column header. By doing so, the following variable editor will appear:
+Use **Transformed Variables** for complex transformations, such as reverse
+scoring and recoding. Unlike computed variables, transformed variables allow
+you to define a single transformation rule and apply it across multiple
+columns at once.
 
-    |Transformed_Variable|
+Adding a Transformed Variable
+-----------------------------
 
-    Here the new column can be given a name and a description - this can be helpful if you wish to use the same transformation multiple times. To perform the transformation, select the ``Source variable``, that is the column of data to transform.
-    Additionally, select ``using transform``, which allows for either the selection of an existing transformation or the ability to create a new one by selecting ``Create New Transform...``.
-    When creating a new transformation, a formula editor (like the computed variables option) will appear.
-    The formula editor (via this option) requires the use of the ``$source`` variable to refer to the source variable selected earlier.
+1. Click the **Data** tab in the ribbon.
+2. Click the **Add** button and select **Append** (or **Insert**) under
+   **Transformed Variable**.
+3. Double-click the new column header to open the **variable editor**.
 
-    For example, there is a survey item that needs to be reversed score. By using the ``New Transformed Variable`` option, the item can be reverse scored with the following formula:
+|Transformed_Variable|
 
-      ``7 - $source``
+Configuring Your Transformation
+-------------------------------
 
-    In this example, ``$source`` would be item_3 and we are assuming a 6-point Likert scale (hence the 7 minus):
+Once the variable editor is open:
 
-    Applying this will yield results where 6 becomes 1, 5 becomes 2, 4 becomes 3, and so on:
+- **Select a Source variable**: Choose the column you want to transform.
+- **Select a Transform**: Click **using transform** to select an existing
+  transformation or create a new one by selecting **Create New Transform...**.
 
-    .. list-table:: Example of Reverse Scoring
-       :header-rows: 1
+When you create a new transformation, you use the special variable ``$source``
+to refer to your selected source column.
 
-       * - Item_1
-         - Item_2
-         - Item_3
-         - 7 - $source
-       * - 4
-         - 3
-         - 3
-         - 4
-       * - 3
-         - 4
-         - 6
-         - 1
-       * - 4
-         - 4
-         - 2
-         - 5
+**Example: Reverse Scoring**
 
-    Once created, this transformation can be applied across any number of such variables (such as items_1, items_2, and so on) -- we will explore this shortly.
+To reverse score a survey item on a 6-point Likert scale (where 1 becomes 6,
+2 becomes 5, etc.), use the formula:
+
+``7 - $source``
+
+In this case, jamovi subtracts each value in the source column from 7.
+
+|Reverse_Score_Likert|
+
+.. list-table:: Example of Reverse Scoring
+   :header-rows: 1
+
+   * - Item_3 (Source)
+     - Transformed Variable (7 - $source)
+   * - 3
+     - 4
+   * - 6
+     - 1
+   * - 2
+     - 5
 
 Recoding Variables
 ------------------
 
-    *Transformed variables* are also ideal for recoding variables, i.e., recoding ``1-4`` and ``5-10`` cigarettes per day to ``Smoker`` and ``0`` cigarettes per day to ``Non-smoker``, or recoding values greater than or equal to 85 as a ``High Distinction``, greater than 75 as a ``Distinction``, etc.
-    Recoding is performed by adding recode conditions with the ``Add recode condition`` button. Each recode condition is made up of a condition, i.e. ``$source == '1-4'``, or ``$source >= 85``, and a value to use if that condition is true, i.e. ``'Smoker'``, ``'High Distinction'``
+Transformed variables are also ideal for recoding — for example, recoding
+cigarette consumption (``0`` per day → ``'Non-smoker'``, ``1–10`` per day →
+``'Smoker'``) or converting exam scores into grade labels (≥ 85 →
+``'HD'``, ≥ 75 → ``'D'``, and so on).
 
-    See the following example where grades are being assigned based on exam scores.:
+To set up a recode:
 
-    |Recode_Variable|
+1. In the variable editor, click the **Add recode condition** button.
+2. Define your condition using ``$source`` (e.g., ``$source >= 85``).
+3. Assign a value for when that condition is true (e.g., ``'HD'``).
+4. Repeat for each additional condition.
 
-    Adding the additional conditions for the C and P grades would result in a transformed variable that would perform the following recoding.
+|Recode_Variable|
 
-    .. list-table:: Example of Recoding
-       :header-rows: 1
+Adding conditions for all five grade boundaries (HD, D, C, P, F) produces
+the following result:
 
-       * - Exam Score
-         - Grade
-       * - 50
-         - P
-       * - 90
-         - HD
-       * - 44
-         - F
-       * - 76
-         - D
-       * - 66
-         - C
+.. list-table:: Example of Recoding
+   :header-rows: 1
 
-    Note that when evaluating recode conditions, jamovi evaluates each condition one after another, and uses the value from the first condition that resolves to be true. In the above example, this allowed us to express the ``Distinction`` condition as ``$source >= 75``, rather than the longer ``$source < 85 and $source >= 75``. Values greater or equal to 85 will already been taken care of by the first condition.
+   * - Exam Score
+     - Grade
+   * - 90
+     - HD
+   * - 76
+     - D
+   * - 66
+     - C
+   * - 50
+     - P
+   * - 44
+     - F
+
+.. important::
+   Recode conditions are evaluated in order. jamovi uses the value from the
+   **first** condition that resolves to true and ignores the rest. This means
+   you can simplify your conditions: for example, you can write ``$source >= 75``
+   immediately after an ``$source >= 85`` condition without needing to also
+   specify ``$source < 85`` — values of 85 and above are already handled by
+   the first condition.
 
 Transforming Multiple Variables
 -------------------------------
 
-There are situations where multiple variables need to be transformed. For example, there may be a number of items in a survey data set which need to be reverse scored.
-Instead of recoding each item, one at a time, jamovi conveniently allows for the same transformation to be applied in a single step.
+You can apply the same transformation to many variables simultaneously:
 
-In this approach, select the variables to transform (either by holding down ctrl or ⌘ and clicking the colum headers, or selecting multiple variables under the ``Variables`` tab), and then select ``Transform`` from the ``Data`` tab. For each variable selected, a matching transformed variable will created, with the ``Source variable`` set accordingly. This allows you to define a single transform, and apply it across multiple variables at once.
+1. Select the columns you want to transform (hold **Ctrl** or **⌘** while
+   clicking the column headers, or select multiple variables from the
+   **Variables** tab).
+2. Click the **Transform** button in the **Data** tab.
 
-.. * do we need an image for this? *
+jamovi creates a new transformed variable for each column you selected, with
+the **Source variable** already set to the corresponding column. You can then
+define a single transformation rule and apply it across all of them at once.
+
+|transform_overview|
 
 .. |Transformed_Variable| image:: /_images/tr_transformed_variable.png
-  :alt: Example transformation variable editor using the transformed variable option.
+  :alt: The variable editor showing the configuration for a transformed variable.
   :class: centered
-  :width: 37%
+  :width: 600px
+
+.. |Reverse_Score_Likert| image:: /_images/tr_reverse_score_likert.png
+  :alt: The transform editor with the formula 7 - $source applied to a Likert item.
+  :class: centered
+  :width: 600px
 
 .. |Recode_Variable| image:: /_images/tr_transform_recode.png
-  :alt: How to recode a variable using the transformed variable option.
+  :alt: Recoding a variable using conditions in the variable editor.
   :class: centered
-  :width: 37%
+  :width: 600px
+
+.. |transform_overview| image:: /_static/gifs/um_transform_overview.gif
+  :alt: Demonstrating how to transform multiple variables at once.
+  :class: centered
+  :width: 600px

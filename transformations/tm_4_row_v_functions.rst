@@ -5,15 +5,18 @@
 Row and V Functions
 ===================
 
-Functions in jamovi can be either *Row functions* or *Variable functions*.
-As their names imply Row functions only make use of other values in the same row, whereas Variable functions (typically prefixed with the letter ``V``) compute values using the entire variable (or rather column).
+When creating formulas in jamovi, you can use either **Row functions** or
+**Variable functions**. These control whether your calculation uses values from
+within the same row or from an entire column.
 
 Row Functions
 -------------
 
-*Row functions* only make use of other values in the same row. For example, the function ``MEAN(A, B, C)`` will result in a column of values where each cell's value is only computed from the values in its row.
+Use **Row functions** when you want to calculate a value based only on other
+cells in the same row. For example, if you use ``MEAN(A, B, C)``, jamovi
+calculates the average of columns A, B, and C for each row individually.
 
-.. list-table:: Example of the MEAN() Function
+.. list-table:: Example of the MEAN() function (Row-wise)
    :header-rows: 1
 
    * - A
@@ -33,12 +36,15 @@ Row Functions
      - 9
      - 6.33
 
-V Functions
------------
+V Functions (Variable Functions)
+--------------------------------
 
-*V functions* or *Variable functions* (typically prefixed with the letter ``V``), compute values using the entire variable. For example, ``VMEAN(A)`` computes the mean of the *entire* variable ``A``.
+Use **V functions** (Variable functions) when you want to perform a calculation
+using every value in a column. These are typically prefixed with the letter **V**.
+For example, ``VMEAN(A)`` calculates the mean of the *entire* column A and
+places that same result in every row.
 
-.. list-table:: Example of the VMEAN() Function
+.. list-table:: Example of the VMEAN() function (Variable-wise)
    :header-rows: 1
 
    * - A
@@ -58,24 +64,27 @@ V Functions
      - 9
      - 4
 
-It's possible to combine Row and V functions together. For example, to compute a z-score, use the function
+You can combine Row and V functions in a single formula. A common use case is
+calculating a z-score manually:
 
-  ``(A - VMEAN(A)) / VSTDEV(A)``
+``(A - VMEAN(A)) / VSTDEV(A)``
 
-(but it's also possible to use the more concise ``Z(...)`` function!)
+.. note::
+   For z-scores, you can also use the more concise ``Z(A)`` function.
 
 Grouping with V Functions
 -------------------------
 
-Several V functions allow a ``group_by`` parameter, allowing the calculation of values within groups.
+Several V functions allow you to use a ``group_by`` parameter to calculate
+values within specific categories.
 
+Suppose you have an ``outcome`` variable and a ``Dosage`` variable (e.g.,
+100 mg vs. 150 mg). To find the mean score for each dosage group separately,
+use:
 
-Perhaps you have a dataset with a column labelled Dosage to indicate the treatment each participant recieved (e.g., 50 mg vs 100 mg vs 150 mg).
-To compute the mean score of the outcome variable for each Dosage group separately (without the scores from one treatment being combined with those from another) call the ``group_by`` parameter, such as:
+``VMEAN(outcome, group_by = Dosage)``
 
-  ``VMEAN(outcome, group_by = Dosage)``
-
-.. list-table:: Example of the VMEAN() Function with group_by argument
+.. list-table:: Example of VMEAN() with the group_by parameter
    :header-rows: 1
 
    * - Dosage
@@ -92,13 +101,13 @@ To compute the mean score of the outcome variable for each Dosage group separate
      - 4.33
    * - 100 mg
      - 3
-     - 3
+     - 3.00
    * - 100 mg
      - 2
-     - 3
+     - 3.00
    * - 100 mg
      - 4
-     - 3
+     - 3.00
    * - 50 mg
      - 1
      - 1.33
