@@ -55,7 +55,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['.not_used', '_build', '_env', '**/Thumbs.db', '**/.DS_Store', 'README.*', '**/README.*']
+exclude_patterns = ['.not_used', '_build', '_env', '**/Thumbs.db', '**/.DS_Store', 'README.*', '**/README.*', 'CLAUDE.md', '.claude/**']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:

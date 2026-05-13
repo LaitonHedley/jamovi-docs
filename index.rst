@@ -53,13 +53,6 @@
    howto/howto_overview
 
 .. toctree::
-   :caption: Developer hub
-   :maxdepth: 1
-   :hidden:
-
-   developer/dh_overview
-
-.. toctree::
    :caption: From SPSS to jamovi
    :maxdepth: 1
    :hidden:
@@ -98,7 +91,9 @@ Getting started
 
    You can find further topics in the menu on the right-hand side:
    step-for-step instructions for conducting common analyses (“Analyses”),
-   brief instructions how to deal with common tasks (“How to…”), information
-   regarding how to get started with developing modules to extend the function
-   of jamovi (“Developers Hub”), and information aiming to ease the transition
-   from SPSS (“From SPSS to jamovi”).
+   brief instructions how to deal with common tasks (“How to…”), and
+   information aiming to ease the transition from SPSS (“From SPSS to
+   jamovi”).
+
+   If you are interested in developing modules for jamovi, please visit
+   the `developer documentation <https://dev.jamovi.org/>`__.
