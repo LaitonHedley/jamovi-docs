@@ -75,7 +75,7 @@ without losing the expression — deleting it removes it for good.
    filter by, creating a "circular" calculation that never ends.
 
    If you need to filter based on a whole-column statistic (like "only rows
-   above the mean"), first create a :doc:`Computed Variable <tm_2_computed_variables>`
+   above the mean"), first create a :doc:`Computed Variable <data_2_computed_variables>`
    using the V function, then filter based on that new column. This "freezes"
    the statistic so the filter can use it reliably.
 

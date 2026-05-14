@@ -26,7 +26,7 @@ Data types can be:
 .. note::
    jamovi does not support a native date and time data type at this time.
    You can represent dates and times as text and use a number of date
-   manipulations — see :doc:`tm_9_date_handling` for details.
+   manipulations — see :doc:`data_9_date_handling` for details.
 
 Measure types indicate the `level of measurement <https://en.wikipedia.org/wiki/Level_of_measurement>`__:
 

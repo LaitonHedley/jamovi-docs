@@ -36,7 +36,7 @@ Many functions come in two versions:
 - **Variable functions** (e.g., ``VMEAN``): Use these to perform a calculation
   using every value in a column.
 
-For more detail on this distinction, see :doc:`tm_4_row_v_functions`.
+For more detail on this distinction, see :doc:`data_4_row_v_functions`.
 
 Math Functions
 --------------

@@ -83,7 +83,7 @@ apply the same transformation multiple times (for example, reverse scoring ten
 different Likert items), creating a separate computed variable for each can be
 tedious.
 
-In those cases, use :doc:`Transformed Variables <tm_3_transformed_variables>`
+In those cases, use :doc:`Transformed Variables <data_3_transformed_variables>`
 instead. They allow you to define a single rule and apply it across as many
 columns as you like. They are also the best choice for "if-then" recoding.
 

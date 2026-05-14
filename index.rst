@@ -34,16 +34,16 @@
    :maxdepth: 1
    :hidden:
 
-   transformations/tr_overview
-   transformations/tm_1_overview_data_variables
-   transformations/tm_2_computed_variables
-   transformations/tm_3_transformed_variables
-   transformations/tm_6_filtering_data
-   transformations/tm_4_row_v_functions
-   transformations/tm_5_list_of_functions
-   transformations/tm_7_restructure_data
-   transformations/tm_8_common_data_recipes
-   transformations/tm_9_date_handling
+   data/data_overview
+   data/data_1_overview_data_variables
+   data/data_2_computed_variables
+   data/data_3_transformed_variables
+   data/data_6_filtering_data
+   data/data_4_row_v_functions
+   data/data_5_list_of_functions
+   data/data_7_restructure_data
+   data/data_8_common_data_recipes
+   data/data_9_date_handling
 
 
 .. toctree::
