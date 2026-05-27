@@ -2,41 +2,67 @@
 title: "From SPSS to jamovi: Analysis of Covariance (ANCOVA)"
 ---
 
-# From SPSS to jamovi: Analysis of Covariance (ANCOVA)
+This comparison shows how to test if the covariate is independent of the independent variable, as described in chapter 13.5.3 of [Field (2017)](https://edge.sagepub.com/field5e), especially output 13.3. It uses the data set **Puppy Love Dummy.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
 
-> This comparison shows how to test if the covariate is independent of the independent variable, as described in chapter 13.5.3 of [Field (2017)](https://edge.sagepub.com/field5e), especially output 13.3. It uses the data set **Puppy Love Dummy.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>SPSS</strong></th>
+<th><strong>jamovi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In SPSS you can run this test using <code>Analyze</code> → <code>Compare Means</code> → <code>One Way ANOVA</code>.</td>
+<td>In jamovi you do this using: <code>Analyses</code> → <code>ANOVA</code> → <code>ANCOVA</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Menu_ANCOVA2.png" alt="SPSS_Menu_ANCOVA2" /></td>
+<td><img src="/images/s2j_jamovi_Menu_ANCOVA2.png" alt="jamovi_Menu_ANCOVA2" /></td>
+</tr>
+<tr>
+<td>In SPSS, move <code>Puppy_love</code> to the variable box <code>Dependent List</code> and <code>Dose</code> to the variable box <code>Factor</code>.</td>
+<td>In jamovi, move <code>Puppy_love</code> to the variable box <code>Dependent Variable</code> and <code>Dose</code> to the variable box <code>Fixed Factors</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_ANCOVA2.png" alt="SPSS_Input_ANCOVA2" /></td>
+<td><img src="/images/s2j_jamovi_Input_ANCOVA2.png" alt="jamovi_Input_ANCOVA2" /></td>
+</tr>
+<tr>
+<td colspan="2">When comparing the outputs in SPSS and jamovi, the results are exactly the same. The only difference is that jamovi does not provide a row with the total sum of squares and degrees of freedom.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Output_ANCOVA2.png" alt="SPSS_Output_ANCOVA2" /></td>
+<td><img src="/images/s2j_jamovi_Output_ANCOVA2.png" alt="jamovi_Output_ANCOVA2" /></td>
+</tr>
+<tr>
+<td>In the <code>ANCOVA</code> table, you can find the degrees of freedom between groups and within groups, as well as the <em>F</em>-value and its significance level. The results from this analysis indicate that for all three puppy therapy groups, the love for puppies were about the same.</td>
+<td>In jamovi, these values are found in the equivalent table (<code>ANCOVA – Puppy_love</code>).</td>
+</tr>
+<tr>
+<td colspan="2"><p>In both SPSS and in jamovi, the degrees of freedom can be found in the second, the <em>F</em>-value in the fourth, and the <em>p</em>-value in the fifth column.</p>
+<p>The numerical values are the same in both SPSS and jamovi: <em>F</em>(2, 27) = 1.98, <em>p</em> = 0.16.</p></td>
+</tr>
+<tr>
+<td colspan="2">If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to <code class="interpreted-text" role="ref">Rj &lt;rj_editor&gt;</code>). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.</td>
+</tr>
+<tr>
+<td><pre class="none"><code>ONEWAY Puppy_love BY Dose
+  /MISSING ANALYSIS.</code></pre></td>
+<td><pre class="none"><code>jmv::ancova(
+    formula = Puppy_love ~ Dose,
+    data = data)</code></pre></td>
+</tr>
+<tr>
+<td><a href="../../_static/output/s2j_Output_SPSS_ANCOVA2.spv">SPSS output file containing the analyses</a></td>
+<td><a href="../../_static/output/s2j_Output_jamovi_ANCOVA2.omv">jamovi file containing the analyses</a></td>
+</tr>
+</tbody>
+</table>
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| **SPSS**                                                                                                                                                                                                                                                                     | **jamovi**                                                                                                                                       |
-+==============================================================================================================================================================================================================================================================================+==================================================================================================================================================+
-| In SPSS you can run this test using `Analyze` → `Compare Means` → `One Way ANOVA`.                                                                                                                                                                                           | In jamovi you do this using: `Analyses` → `ANOVA` → `ANCOVA`.                                                                                    |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![SPSS_Menu_ANCOVA2](/images/s2j_SPSS_Menu_ANCOVA2.png)                                                                                                                                                                                                                   | ![jamovi_Menu_ANCOVA2](/images/s2j_jamovi_Menu_ANCOVA2.png)                                                                                   |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| In SPSS, move `Puppy_love` to the variable box `Dependent List` and `Dose` to the variable box `Factor`.                                                                                                                                                                     | In jamovi, move `Puppy_love` to the variable box `Dependent Variable` and `Dose` to the variable box `Fixed Factors`.                            |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![SPSS_Input_ANCOVA2](/images/s2j_SPSS_Input_ANCOVA2.png)                                                                                                                                                                                                                 | ![jamovi_Input_ANCOVA2](/images/s2j_jamovi_Input_ANCOVA2.png)                                                                                 |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| When comparing the outputs in SPSS and jamovi, the results are exactly the same. The only difference is that jamovi does not provide a row with the total sum of squares and degrees of freedom.                                                                                                                                                                                                                                |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![SPSS_Output_ANCOVA2](/images/s2j_SPSS_Output_ANCOVA2.png)                                                                                                                                                                                                               | ![jamovi_Output_ANCOVA2](/images/s2j_jamovi_Output_ANCOVA2.png)                                                                               |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| In the `ANCOVA` table, you can find the degrees of freedom between groups and within groups, as well as the *F*-value and its significance level. The results from this analysis indicate that for all three puppy therapy groups, the love for puppies were about the same. | In jamovi, these values are found in the equivalent table (`ANCOVA – Puppy_love`).                                                               |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| In both SPSS and in jamovi, the degrees of freedom can be found in the second, the *F*-value in the fourth, and the *p*-value in the fifth column.                                                                                                                                                                                                                                                                              |
-|                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| The numerical values are the same in both SPSS and jamovi: *F*(2, 27) = 1.98, *p* = 0.16.                                                                                                                                                                                                                                                                                                                                       |
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to Rj). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.                                                                                                                                |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``` none                                                                                                                                                                                                                                                                     | ``` none                                                                                                                                         |
-| ONEWAY Puppy_love BY Dose                                                                                                                                                                                                                                                    | jmv::ancova(                                                                                                                                     |
-|   /MISSING ANALYSIS.                                                                                                                                                                                                                                                         |     formula = Puppy_love ~ Dose,                                                                                                                 |
-| ```                                                                                                                                                                                                                                                                          |     data = data)                                                                                                                                 |
-|                                                                                                                                                                                                                                                                              | ```                                                                                                                                              |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-| [SPSS output file containing the analyses](../../_static/output/s2j_Output_SPSS_ANCOVA2.spv)                                                                                                                                                                                 | [jamovi file containing the analyses](../../_static/output/s2j_Output_jamovi_ANCOVA2.omv)                                                        |
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
-
-| **References**
-| Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)
+**References**\
+Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)

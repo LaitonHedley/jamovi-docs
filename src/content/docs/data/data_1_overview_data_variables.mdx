@@ -2,8 +2,6 @@
 title: "Data Variables"
 ---
 
-# Data Variables
-
 All data you bring into or enter directly in jamovi starts as **Data Variables**. These columns form the raw data used as the basis for your analyses. Opening a dataset (such as a .csv file) or typing values into the spreadsheet creates these variables automatically.
 
 ## Measure and Data Types
@@ -67,14 +65,14 @@ For example, to treat any value equal to 9999 as missing, use the formula `== 99
 
 For Nominal or Ordinal variables, you can add descriptive labels to the levels. This makes your output much easier to read. Below is a variable called \"Group\" using numeric codes:
 
-  ID   Group
-  ---- -------
-  1    1
-  2    2
-  3    1
-  4    2
+| ID  | Group |
+|-----|-------|
+| 1   | 1     |
+| 2   | 2     |
+| 3   | 1     |
+| 4   | 2     |
 
-  : Example of a Variable with Unlabeled Levels
+: Example of a Variable with Unlabeled Levels
 
 In this case, 1 represents \"Smoker\" and 2 represents \"Non-smoker\". To assign these labels, open the **variable editor**:
 
@@ -86,14 +84,14 @@ Click on the current levels (1 and 2) and type the meaningful labels:
 
 The variable now displays these labels in all analyses and results:
 
-  ID   Group
-  ---- ------------
-  1    Smoker
-  2    Non-smoker
-  3    Smoker
-  4    Non-smoker
+| ID  | Group      |
+|-----|------------|
+| 1   | Smoker     |
+| 2   | Non-smoker |
+| 3   | Smoker     |
+| 4   | Non-smoker |
 
-  : Example of a Variable with Labeled Levels
+: Example of a Variable with Labeled Levels
 
 ## Reordering Levels
 
@@ -101,13 +99,13 @@ For Ordinal (and sometimes Nominal) variables, you can reorder the levels so the
 
 For example, if \"Task Difficulty\" levels appear in the wrong order:
 
-  Task Difficulty   Mean   Standard Deviation
-  ----------------- ------ --------------------
-  Low               85.1   9.5
-  High              54.3   9.1
-  Medium            73.6   9.3
+| Task Difficulty | Mean | Standard Deviation |
+|-----------------|------|--------------------|
+| Low             | 85.1 | 9.5                |
+| High            | 54.3 | 9.1                |
+| Medium          | 73.6 | 9.3                |
 
-  : Descriptives Table with Levels Unordered
+: Descriptives Table with Levels Unordered
 
 1.  Double-click the variable header to open the **variable editor**.
 2.  Click a level in the list and use the arrow keys to move it.
@@ -120,13 +118,13 @@ The level at the top of the list will appear first (leftmost or topmost) in all 
 
 The table now displays levels in the natural order: Low, Medium, High.
 
-  Task Difficulty   Mean   Standard Deviation
-  ----------------- ------ --------------------
-  Low               85.1   9.5
-  Medium            73.6   9.3
-  High              54.3   9.1
+| Task Difficulty | Mean | Standard Deviation |
+|-----------------|------|--------------------|
+| Low             | 85.1 | 9.5                |
+| Medium          | 73.6 | 9.3                |
+| High            | 54.3 | 9.1                |
 
-  : Descriptives Table with Levels Reordered
+: Descriptives Table with Levels Reordered
 
 ## Retain Unused Levels in Analyses
 
@@ -134,16 +132,16 @@ If a categorical variable has valid levels that don\'t appear in your current da
 
 For example, if you ask Adult and Child moviegoers if they enjoyed a film and everyone answers \"Yes\", the \"No\" level is absent but still relevant.
 
-  Age Group   Enjoyed Film (Y/N)
-  ----------- --------------------
-  Adult       Yes
-  Adult       Yes
-  Adult       Yes
-  Child       Yes
-  Child       Yes
-  Child       Yes
+| Age Group | Enjoyed Film (Y/N) |
+|-----------|--------------------|
+| Adult     | Yes                |
+| Adult     | Yes                |
+| Adult     | Yes                |
+| Child     | Yes                |
+| Child     | Yes                |
+| Child     | Yes                |
 
-  : Example Data with an Unused Level
+: Example Data with an Unused Level
 
 To retain the \"No\" level in your tables:
 

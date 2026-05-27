@@ -2,8 +2,6 @@
 title: "Common Data Recipes"
 ---
 
-# Common Data Recipes
-
 This section provides step-by-step recipes for the most common data handling tasks in jamovi.
 
 ## Reverse Scoring Survey Items
@@ -12,13 +10,13 @@ When handling survey data, some items are reverse scored --- higher scores on th
 
 For example, participants have responded on a 1--7 Likert scale to three items, but Item_3 is scored in the opposite direction:
 
-  Item_1   Item_2   Item_3
-  -------- -------- --------
-  4        3        3
-  3        4        5
-  4        4        2
+| Item_1 | Item_2 | Item_3 |
+|--------|--------|--------|
+| 4      | 3      | 3      |
+| 3      | 4      | 5      |
+| 4      | 4      | 2      |
 
-  : Data before reverse scoring
+: Data before reverse scoring
 
 **Single item:** create a computed variable with a direct formula.
 
@@ -32,13 +30,13 @@ For example, participants have responded on a 1--7 Likert scale to three items, 
 3.  Click **Using transformation** and choose **Create New Transform\...**.
 4.  Enter the formula: `8 - $source`
 
-  Item_1   Item_2   Item_3   Item_3_Reversed
-  -------- -------- -------- -----------------
-  4        3        3        5
-  3        4        5        3
-  4        4        2        6
+| Item_1 | Item_2 | Item_3 | Item_3_Reversed |
+|--------|--------|--------|-----------------|
+| 4      | 3      | 3      | 5               |
+| 3      | 4      | 5      | 3               |
+| 4      | 4      | 2      | 6               |
 
-  : Data after reverse scoring Item_3
+: Data after reverse scoring Item_3
 
 Higher scores on Item_3_Reversed now indicate more of the construct, consistent with Item_1 and Item_2. This step is important before computing a sum or mean score across items.
 
@@ -48,13 +46,13 @@ Sum scores combine multiple survey items into a single overall score for a const
 
 Below are responses to four items of an Extraversion subscale, each scored on a 1--5 Likert scale:
 
-  Item_1   Item_6   Item_11   Item_16
-  -------- -------- --------- ---------
-  5        1        3         3
-  4        2        1         1
-  4        2        4         5
+| Item_1 | Item_6 | Item_11 | Item_16 |
+|--------|--------|---------|---------|
+| 5      | 1      | 3       | 3       |
+| 4      | 2      | 1       | 1       |
+| 4      | 2      | 4       | 5       |
 
-  : Data before computing sum score
+: Data before computing sum score
 
 1.  Click a new column and choose **New Computed Variable**.
 
@@ -62,13 +60,13 @@ Below are responses to four items of an Extraversion subscale, each scored on a 
 
     `SUM(Item_1, Item_6, Item_11, Item_16)`
 
-  Item_1   Item_6   Item_11   Item_16   Extraversion_Sum_Score
-  -------- -------- --------- --------- ------------------------
-  5        1        3         3         12
-  4        2        1         1         8
-  4        2        4         5         15
+| Item_1 | Item_6 | Item_11 | Item_16 | Extraversion_Sum_Score |
+|--------|--------|---------|---------|------------------------|
+| 5      | 1      | 3       | 3       | 12                     |
+| 4      | 2      | 1       | 1       | 8                      |
+| 4      | 2      | 4       | 5       | 15                     |
 
-  : Data after computing sum score
+: Data after computing sum score
 
 The new column contains the overall score for each participant.
 
@@ -76,15 +74,15 @@ The new column contains the overall score for each participant.
 
 Continuous variables are often recoded into categories for group comparisons. Age is a common example --- it can be grouped into Young Adults (18--29), Middle-Aged Adults (30--59), and Older Adults (60+).
 
-  Age
-  -----
-  25
-  18
-  35
-  45
-  65
+| Age |
+|-----|
+| 25  |
+| 18  |
+| 35  |
+| 45  |
+| 65  |
 
-  : Age data before recoding
+: Age data before recoding
 
 1.  Click a new column and choose **New Transformed Variable**.
 
@@ -104,28 +102,28 @@ Continuous variables are often recoded into categories for group comparisons. Ag
 
     Conditions are evaluated in order, so values below 30 are assigned \"Young\" first, then values below 50 become \"Middle-Aged\", and all remaining values become \"Older\".
 
-  Age   Age_Category
-  ----- --------------
-  25    Young
-  18    Young
-  35    Middle-Aged
-  45    Middle-Aged
-  65    Older
+| Age | Age_Category |
+|-----|--------------|
+| 25  | Young        |
+| 18  | Young        |
+| 35  | Middle-Aged  |
+| 45  | Middle-Aged  |
+| 65  | Older        |
 
-  : Age data after recoding
+: Age data after recoding
 
 ## Recoding/Reducing the Number of Categories
 
 Categorical variables with many levels can be reduced to fewer categories for simpler analysis. For example, smoker status may have four levels (Non-smoker, Occasional Smoker, Regular Smoker, Heavy Smoker) that can be collapsed into two (Non-smoker, Smoker).
 
-  Smoker_Status
-  -------------------
-  Non-smoker
-  Occasional Smoker
-  Regular Smoker
-  Heavy Smoker
+| Smoker_Status     |
+|-------------------|
+| Non-smoker        |
+| Occasional Smoker |
+| Regular Smoker    |
+| Heavy Smoker      |
 
-  : Smoker status before recoding
+: Smoker status before recoding
 
 1.  Click a new column and choose **New Transformed Variable**.
 
@@ -137,14 +135,14 @@ Categorical variables with many levels can be reduced to fewer categories for si
 
     <img src="/images/ts_reduce_smoker_cat.png" alt="The transformation editor reducing smoker status to Non-smoker and Smoker." style="width: 600px" />
 
-  Smoker_Status       Smoker_Status_Reduced
-  ------------------- -----------------------
-  Non-smoker          Non-smoker
-  Occasional Smoker   Smoker
-  Regular Smoker      Smoker
-  Heavy Smoker        Smoker
+| Smoker_Status     | Smoker_Status_Reduced |
+|-------------------|-----------------------|
+| Non-smoker        | Non-smoker            |
+| Occasional Smoker | Smoker                |
+| Regular Smoker    | Smoker                |
+| Heavy Smoker      | Smoker                |
 
-  : Smoker status after recoding
+: Smoker status after recoding
 
 ## Excluding Outliers (IQR method)
 
@@ -152,32 +150,32 @@ The IQR method flags values that lie more than 1.5 times the interquartile range
 
 The data below has two columns: Memory Score and its Absolute IQR value. The last two rows show extreme outliers (values of 15 and 98) with ABSIQR values above 1.5, indicating they fall outside the boxplot whiskers:
 
-  Memory_Score   ABSIQR(Memory_Score)
-  -------------- ----------------------
-  68             0
-  66             0
-  70             0
-  \...           \...
-  15             9.05
-  98             5.05
+| Memory_Score | ABSIQR(Memory_Score) |
+|--------------|----------------------|
+| 68           | 0                    |
+| 66           | 0                    |
+| 70           | 0                    |
+| \...         | \...                 |
+| 15           | 9.05                 |
+| 98           | 5.05                 |
 
-  : Memory scores before filtering (ABSIQR)
+: Memory scores before filtering (ABSIQR)
 
 To exclude these outliers:
 
 1.  Click the **Data** tab and select **Filters**.
 2.  Enter the expression: `ABSIQR(Memory_Score) < 1.5`
 
-  Filter 1   Memory_Score   ABSIQR(Memory_Score)
-  ---------- -------------- ----------------------
-  ✔          68             0
-  ✔          66             0
-  ✔          70             0
-  ✔          \...           \...
-  ✘          15             9.05
-  ✘          98             5.05
+| Filter 1 | Memory_Score | ABSIQR(Memory_Score) |
+|----------|--------------|----------------------|
+| ✔        | 68           | 0                    |
+| ✔        | 66           | 0                    |
+| ✔        | 70           | 0                    |
+| ✔        | \...         | \...                 |
+| ✘        | 15           | 9.05                 |
+| ✘        | 98           | 5.05                 |
 
-  : Memory scores after filtering (ABSIQR)
+: Memory scores after filtering (ABSIQR)
 
 The two outliers are excluded from all analyses and visualisations.
 
@@ -185,32 +183,32 @@ The two outliers are excluded from all analyses and visualisations.
 
 The z-score method typically flags values with an absolute z-score greater than 3 as outliers, though stricter or more lenient thresholds can be applied.
 
-  Memory_Score   ABSZ(Memory_Score)
-  -------------- --------------------
-  68             1.08
-  66             0.93
-  70             1.23
-  \...           \...
-  15             3.01
-  98             3.43
+| Memory_Score | ABSZ(Memory_Score) |
+|--------------|--------------------|
+| 68           | 1.08               |
+| 66           | 0.93               |
+| 70           | 1.23               |
+| \...         | \...               |
+| 15           | 3.01               |
+| 98           | 3.43               |
 
-  : Memory scores before filtering (ABSZ)
+: Memory scores before filtering (ABSZ)
 
 The last two rows show outlier values with absolute z-scores above 3. To exclude them:
 
 1.  Click the **Data** tab and select **Filters**.
 2.  Enter the expression: `ABSZ(Memory_Score) < 3`
 
-  Filter 1   Memory_Score   ABSZ(Memory_Score)
-  ---------- -------------- --------------------
-  ✔          68             1.08
-  ✔          66             0.93
-  ✔          70             1.23
-  ✔          \...           \...
-  ✘          15             3.01
-  ✘          98             3.43
+| Filter 1 | Memory_Score | ABSZ(Memory_Score) |
+|----------|--------------|--------------------|
+| ✔        | 68           | 1.08               |
+| ✔        | 66           | 0.93               |
+| ✔        | 70           | 1.23               |
+| ✔        | \...         | \...               |
+| ✘        | 15           | 3.01               |
+| ✘        | 98           | 3.43               |
 
-  : Memory scores after filtering (ABSZ)
+: Memory scores after filtering (ABSZ)
 
 ## Restricting Analyses to a Subset of Data
 
@@ -221,23 +219,23 @@ Below is a dataset with Region, Education Level, and Total Survey Score. To anal
 1.  Click the **Data** tab and select **Filters**.
 2.  Enter the expression: `Region == 'North America'`
 
-  Region          Education Level   Total Survey Score
-  --------------- ----------------- --------------------
-  North America   High School       15
-  North America   University        20
-  Europe          High School       10
-  Europe          University        25
+| Region        | Education Level | Total Survey Score |
+|---------------|-----------------|--------------------|
+| North America | High School     | 15                 |
+| North America | University      | 20                 |
+| Europe        | High School     | 10                 |
+| Europe        | University      | 25                 |
 
-  : Data before filtering
+: Data before filtering
 
-  Filter 1   Region          Education Level   Total Survey Score
-  ---------- --------------- ----------------- --------------------
-  ✔          North America   High School       15
-  ✔          North America   University        20
-  ✘          Europe          High School       10
-  ✘          Europe          University        25
+| Filter 1 | Region        | Education Level | Total Survey Score |
+|----------|---------------|-----------------|--------------------|
+| ✔        | North America | High School     | 15                 |
+| ✔        | North America | University      | 20                 |
+| ✘        | Europe        | High School     | 10                 |
+| ✘        | Europe        | University      | 25                 |
 
-  : Data after filtering to North America only
+: Data after filtering to North America only
 
 jamovi will include only the ticked rows in all subsequent analyses and visualisations.
 
@@ -259,14 +257,14 @@ Using the same dataset as above, create one computed variable for each region:
 
     `` FILTER(`Total Survey Score`, Region == 'Europe') ``
 
-  Region          Education Level   Total Survey Score   Score_NorthAm   Score_Europe
-  --------------- ----------------- -------------------- --------------- --------------
-  North America   High School       15                   15              
-  North America   University        20                   20              
-  Europe          High School       10                                   10
-  Europe          University        25                                   25
+| Region        | Education Level | Total Survey Score | Score_NorthAm | Score_Europe |
+|---------------|-----------------|--------------------|---------------|--------------|
+| North America | High School     | 15                 | 15            |              |
+| North America | University      | 20                 | 20            |              |
+| Europe        | High School     | 10                 |               | 10           |
+| Europe        | University      | 25                 |               | 25           |
 
-  : Data after creating subset variables
+: Data after creating subset variables
 
 Use `Score_NorthAm` and `Score_Europe` in separate analyses to compare Education Level effects within each region independently.
 
@@ -278,13 +276,13 @@ For example: - Item 1: \"I never doubt my abilities.\" - Item 2: \"I often doubt
 
 A participant who strongly agrees (5) with Item 1 should strongly disagree (1) with Item 2. First, reverse-score Item 2 (assuming a 1--5 scale):
 
-  Item_1   Item_2   Item_2_Reversed
-  -------- -------- -----------------
-  5        1        5
-  1        5        1
-  1        2        4
+| Item_1 | Item_2 | Item_2_Reversed |
+|--------|--------|-----------------|
+| 5      | 1      | 5               |
+| 1      | 5      | 1               |
+| 1      | 2      | 4               |
 
-  : Step 1 --- reverse score Item_2
+: Step 1 --- reverse score Item_2
 
 Next:
 
@@ -294,26 +292,26 @@ Next:
 
     `ABS(Item_1 - Item_2_Reversed)`
 
-  Item_1   Item_2   Item_2_Reversed   Abs_Difference
-  -------- -------- ----------------- ----------------
-  5        1        5                 0
-  1        5        1                 0
-  1        2        4                 3
+| Item_1 | Item_2 | Item_2_Reversed | Abs_Difference |
+|--------|--------|-----------------|----------------|
+| 5      | 1      | 5               | 0              |
+| 1      | 5      | 1               | 0              |
+| 1      | 2      | 4               | 3              |
 
-  : Step 2 --- compute absolute difference
+: Step 2 --- compute absolute difference
 
 Finally:
 
 1.  Click the **Data** tab and select **Filters**.
 2.  Keep only participants with a difference of 0: `Abs_Difference == 0`
 
-  Filter 1   Item_1   Item_2   Item_2_Reversed   Abs_Difference
-  ---------- -------- -------- ----------------- ----------------
-  ✔          5        1        5                 0
-  ✔          1        5        1                 0
-  ✘          1        2        4                 3
+| Filter 1 | Item_1 | Item_2 | Item_2_Reversed | Abs_Difference |
+|----------|--------|--------|-----------------|----------------|
+| ✔        | 5      | 1      | 5               | 0              |
+| ✔        | 1      | 5      | 1               | 0              |
+| ✘        | 1      | 2      | 4               | 3              |
 
-  : Step 3 --- filter out inconsistent respondents
+: Step 3 --- filter out inconsistent respondents
 
 Only participants who responded consistently are included in analyses.
 
@@ -323,24 +321,24 @@ A single attention check item instructs participants to select a specific respon
 
 Below, Item_9 is an attention check instructing participants to select 5 on a 1--5 scale. Participant 3 selected 4 and should be excluded:
 
-  ID   Item_1   Item_2   Item_9_Attention_Check
-  ---- -------- -------- ------------------------
-  1    3        3        5
-  2    5        4        5
-  3    4        4        4
+| ID  | Item_1 | Item_2 | Item_9_Attention_Check |
+|-----|--------|--------|------------------------|
+| 1   | 3      | 3      | 5                      |
+| 2   | 5      | 4      | 5                      |
+| 3   | 4      | 4      | 4                      |
 
-  : Data before removing failed attention checks
+: Data before removing failed attention checks
 
 1.  Click the **Data** tab and select **Filters**.
 2.  Enter the expression: `Item_9_Attention_Check == 5`
 
-  Filter 1   ID   Item_1   Item_2   Item_9_Attention_Check
-  ---------- ---- -------- -------- ------------------------
-  ✔          1    3        3        5
-  ✔          2    5        4        5
-  ✘          3    4        4        4
+| Filter 1 | ID  | Item_1 | Item_2 | Item_9_Attention_Check |
+|----------|-----|--------|--------|------------------------|
+| ✔        | 1   | 3      | 3      | 5                      |
+| ✔        | 2   | 5      | 4      | 5                      |
+| ✘        | 3   | 4      | 4      | 4                      |
 
-  : Data after removing failed attention checks
+: Data after removing failed attention checks
 
 Only participants who passed the attention check are included.
 
@@ -350,14 +348,14 @@ String concatenation joins two or more text values into a single variable. This 
 
 For example, combining Condition and Time into a single variable:
 
-  Participant_ID   Condition   Time
-  ---------------- ----------- ------
-  1                Control     Pre
-  1                Control     Post
-  2                Therapy     Pre
-  2                Therapy     Post
+| Participant_ID | Condition | Time |
+|----------------|-----------|------|
+| 1              | Control   | Pre  |
+| 1              | Control   | Post |
+| 2              | Therapy   | Pre  |
+| 2              | Therapy   | Post |
 
-  : Data before concatenation
+: Data before concatenation
 
 1.  Click a new column and choose **New Computed Variable**.
 
@@ -365,13 +363,13 @@ For example, combining Condition and Time into a single variable:
 
     `Condition + '_' + Time`
 
-  Participant_ID   Condition   Time   Condition_Time
-  ---------------- ----------- ------ ----------------
-  1                Control     Pre    Control_Pre
-  1                Control     Post   Control_Post
-  2                Therapy     Pre    Therapy_Pre
-  2                Therapy     Post   Therapy_Post
+| Participant_ID | Condition | Time | Condition_Time |
+|----------------|-----------|------|----------------|
+| 1              | Control   | Pre  | Control_Pre    |
+| 1              | Control   | Post | Control_Post   |
+| 2              | Therapy   | Pre  | Therapy_Pre    |
+| 2              | Therapy   | Post | Therapy_Post   |
 
-  : Data after concatenation
+: Data after concatenation
 
 The underscore separator can be omitted or replaced with any other character.

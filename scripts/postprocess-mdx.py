@@ -51,6 +51,22 @@ def convert_image_attrs(m: re.Match) -> str:
 def process_file(path: Path) -> None:
     text = path.read_text(encoding='utf-8')
 
+    # 1a. Strip blockquote markers — RST body text is indented (= RST block quote),
+    #     pandoc converts that to "> " prefixes, but all content here is plain prose.
+    # Handles both top-level ("> text") and indented ("  > text") blockquotes.
+    # Bare ">" lines are paragraph separators — convert to blank lines first.
+    text = re.sub(r'^(\s*)>\s*$', r'\1', text, flags=re.MULTILINE)
+    text = re.sub(r'^(\s*)> ', r'\1', text, flags=re.MULTILINE)
+
+    # 1b. Normalize code fence language tags: lowercase and strip extra spaces
+    #     pandoc emits "``` R" (space before lang); standardise to "```r"
+    def _norm_fence(m: re.Match) -> str:
+        lang = m.group(2).lower()
+        if lang == 'rout':
+            lang = 'r'
+        return m.group(1) + lang
+    text = re.sub(r'^(\s*```+)\s+([A-Za-z][A-Za-z0-9]*)\s*$', _norm_fence, text, flags=re.MULTILINE)
+
     # 1. Remove sectionauthor fenced divs produced by pandoc
     #    Pattern: ::: sectionauthor\ncontent\n:::
     text = re.sub(
@@ -60,7 +76,7 @@ def process_file(path: Path) -> None:
 
     # 2a. Remove pandoc fenced divs for toctree/contents directives.
     #     These appear as :::: {.toctree ...}\n...\n:::: or inside blockquotes.
-    text = re.sub(r'>{0,2}\s*:{3,4}\s*\{\.(?:toctree|contents)[^}]*\}.*?:{3,4}', '', text, flags=re.DOTALL)
+    text = re.sub(r'^(?:>{1,2}\s+)?:{3,4}\s*\{\.(?:toctree|contents)[^}]*\}.*?:{3,4}', '', text, flags=re.DOTALL | re.MULTILINE)
     # Clean up any empty blockquote lines left behind
     text = re.sub(r'(^>\s*\n)+', '', text, flags=re.MULTILINE)
 
@@ -100,9 +116,37 @@ def process_file(path: Path) -> None:
     # 4. Fix any remaining bare _images/ paths not caught above
     text = re.sub(r'src="/_images/', 'src="/images/', text)
     text = re.sub(r'src="../_images/', 'src="/images/', text)
-    # Fix gif-player data-src paths pointing to _static/gifs/
-    text = re.sub(r'data-anim-src="[^"]*_static/gifs/([^"]+)"', r'data-anim-src="/images/\1"', text)
-    text = re.sub(r'data-static-src="[^"]*_static/gifs/([^"]+)"', r'data-static-src="/images/\1"', text)
+
+    # 4b. Convert <div class="gif-player"> markup to <video> elements.
+    #     GIFs have been converted to WebM + MP4 via scripts/convert-gifs.sh.
+    def gif_player_to_video(m: re.Match) -> str:
+        attrs = m.group(1)
+        anim = re.search(r'data-anim-src="([^"]+)"', attrs)
+        static = re.search(r'data-static-src="([^"]+)"', attrs)
+        title = re.search(r'data-title="([^"]+)"', attrs)
+        if not anim:
+            return m.group(0)
+        src = anim.group(1)
+        # Normalise path: _static/gifs/foo.gif → /images/foo
+        src = re.sub(r'^.*_static/gifs/', '/images/', src)
+        src = re.sub(r'^/_images/', '/images/', src)
+        base = re.sub(r'\.(gif|GIF)$', '', src)
+        poster = static.group(1) if static else base + '.png'
+        poster = re.sub(r'^.*_static/gifs/', '/images/', poster)
+        poster = re.sub(r'^/_images/', '/images/', poster)
+        alt = title.group(1) if title else ''
+        return (
+            f'<video autoplay loop muted playsinline poster="{poster}" '
+            f'title="{alt}" style="width: 80%; display: block; margin: 1rem 0">'
+            f'<source src="{base}.webm" type="video/webm" />'
+            f'<source src="{base}.mp4" type="video/mp4" />'
+            f'</video>'
+        )
+
+    text = re.sub(
+        r'<div\s+((?:[^>]*\s)?class="gif-player"[^>]*)/?>(?:</div>)?',
+        gif_player_to_video, text
+    )
 
     # 5. Convert :doc: cross-refs left by pandoc as interpreted-text spans.
     #    Simple form:  `slug`{.interpreted-text role="doc"}
@@ -143,6 +187,12 @@ def process_file(path: Path) -> None:
         # Escape double quotes in title
         title = title.replace('"', '\\"')
         text = f'---\ntitle: "{title}"\n---\n\n' + text
+
+    # 7b. Strip first H1 — Starlight renders it from frontmatter title
+    text = re.sub(r'^(---\n.*?\n---\n+)# [^\n]+\n+', r'\1', text, count=1, flags=re.DOTALL)
+
+    # 7c. Strip stale inline <script> tags left over from Sphinx RST files
+    text = re.sub(r'\n?<script[^>]*src="[^"]*_static[^"]*"[^>]*></script>', '', text)
 
     # 8a. Strip pandoc inline span attributes [text]{.class} → text
     #     and heading ID anchors {#some-id} — MDX treats {} as JSX

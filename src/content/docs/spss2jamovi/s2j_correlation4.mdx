@@ -2,41 +2,70 @@
 title: "From SPSS to jamovi: Correlation"
 ---
 
-# From SPSS to jamovi: Correlation
+This comparison shows how a point-biserial correlation is conducted in SPSS and jamovi. The SPSS test follows the description in chapter 8.4.5 in [Field (2017)](https://edge.sagepub.com/field5e), especially output 8.4. It uses the data set **Roaming cats.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
 
-> This comparison shows how a point-biserial correlation is conducted in SPSS and jamovi. The SPSS test follows the description in chapter 8.4.5 in [Field (2017)](https://edge.sagepub.com/field5e), especially output 8.4. It uses the data set **Roaming cats.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>SPSS</strong></th>
+<th><strong>jamovi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In SPSS you can run a correlation using: <code>Analyze</code> → <code>Correlate</code> → <code>Bivariate</code>.</td>
+<td>In jamovi you do this using: <code>Analyses</code> → <code>Regression</code> → <code>Correlation Matrix</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Menu_corr4.png" alt="SPSS_Menu_corr4" /></td>
+<td><img src="/images/s2j_jamovi_Menu_corr4.png" alt="jamovi_Menu_corr4" /></td>
+</tr>
+<tr>
+<td>In SPSS, move the variables <code>Time</code> and <code>Sex</code> to the variable box <code>Variables</code>. Then, tick <code>Pearson</code> under <code>Correlation Coefficients</code>.</td>
+<td>In jamovi, move the variables <code>Time</code> and <code>Sex</code> into the box on the right. Tick <code>Pearson</code> under <code>Correlation Coefficients</code> and <code>Report significance</code>, <code>Flag significant correlations</code> and <code>N</code> under <code>Additional Options</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_corr4.png" alt="SPSS_Input_corr4" /></td>
+<td><img src="/images/s2j_jamovi_Input_corr4.png" alt="jamovi_Input_corr4" /></td>
+</tr>
+<tr>
+<td colspan="2">The results are the same in SPSS and in jamovi.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Output_corr4.png" alt="SPSS_Output_corr4" /></td>
+<td><img src="/images/s2j_jamovi_Output_corr4.png" alt="jamovi_Output_corr4" /></td>
+</tr>
+<tr>
+<td>In SPSS, you can tell if a correlation is significant by noting the amount of asterisks after the correlation coefficient. The correlation matrix shows the correlation coefficient, the p-value, and the sample size (N).</td>
+<td>In jamovi, significant correlations are flagged using one (p &lt; .05), two (p &lt; .01) or three (p &lt; .001) asterisks. This differs from SPSS, where all correlation above p &lt; .01 level is simply marked using two instead of three asterisks.</td>
+</tr>
+<tr>
+<td colspan="2">The correlation coefficient is found both underneath and over the diagonal in SPSS, while in jamovi the coefficient is only shown underneath. The numerical values for the statistics are identical: <em>r</em> = 0.38, <em>p</em> &lt; .01.</td>
+</tr>
+<tr>
+<td colspan="2">If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to <code class="interpreted-text" role="ref">Rj &lt;rj_editor&gt;</code>). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.</td>
+</tr>
+<tr>
+<td><pre class="none"><code>CORRELATIONS
+  /VARIABLES=Time Sex
+  /PRINT=TWOTAIL NOSIG FULL
+  /MISSING=PAIRWISE.</code></pre></td>
+<td><pre class="none"><code>jmv::corrMatrix(
+    data = data,
+    vars = vars(Time, Sex),
+    flag = TRUE,
+    n = TRUE)</code></pre></td>
+</tr>
+<tr>
+<td><a href="../../_static/output/s2j_Output_SPSS_corr4.spv">SPSS output file containing the analyses</a></td>
+<td><a href="../../_static/output/s2j_Output_jamovi_corr4.omv">jamovi file containing the analyses</a></td>
+</tr>
+</tbody>
+</table>
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **SPSS**                                                                                                                                                                                                                   | **jamovi**                                                                                                                                                                                                                                     |
-+============================================================================================================================================================================================================================+================================================================================================================================================================================================================================================+
-| In SPSS you can run a correlation using: `Analyze` → `Correlate` → `Bivariate`.                                                                                                                                            | In jamovi you do this using: `Analyses` → `Regression` → `Correlation Matrix`.                                                                                                                                                                 |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![SPSS_Menu_corr4](/images/s2j_SPSS_Menu_corr4.png)                                                                                                                                                                     | ![jamovi_Menu_corr4](/images/s2j_jamovi_Menu_corr4.png)                                                                                                                                                                                     |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| In SPSS, move the variables `Time` and `Sex` to the variable box `Variables`. Then, tick `Pearson` under `Correlation Coefficients`.                                                                                       | In jamovi, move the variables `Time` and `Sex` into the box on the right. Tick `Pearson` under `Correlation Coefficients` and `Report significance`, `Flag significant correlations` and `N` under `Additional Options`.                       |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![SPSS_Input_corr4](/images/s2j_SPSS_Input_corr4.png)                                                                                                                                                                   | ![jamovi_Input_corr4](/images/s2j_jamovi_Input_corr4.png)                                                                                                                                                                                   |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| The results are the same in SPSS and in jamovi.                                                                                                                                                                                                                                                                                                                                                                                                                             |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ![SPSS_Output_corr4](/images/s2j_SPSS_Output_corr4.png)                                                                                                                                                                 | ![jamovi_Output_corr4](/images/s2j_jamovi_Output_corr4.png)                                                                                                                                                                                 |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| In SPSS, you can tell if a correlation is significant by noting the amount of asterisks after the correlation coefficient. The correlation matrix shows the correlation coefficient, the p-value, and the sample size (N). | In jamovi, significant correlations are flagged using one (p \< .05), two (p \< .01) or three (p \< .001) asterisks. This differs from SPSS, where all correlation above p \< .01 level is simply marked using two instead of three asterisks. |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| The correlation coefficient is found both underneath and over the diagonal in SPSS, while in jamovi the coefficient is only shown underneath. The numerical values for the statistics are identical: *r* = 0.38, *p* \< .01.                                                                                                                                                                                                                                                |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to Rj). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.                                                                                                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``` none                                                                                                                                                                                                                   | ``` none                                                                                                                                                                                                                                       |
-| CORRELATIONS                                                                                                                                                                                                               | jmv::corrMatrix(                                                                                                                                                                                                                               |
-|   /VARIABLES=Time Sex                                                                                                                                                                                                      |     data = data,                                                                                                                                                                                                                               |
-|   /PRINT=TWOTAIL NOSIG FULL                                                                                                                                                                                                |     vars = vars(Time, Sex),                                                                                                                                                                                                                    |
-|   /MISSING=PAIRWISE.                                                                                                                                                                                                       |     flag = TRUE,                                                                                                                                                                                                                               |
-| ```                                                                                                                                                                                                                        |     n = TRUE)                                                                                                                                                                                                                                  |
-|                                                                                                                                                                                                                            | ```                                                                                                                                                                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| [SPSS output file containing the analyses](../../_static/output/s2j_Output_SPSS_corr4.spv)                                                                                                                                 | [jamovi file containing the analyses](../../_static/output/s2j_Output_jamovi_corr4.omv)                                                                                                                                                        |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-| **References**
-| Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)
+**References**\
+Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)

@@ -12,7 +12,7 @@ for section in "${SECTIONS[@]}"; do
     out="${OUTBASE}/${section}/${base}.mdx"
     pandoc "$rst" \
       -f rst \
-      -t markdown \
+      -t markdown-simple_tables-multiline_tables-grid_tables-line_blocks+pipe_tables \
       --wrap=none \
       --markdown-headings=atx \
       -o "$out"

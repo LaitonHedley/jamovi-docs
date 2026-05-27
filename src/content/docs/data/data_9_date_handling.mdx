@@ -2,8 +2,6 @@
 title: "Date Handling"
 ---
 
-# Date Handling
-
 Use the techniques on this page when you need to:
 
 - Calculate someone\'s age from their date of birth.
@@ -22,57 +20,57 @@ Two functions form the foundation of date handling in jamovi:
 
 The typical workflow is to convert a date to an integer, perform arithmetic on it, and then convert the result back to a date string. Both functions optionally accept a format string for non-standard date formats.
 
-  Day    `DATE(Day)`   `DATE(Day, "%d %m %Y")`   `DATE(Day, "%m/%d/%y")`
-  ------ ------------- ------------------------- -------------------------
-  13     1970-01-13    13 01 1970                01/13/70
-  4197   1981-06-29    29 06 1981                06/29/81
+| Day  | `DATE(Day)` | `DATE(Day, "%d %m %Y")` | `DATE(Day, "%m/%d/%y")` |
+|------|-------------|-------------------------|-------------------------|
+| 13   | 1970-01-13  | 13 01 1970              | 01/13/70                |
+| 4197 | 1981-06-29  | 29 06 1981              | 06/29/81                |
 
-  : Example date formatting
+: Example date formatting
 
 ## Adding Days to a Date
 
 Convert a date to an integer, add the number of days, then convert back:
 
-  Date         `DATEVALUE(Date)`   `DATEVALUE(Date) + 7`   `DATE(DATEVALUE(Date) + 7)`
-  ------------ ------------------- ----------------------- -----------------------------
-  2026-01-29   20482               20489                   2026-02-05
-  2024-03-10   19792               19799                   2024-03-17
-  2025-08-22   20322               20329                   2025-08-29
+| Date | `DATEVALUE(Date)` | `DATEVALUE(Date) + 7` | `DATE(DATEVALUE(Date) + 7)` |
+|----|----|----|----|
+| 2026-01-29 | 20482 | 20489 | 2026-02-05 |
+| 2024-03-10 | 19792 | 19799 | 2024-03-17 |
+| 2025-08-22 | 20322 | 20329 | 2025-08-29 |
 
-  : Adding 7 days to a date
+: Adding 7 days to a date
 
 ## Days Elapsed Between Two Dates
 
 Subtract the start date integer from the end date integer:
 
-  StartDate    EndDate      `DATEVALUE(EndDate) - DATEVALUE(StartDate)`
-  ------------ ------------ ---------------------------------------------
-  2026-01-29   2026-02-15   17
-  2024-03-10   2024-04-11   32
-  2025-08-22   2024-04-11   -498
+| StartDate  | EndDate    | `DATEVALUE(EndDate) - DATEVALUE(StartDate)` |
+|------------|------------|---------------------------------------------|
+| 2026-01-29 | 2026-02-15 | 17                                          |
+| 2024-03-10 | 2024-04-11 | 32                                          |
+| 2025-08-22 | 2024-04-11 | -498                                        |
 
-  : Computing days elapsed
+: Computing days elapsed
 
 ## Extracting Year, Month, or Day
 
 Use the `SPLIT()` function to extract parts of a date string. It splits text by a delimiter and returns the chunk at the specified position. Note that `SPLIT()` returns text --- wrap with `INT()` if you need the result as a number for arithmetic.
 
-  Date         `SPLIT(Date, '-', 1)`   `SPLIT(Date, '-', 2)`   `SPLIT(Date, '-', 3)`
-  ------------ ----------------------- ----------------------- -----------------------
-  2026-01-29   2026                    01                      29
-  2024-03-10   2024                    03                      10
-  2025-08-22   2025                    08                      22
+| Date | `SPLIT(Date, '-', 1)` | `SPLIT(Date, '-', 2)` | `SPLIT(Date, '-', 3)` |
+|----|----|----|----|
+| 2026-01-29 | 2026 | 01 | 29 |
+| 2024-03-10 | 2024 | 03 | 10 |
+| 2025-08-22 | 2025 | 08 | 22 |
 
-  : Extracting year, month, and day
+: Extracting year, month, and day
 
 ## Composing a Date from Parts
 
 Concatenate year, month, and day strings with `-` as a separator:
 
-  Year   Month   DayOfMonth   `Year + '-' + Month + '-' + DayOfMonth`
-  ------ ------- ------------ -----------------------------------------
-  2026   01      29           2026-01-29
-  2024   03      10           2024-03-10
-  2025   08      22           2025-08-22
+| Year | Month | DayOfMonth | `Year + '-' + Month + '-' + DayOfMonth` |
+|------|-------|------------|-----------------------------------------|
+| 2026 | 01    | 29         | 2026-01-29                              |
+| 2024 | 03    | 10         | 2024-03-10                              |
+| 2025 | 08    | 22         | 2025-08-22                              |
 
-  : Composing a date from parts
+: Composing a date from parts

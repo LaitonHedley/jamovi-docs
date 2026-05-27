@@ -2,39 +2,37 @@
 title: "Restructuring Data"
 ---
 
-# Restructuring Data
-
 ## What is Wide vs Long Format?
 
 Within data analysis, two common data structures are *wide format* and *long format*.
 
 In wide format, each row represents a participant and repeated measurements are stored in separate columns (one column per outcome at each time point or condition). For example, below are quiz scores for students during Weeks 2, 4, and 6 of a semester displayed in wide format:
 
-  ID   ScoreWeek_2   ScoreWeek_4   ScoreWeek_6
-  ---- ------------- ------------- -------------
-  1    30            50            70
-  2    20            30            55
-  3    40            50            52
+| ID  | ScoreWeek_2 | ScoreWeek_4 | ScoreWeek_6 |
+|-----|-------------|-------------|-------------|
+| 1   | 30          | 50          | 70          |
+| 2   | 20          | 30          | 55          |
+| 3   | 40          | 50          | 52          |
 
-  : Wide Format Example
+: Wide Format Example
 
 Each row represents a unique student (ID), and their quiz scores at Weeks 2, 4, and 6 are stored in separate columns. To run a repeated measures ANOVA in jamovi, the data must be in wide format as shown above.
 
 In long format, each row represents a single measurement occasion, giving multiple rows per participant. The same data in long format:
 
-  ID   Time     Score
-  ---- -------- -------
-  1    Week_2   30
-  1    Week_4   50
-  1    Week_6   70
-  2    Week_2   20
-  2    Week_4   30
-  2    Week_6   55
-  3    Week_2   40
-  3    Week_4   50
-  3    Week_6   52
+| ID  | Time   | Score |
+|-----|--------|-------|
+| 1   | Week_2 | 30    |
+| 1   | Week_4 | 50    |
+| 1   | Week_6 | 70    |
+| 2   | Week_2 | 20    |
+| 2   | Week_4 | 30    |
+| 2   | Week_6 | 55    |
+| 3   | Week_2 | 40    |
+| 3   | Week_4 | 50    |
+| 3   | Week_6 | 52    |
 
-  : Long Format Example
+: Long Format Example
 
 Long format makes it easy to summarise, plot, and model change over time because time is represented explicitly as data rather than being embedded in column names. It is also required for mixed modelling.
 

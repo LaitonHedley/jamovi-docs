@@ -10,12 +10,6 @@ export default defineConfig({
         src: './src/assets/header-logo.svg',
       },
       favicon: '/jamovi-v.svg',
-      head: [
-        {
-          tag: 'script',
-          attrs: { src: '/gif-player.js', defer: true },
-        },
-      ],
       defaultLocale: 'root',
       locales: {
         root:  { label: 'English',      lang: 'en' },

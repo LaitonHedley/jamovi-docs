@@ -79,6 +79,15 @@ def translate_frontmatter_title(text: str, translations: dict[str, str]) -> str:
     return re.sub(r'title:\s+"([^"]+)"', replace_title, text)
 
 
+def normalize_code_fences(text: str) -> str:
+    def _norm_fence(m: re.Match) -> str:
+        lang = m.group(2).lower()
+        if lang == 'rout':
+            lang = 'r'
+        return m.group(1) + lang
+    return re.sub(r'^(\s*```+)\s+([A-Za-z][A-Za-z0-9]*)\s*$', _norm_fence, text, flags=re.MULTILINE)
+
+
 def process_file(src: Path, dest: Path, translations: dict[str, str]) -> None:
     text = src.read_text(encoding='utf-8')
     text = translate_frontmatter_title(text, translations)
@@ -93,6 +102,7 @@ def process_file(src: Path, dest: Path, translations: dict[str, str]) -> None:
     else:
         text = translate_block(text, translations)
 
+    text = normalize_code_fences(text)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(text, encoding='utf-8')
 
