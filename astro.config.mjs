@@ -183,6 +183,7 @@ export default defineConfig({
       ],
       components: {
         SiteTitle: './src/components/SiteTitle.astro',
+        Banner: './src/components/TranslationNotice.astro',
       },
       customCss: ['./src/styles/jamovi.css'],
       social: [

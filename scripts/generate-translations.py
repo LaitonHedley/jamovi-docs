@@ -37,21 +37,31 @@ def load_po(lang: str, po_name: str) -> dict[str, str]:
     return {entry.msgid: entry.msgstr for entry in po if entry.msgstr}
 
 
-def translate_block(text: str, translations: dict[str, str]) -> str:
+def translate_block(text: str, translations: dict[str, str]) -> tuple[str, int, int]:
     """Replace paragraphs in text with their translations (exact-match).
 
     Handles both plain paragraphs and blockquote lines (> text) produced by
     pandoc when RST content was indented. Since pandoc is run with --wrap=none
     each paragraph stays on a single line, so line-by-line matching works.
+
+    Returns (translated_text, translated_count, total_translatable_count).
     """
     if not translations:
-        return text
+        return text, 0, 0
+
+    translated_count = 0
+    total_count = 0
 
     # Pass 1 — translate blockquote text lines (> content)
     # Skip lines that are images or empty blockquote markers.
     def translate_bq_line(m: re.Match) -> str:
+        nonlocal translated_count, total_count
         content = m.group(1)
-        return '> ' + translations.get(content, content)
+        total_count += 1
+        if content in translations:
+            translated_count += 1
+            return '> ' + translations[content]
+        return m.group(0)
 
     text = re.sub(
         r'^> ([^<\n].+)$',
@@ -65,11 +75,16 @@ def translate_block(text: str, translations: dict[str, str]) -> str:
     result = []
     for chunk in paragraphs:
         stripped = chunk.strip()
-        if stripped and not stripped.startswith('>') and stripped in translations:
-            result.append(chunk.replace(stripped, translations[stripped]))
+        if stripped and not stripped.startswith('>'):
+            total_count += 1
+            if stripped in translations:
+                translated_count += 1
+                result.append(chunk.replace(stripped, translations[stripped]))
+            else:
+                result.append(chunk)
         else:
             result.append(chunk)
-    return ''.join(result)
+    return ''.join(result), translated_count, total_count
 
 
 def translate_frontmatter_title(text: str, translations: dict[str, str]) -> str:
@@ -92,15 +107,22 @@ def process_file(src: Path, dest: Path, translations: dict[str, str]) -> None:
     text = src.read_text(encoding='utf-8')
     text = translate_frontmatter_title(text, translations)
 
+    translation_outdated = False
     if text.startswith('---'):
         parts = text.split('---', 2)
         if len(parts) >= 3:
-            body = translate_block(parts[2], translations)
-            text = '---' + parts[1] + '---' + body
+            body, translated, total = translate_block(parts[2], translations)
+            if total > 0:
+                coverage = translated / total
+                translation_outdated = 0.10 <= coverage < 0.90
+            frontmatter = parts[1]
+            if translation_outdated:
+                frontmatter = frontmatter.rstrip() + '\ntranslationOutdated: true\n'
+            text = '---' + frontmatter + '---' + body
         else:
-            text = translate_block(text, translations)
+            text, _, _ = translate_block(text, translations)
     else:
-        text = translate_block(text, translations)
+        text, _, _ = translate_block(text, translations)
 
     text = normalize_code_fences(text)
     dest.parent.mkdir(parents=True, exist_ok=True)

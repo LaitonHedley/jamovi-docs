@@ -1,0 +1,24 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/Banner.astro';
+
+const { entry } = Astro.props as Props;
+const isOutdated = (entry?.data as Record<string, unknown>)?.translationOutdated === true;
+---
+
+{isOutdated && (
+  <div class="translation-notice">
+    This page is partially translated. Some sections may appear in English.
+  </div>
+)}
+<Default {...Astro.props} />
+
+<style>
+  .translation-notice {
+    background-color: color-mix(in srgb, #f59e0b 12%, transparent);
+    border-left: 3px solid #f59e0b;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+</style>
