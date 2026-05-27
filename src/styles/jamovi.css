@@ -3,6 +3,12 @@
   --sl-color-accent-high: #1a5fa8;
 }
 
+/* Variable type icons used inline in text — override Starlight's display:block */
+.sl-markdown-content img[src*="variable-"] {
+  display: inline !important;
+  vertical-align: middle;
+}
+
 /* Sidebar sub-group labels: normal weight instead of bold */
 .large {
   font-weight: 400 !important;

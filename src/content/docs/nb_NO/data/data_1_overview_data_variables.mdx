@@ -1,0 +1,159 @@
+---
+title: "Datavariabler"
+---
+
+All data you bring into or enter directly in jamovi starts as **Data Variables**. These columns form the raw data used as the basis for your analyses. Opening a dataset (such as a .csv file) or typing values into the spreadsheet creates these variables automatically.
+
+## Measure and Data Types
+
+Every variable in jamovi has a **Measure type** and a **Data type** that indicate the kind of data it contains and how it should be treated in analyses.
+
+Data types can be:
+
+- **Integer**: whole numbers without decimal points.
+- **Decimal**: numbers with decimal points.
+- **Text**: text, words, or categories (strings).
+
+:::note
+jamovi does not support a native date and time data type at this time. You can represent dates and times as text and use a number of date manipulations --- see [data_9_date_handling](/data/data_9_date_handling) for details.
+:::
+
+Measure types indicate the [level of measurement](https://en.wikipedia.org/wiki/Level_of_measurement):
+
+- <img src="/images/variable-continuous.svg" alt="Continuous measure type icon" style="height: 18px" /> **Continuous**: Numbers where a continuum of values is meaningful, such as height, weight, or counts.
+- <img src="/images/variable-ordinal.svg" alt="Ordinal measure type icon" style="height: 18px" /> **Ordinal**: Discrete values where order is meaningful (e.g., \'Strongly agree\', \'Agree\' or \'\< 18\', \'18--30\').
+- <img src="/images/variable-nominal.svg" alt="Nominal measure type icon" style="height: 18px" /> **Nominal**: Discrete values with no meaningful order (e.g., Male, Female or \'Smoker\', \'Non-smoker\').
+- <img src="/images/variable-id.svg" alt="ID measure type icon" style="height: 18px" /> **ID**: Unique identifiers for each row or participant (e.g., participant numbers or names).
+
+jamovi combines *ratio* and *interval* into the **Continuous** measure type. The **ID** type is useful for identifiers you don\'t usually analyse, as it improves performance with large datasets.
+
+:::note
+Not all combinations of data type and measure type are valid. For example, a variable cannot be both Text and Continuous, or Decimal and Nominal.
+:::
+
+When you bring in data, jamovi automatically assigns these types based on the content. If the automatic assignment isn\'t what you need, you can adjust it manually.
+
+Double-click a column header to open the **variable editor**. From here, you can see and modify the variable\'s name, description, data type, and measure type.
+
+For example, if a variable representing a performance percentage incorrectly appears as Nominal with an Ordinal measure type:
+
+<img src="/images/ts_var_types_part_one.png" alt="The variable editor in jamovi showing incorrect measure and data types." style="width: 600px" />
+
+1.  Click the **Measure type** to open the drop-down menu and select **Continuous**.
+2.  Click the **Data type** and select **Decimal**.
+
+<img src="/images/ts_var_types_part_two.png" alt="The variable editor in jamovi after correcting the measure and data types." style="width: 600px" />
+
+jamovi now treats this variable as continuous, allowing you to use it in analyses like correlation or regression, or in mathematical operations like computing a z-score.
+
+## Missing Values
+
+In jamovi, missing values are represented as blank cells in the data view.
+
+If your dataset uses special values to encode missing data (like -99 or 9999), analyses will treat them as actual values unless you instruct jamovi otherwise. To do this:
+
+1.  Open the **variable editor** by double-clicking the column header.
+2.  Click **Missing values**.
+3.  Click **Add Missing Value**.
+4.  Specify whether to treat values that are equal to, less than, or greater than a number as missing.
+
+For example, to treat any value equal to 9999 as missing, use the formula `== 9999`:
+
+<img src="/images/ts_missing_val.png" alt="The variable editor in jamovi showing a missing value rule set to == 9999." style="width: 600px" />
+
+## Adding Labels to Levels
+
+For Nominal or Ordinal variables, you can add descriptive labels to the levels. This makes your output much easier to read. Below is a variable called \"Group\" using numeric codes:
+
+| ID  | Group |
+|-----|-------|
+| 1   | 1     |
+| 2   | 2     |
+| 3   | 1     |
+| 4   | 2     |
+
+*Example of a Variable with Unlabeled Levels*
+
+In this case, 1 represents \"Smoker\" and 2 represents \"Non-smoker\". To assign these labels, open the **variable editor**:
+
+<img src="/images/ts_recode_one.png" alt="The variable editor showing unlabeled levels 1 and 2." style="width: 600px" />
+
+Click on the current levels (1 and 2) and type the meaningful labels:
+
+<img src="/images/ts_recode_two.png" alt="The variable editor after assigning labels Smoker and Non-smoker." style="width: 600px" />
+
+The variable now displays these labels in all analyses and results:
+
+| ID  | Group      |
+|-----|------------|
+| 1   | Smoker     |
+| 2   | Non-smoker |
+| 3   | Smoker     |
+| 4   | Non-smoker |
+
+*Example of a Variable with Labeled Levels*
+
+## Reordering Levels
+
+For Ordinal (and sometimes Nominal) variables, you can reorder the levels so they appear intuitively in tables and figures.
+
+For example, if \"Task Difficulty\" levels appear in the wrong order:
+
+| Task Difficulty | Mean | Standard Deviation |
+|-----------------|------|--------------------|
+| Low             | 85.1 | 9.5                |
+| High            | 54.3 | 9.1                |
+| Medium          | 73.6 | 9.3                |
+
+*Descriptives Table with Levels Unordered*
+
+1.  Double-click the variable header to open the **variable editor**.
+2.  Click a level in the list and use the arrow keys to move it.
+
+<img src="/images/ts_unordered_table.png" alt="The variable editor showing levels in the unintuitive order Low, High, Medium." style="width: 600px" />
+
+The level at the top of the list will appear first (leftmost or topmost) in all tables and figures:
+
+<img src="/images/ts_reordered_table.png" alt="The variable editor showing levels reordered to Low, Medium, High." style="width: 600px" />
+
+The table now displays levels in the natural order: Low, Medium, High.
+
+| Task Difficulty | Mean | Standard Deviation |
+|-----------------|------|--------------------|
+| Low             | 85.1 | 9.5                |
+| Medium          | 73.6 | 9.3                |
+| High            | 54.3 | 9.1                |
+
+*Descriptives Table with Levels Reordered*
+
+## Retain Unused Levels in Analyses
+
+If a categorical variable has valid levels that don\'t appear in your current data, you can still include them in your reporting.
+
+For example, if you ask Adult and Child moviegoers if they enjoyed a film and everyone answers \"Yes\", the \"No\" level is absent but still relevant.
+
+| Age Group | Enjoyed Film (Y/N) |
+|-----------|--------------------|
+| Adult     | Yes                |
+| Adult     | Yes                |
+| Adult     | Yes                |
+| Child     | Yes                |
+| Child     | Yes                |
+| Child     | Yes                |
+
+*Example Data with an Unused Level*
+
+To retain the \"No\" level in your tables:
+
+1.  Open the **variable editor**.
+2.  Click the plus sign (+) at the bottom of the levels list.
+3.  Type \"No\" to add the level.
+4.  Click the **Retain unused levels in analyses** toggle.
+
+<img src="/images/ts_add_unused_level.png" alt="The variable editor showing the plus button to add an unused level." style="width: 600px" />
+
+<img src="/images/ts_add_unused_level_part_2.png" alt="The variable editor after typing the unused level No." style="width: 600px" />
+
+<img src="/images/ts_retain_unused_level.png" alt="The variable editor with the Retain unused levels in analyses toggle enabled." style="width: 600px" />
+
+The \"No\" level will now appear in your tables and figures even with no matching participants.

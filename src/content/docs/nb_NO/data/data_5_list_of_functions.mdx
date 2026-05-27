@@ -1,0 +1,234 @@
+---
+title: "List of Functions"
+---
+
+Use these functions in the formula editor to create computed variables, transformed variables, and filters.
+
+## Understanding Formulas
+
+Build your formulas using numbers, variable names, text values, operators, and functions.
+
+- **Numbers**: Enter whole numbers or decimals as-is (e.g., `1`, `2.5`).
+- **Variable names**: Type the name of an existing column (e.g., `variable_name`).
+- **Text values**: Wrap text in single quotes (e.g., `'Yes'`, `'Group A'`).
+- **Operators**: Use arithmetic operators (`+`, `-`, `*`, `/`) or logical operators (`and`, `or`).
+
+:::tip
+If a variable name contains spaces, wrap it in backticks so jamovi can parse it correctly (e.g., use \`reaction time\`).
+:::
+
+## Row vs. Variable Functions
+
+Many functions come in two versions:
+
+- **Row functions** (e.g., `MEAN`): Use these to calculate a result for each row individually.
+- **Variable functions** (e.g., `VMEAN`): Use these to perform a calculation using every value in a column.
+
+For more detail on this distinction, see [data_4_row_v_functions](/data/data_4_row_v_functions).
+
+## Math Functions
+
+| Function | Description |  |
+|-------------------|--------------------------------------------|----------|
+| `ABS(var)` | Calculate the absolute value of each number in the column. | [Info](https://en.wikipedia.org/wiki/Absolute_value) |
+| `EXP(var)` | Raise *e* to the power of each value in the column. | [Info](https://en.wikipedia.org/wiki/Exponential_function) |
+| `LN(var)` | Calculate the natural logarithm (base *e*) of each value. | [Info](https://doi.org/10.1177/00045632211050531) |
+| `LOG10(var)` | Calculate the base-10 logarithm of each value. | [Info](https://doi.org/10.1177/00045632211050531) |
+| `SQRT(var)` | Calculate the square root of each value. | [Info](https://en.wikipedia.org/wiki/Square_root) |
+
+## Statistical Functions
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 62%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ABSIQR(var)</code></td>
+<td>Calculate the average absolute deviation of values from the median.</td>
+<td><a href="https://en.wikipedia.org/wiki/Interquartile_range">Info</a></td>
+</tr>
+<tr>
+<td><code>ABSZ(var)</code></td>
+<td>Calculate the absolute z-score for each value.</td>
+<td><a href="https://en.wikipedia.org/wiki/Standard_score">Info</a></td>
+</tr>
+<tr>
+<td><code>BOXCOX(var)</code></td>
+<td>Apply a Box-Cox transformation to the variable.</td>
+<td><a href="https://en.wikipedia.org/wiki/Power_transform#Box%E2%80%93Cox_transformation">Info</a></td>
+</tr>
+<tr>
+<td><code>CEILING(var)</code></td>
+<td>Round up each value to the nearest whole number.</td>
+<td><a href="https://en.wikipedia.org/wiki/Floor_and_ceiling_functions">Info</a></td>
+</tr>
+<tr>
+<td><code>FLOOR(var)</code></td>
+<td>Round down each value to the nearest whole number.</td>
+<td><a href="https://en.wikipedia.org/wiki/Floor_and_ceiling_functions">Info</a></td>
+</tr>
+<tr>
+<td><code>IQR(var)</code></td>
+<td>Identify if a value is within the "box" (0) or outside the "whiskers" (&gt; 1.5).</td>
+<td><a href="https://en.wikipedia.org/wiki/Interquartile_range">Info</a></td>
+</tr>
+<tr>
+<td><div class="line-block"><code>MAX(...)</code><br />
+<code>VMAX(...)</code></div></td>
+<td>Find the highest value in a row (<code>MAX</code>) or column (<code>VMAX</code>).</td>
+<td><a href="https://en.wikipedia.org/wiki/Maximum_and_minimum">Info</a></td>
+</tr>
+<tr>
+<td><code>MAXABSIQR(var)</code></td>
+<td>Find the maximum absolute interquartile range across multiple variables.</td>
+<td><a href="https://en.wikipedia.org/wiki/Interquartile_range">Info</a></td>
+</tr>
+<tr>
+<td><code>MAXABSZ(var)</code></td>
+<td>Find the maximum absolute z-score across multiple variables.</td>
+<td><a href="https://en.wikipedia.org/wiki/Standard_score">Info</a></td>
+</tr>
+<tr>
+<td><div class="line-block"><code>MEAN(...)</code><br />
+<code>VMEAN(...)</code></div></td>
+<td>Calculate the average of a row (<code>MEAN</code>) or an entire column (<code>VMEAN</code>).</td>
+<td><a href="https://en.wikipedia.org/wiki/Mean">Info</a></td>
+</tr>
+<tr>
+<td><div class="line-block"><code>MIN(...)</code><br />
+<code>VMIN(...)</code></div></td>
+<td>Find the lowest value in a row (<code>MIN</code>) or column (<code>VMIN</code>).</td>
+<td><a href="https://en.wikipedia.org/wiki/Maximum_and_minimum">Info</a></td>
+</tr>
+<tr>
+<td><code>RANK(var)</code></td>
+<td>Assign an ordinal rank to each value in the column.</td>
+<td><a href="https://en.wikipedia.org/wiki/Ranking_(statistics)">Info</a></td>
+</tr>
+<tr>
+<td><code>ROUND(var, n)</code></td>
+<td>Round each value to <em>n</em> decimal places.</td>
+<td><a href="https://en.wikipedia.org/wiki/Rounding">Info</a></td>
+</tr>
+<tr>
+<td><code>SCALE(var)</code></td>
+<td>Normalize a set of numbers (shorthand for <code>Z(var)</code>).</td>
+<td><a href="https://en.wikipedia.org/wiki/Standard_score">Info</a></td>
+</tr>
+<tr>
+<td><div class="line-block"><code>STDEV(...)</code><br />
+<code>VSTDEV(...)</code></div></td>
+<td>Calculate the standard deviation of a row (<code>STDEV</code>) or column (<code>VSTDEV</code>).</td>
+<td><a href="https://en.wikipedia.org/wiki/Standard_deviation">Info</a></td>
+</tr>
+<tr>
+<td><div class="line-block"><code>SUM(...)</code><br />
+<code>VSUM(...)</code></div></td>
+<td>Add up all values in a row (<code>SUM</code>) or column (<code>VSUM</code>).</td>
+<td><a href="https://en.wikipedia.org/wiki/Summation">Info</a></td>
+</tr>
+<tr>
+<td><code>VMAD(var)</code></td>
+<td>Calculate the median absolute deviation of a variable.</td>
+<td><a href="https://en.wikipedia.org/wiki/Median_absolute_deviation">Info</a></td>
+</tr>
+<tr>
+<td><code>VMADR(var)</code></td>
+<td>Calculate the robust median absolute deviation of a variable.</td>
+<td><a href="https://en.wikipedia.org/wiki/Median_absolute_deviation">Info</a></td>
+</tr>
+<tr>
+<td><code>VMED(var)</code></td>
+<td>Find the median of a variable.</td>
+<td><a href="https://en.wikipedia.org/wiki/Median">Info</a></td>
+</tr>
+<tr>
+<td><code>VMODE(var)</code></td>
+<td>Find the most common value (mode) in a variable.</td>
+<td><a href="https://en.wikipedia.org/wiki/Mode_(statistics)">Info</a></td>
+</tr>
+<tr>
+<td><code>VN(var)</code></td>
+<td>Return the number of non-missing cases in a variable (sample size).</td>
+<td><a href="https://en.wikipedia.org/wiki/Sample_size_determination">Info</a></td>
+</tr>
+<tr>
+<td><code>VSE(var)</code></td>
+<td>Calculate the standard error of a variable.</td>
+<td><a href="https://en.wikipedia.org/wiki/Standard_error">Info</a></td>
+</tr>
+<tr>
+<td><div class="line-block"><code>VAR(...)</code><br />
+<code>VVAR(...)</code></div></td>
+<td>Calculate the variance of a row (<code>VAR</code>) or column (<code>VVAR</code>).</td>
+<td><a href="https://en.wikipedia.org/wiki/Variance">Info</a></td>
+</tr>
+<tr>
+<td><code>Z(var)</code></td>
+<td>Standardize values into z-scores.</td>
+<td><a href="https://en.wikipedia.org/wiki/Standard_score">Info</a></td>
+</tr>
+</tbody>
+</table>
+
+## Logical Functions
+
+| Function | Description |  |
+|-------------------|--------------------------------------------|----------|
+| `IF(cond, val, else)` | If the condition is true, use *val*; otherwise, use *else*. | [Info](https://en.wikipedia.org/wiki/Conditional_(computer_programming)) |
+| `IFMISSING(v, val, else)` | Use *val* if the cell is empty; otherwise, use *else*. | [Info](https://en.wikipedia.org/wiki/Conditional_(computer_programming)) |
+| `NOT(var)` | Invert a boolean value (True becomes False, and vice versa). | [Info](https://en.wikipedia.org/wiki/Negation) |
+
+## Text Functions
+
+| Function | Description |  |
+|-------------------|--------------------------------------------|----------|
+| `CONTAINS(needle, hay)` | Check if a specific string (the needle) exists in a variable (the haystack). | [Info](https://en.wikipedia.org/wiki/String_searching_algorithm) |
+| `SPLIT(v, 'by', pos)` | Split a text string by a specific character and return the text at a given position. | [Info](https://en.wikipedia.org/wiki/String_(computer_science)) |
+| `TEXT(var)` | Convert numeric values into text format. | [Info](https://en.wikipedia.org/wiki/String_(computer_science)) |
+| `VALUE(var)` | Convert text strings into numeric values, if possible. | [Info](https://en.wikipedia.org/wiki/String_(computer_science)) |
+
+## Date and Time Functions
+
+| Function | Description |  |
+|-------------------|--------------------------------------------|----------|
+| `DATEVALUE(var)` | Convert a text date (e.g., 2000-12-20) into the number of days since 1 Jan 1970. | [Info](https://en.wikipedia.org/wiki/Unix_time) |
+| `DATE(var)` | Convert a Unix day count back into a formatted date string. | [Info](https://en.wikipedia.org/wiki/Unix_time) |
+
+## Reference Functions
+
+| Function | Description |  |
+|-------------------|--------------------------------------------|----------|
+| `HLOOKUP(idx, v1, v2, ...)` | Retrieve values from specific rows using a provided index. | [Info](https://en.wikipedia.org/wiki/Lookup_table) |
+| `MATCH(var, val1, ...)` | Find the row index of the first value that matches your criteria. | [Info](https://en.wikipedia.org/wiki/Lookup_table) |
+
+## Miscellaneous Functions
+
+| Function | Description |  |
+|-------------------|--------------------------------------------|----------|
+| `COUNT(var)` | Count the number of non-missing values in a set of columns. | [Info](https://en.wikipedia.org/wiki/Counting) |
+| `FILTER(var, expression)` | Return only the values in a column that meet a specific condition. | [Info](https://en.wikipedia.org/wiki/Filter_(higher-order_function)) |
+| `INT(var)` | Strip the fractional component from a number to make it an integer. | [Info](https://en.wikipedia.org/wiki/Integer) |
+| `OFFSET(var, n)` | Shift the data in a column up or down by *n* rows. | [Info](https://en.wikipedia.org/wiki/Offset_(computer_science)) |
+| `ROW()` | Fill a column with the current row number. |  |
+| `SAMPLE(var, n)` | Draw a random sample of *n* values from a variable. | [Info](https://en.wikipedia.org/wiki/Sampling_(statistics)) |
+| `VROWS(var)` | Return the total number of rows in a variable. |  |
+
+## Simulation Functions
+
+| Function | Description |  |
+|-------------------|--------------------------------------------|----------|
+| `BETA(alpha, beta)` | Draw random samples from a Beta distribution. | [Info](https://en.wikipedia.org/wiki/Beta_distribution) |
+| `GAMMA(shape, scale)` | Draw random samples from a Gamma distribution. | [Info](https://en.wikipedia.org/wiki/Gamma_distribution) |
+| `NORM(mean, stdev)` | Draw random samples from a Normal (Gaussian) distribution. | [Info](https://en.wikipedia.org/wiki/Normal_distribution) |
+| `UNIF(min, max)` | Draw random samples from a Uniform distribution. | [Info](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)) |

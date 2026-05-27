@@ -1,0 +1,83 @@
+---
+title: "From SPSS to jamovi: Non-parametric analyses"
+---
+
+This comparison shows how a Mann-Whitney test is conducted in SPSS and jamovi. The SPSS test follows the description in chapter 7.4.3 in [Field (2017)](https://edge.sagepub.com/field5e), especially figure 7.6 - 7.8 and output 7.2. It uses the data set **Drug.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>SPSS</strong></th>
+<th><strong>jamovi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In SPSS, a Mann-Whitney test can be run using: <code>Analyze</code> → <code>Nonparametric Tests</code> → <code>Independent Samples</code>.</td>
+<td>In jamovi this is done using the following steps: <code>Analyses</code> → <code>T-tests</code> → <code>Independent Samples T-Test</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Menu_nonParametric1.png" alt="SPSS_Menu_nonParametric1" /></td>
+<td><img src="/images/s2j_jamovi_Menu_%20nonParametric1.png" alt="jamovi_Menu_nonParametric1" /></td>
+</tr>
+<tr>
+<td>In SPSS, choose <code>Fields</code> from the menu. Then, click <code>Use custom field assignments</code> and move the variables <code>Sunday_BDI</code> and <code>Wednesday_BDI</code> to <code>Test Fields</code>, and the variable <code>Drug</code> to <code>Groups</code>.</td>
+<td>In jamovi, move <code>Sunday_BDI</code> and <code>Wednesday_BDI</code> to the <code>Dependent Variables</code> variable box, and <code>Drug</code> to the <code>Grouping Variable</code> box. Then, tick the box for <code>Mann-Whitney U</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_%20nonParametric1_1.png" alt="SPSS_Input_nonParametric1_1" /></td>
+<td><img src="/images/s2j_jamovi_Input_%20nonParametric1.png" alt="jamovi_Input_nonParametric1" /></td>
+</tr>
+<tr>
+<td>Open the <code>Settings</code> window, and click <code>Customize tests</code>. Tick the box for <code>Mann-Whitney U (2 samples)</code>.</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_%20nonParametric1_2.png" alt="SPSS_Input_nonParametric1_2" /></td>
+<td></td>
+</tr>
+<tr>
+<td>By comparing the output from SPSS and jamovi, you can tell that some of the results are the same. The results in jamovi are presented in a single table, while in SPSS you have to double-click the table in order to get the rest of the results.</td>
+<td></td>
+</tr>
+<tr>
+<td><p><img src="/images/s2j_SPSS_Output_%20nonParametric1_1.png" alt="SPSS_Output_nonParametric1_1" /></p>
+<p><img src="/images/s2j_SPSS_Output_%20nonParametric1_2.png" alt="SPSS_Output_nonParametric1_2" /></p>
+<p><img src="/images/s2j_SPSS_Output_%20nonParametric1_3.png" alt="SPSS_Output_nonParametric1_3" /></p></td>
+<td><img src="/images/s2j_jamovi_Output_%20nonParametric1.png" alt="jamovi_Output_nonParametric1" /></td>
+</tr>
+<tr>
+<td>In SPSS, the first table is the <code>Hypothesis Test Summary</code>, which only shows the significance value. If you double-click this table you open the model viewer window, which contains the details of the analysis. To view the results for the Wednesday sample, select <code>Beck Depression Inventory (Wednesday) \* Type of Drug(Test 2)</code> in the drop-down menu next to <code>Field(s)</code>.</td>
+<td>In jamovi, results are presented in the <code>Independent Samples T-Test</code> table. Here the <em>U</em>-value is found in the first column, and its significance level in the second column.</td>
+</tr>
+<tr>
+<td colspan="2"><p>The output in jamovi only presents the Mann-Whitney U statistic and its significance value, while SPSS presents values for <code>Mean Rank</code>, <code>N</code>, <code>Total N</code>, <code>Wilcoxon W</code>, <code>Test Statistic</code>, <code>Standard Error</code>, <code>Standardized Test Statistic</code> and <code>Asymptotic Sig. (2-sided test)</code>.</p>
+<p>The numerical values for the Wednesday group are the same in SPSS and jamovi (<em>U</em> = 4.00, <em>p</em> &lt; .001), while the values for the Sunday group differ slightly (<em>U</em> = 35.50, <em>p</em> = .280 vs. <em>p</em> = .286). The reason for the difference is that jamovi applies <a href="https://www.oxfordreference.com/view/10.1093/oi/authority.20110803100131510">continuity correction</a> (where a discrete distribution – ranks – is approximated via a continuous one – the standard normal distribution) whereas SPSS doesn't.</p></td>
+</tr>
+<tr>
+<td colspan="2">If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to <code class="interpreted-text" role="ref">Rj &lt;rj_editor&gt;</code>). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.</td>
+</tr>
+<tr>
+<td><pre class="none"><code>NPTESTS
+  /INDEPENDENT TEST (Sunday_BDI Wednesday_BDI) GROUP (Drug) MANN_WHITNEY
+  /MISSING SCOPE=ANALYSIS USERMISSING=EXCLUDE
+  /CRITERIA ALPHA=0.05 CILEVEL=95.</code></pre></td>
+<td><pre class="none"><code>jmv::ttestIS(
+    formula = Sunday_BDI + Wednesday_BDI ~ Drug,
+    data = data,
+    students = FALSE,
+    mann = TRUE)</code></pre></td>
+</tr>
+<tr>
+<td><a href="/output/s2j_Output_SPSS_nonParametric1.spv">SPSS output file containing the analyses</a></td>
+<td><a href="/output/s2j_Output_jamovi_nonParametric1.omv">jamovi file with the analyses</a></td>
+</tr>
+</tbody>
+</table>
+
+**References**\
+Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)

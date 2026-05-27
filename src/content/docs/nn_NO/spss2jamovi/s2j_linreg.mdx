@@ -1,0 +1,100 @@
+---
+title: "From SPSS to jamovi: Linear regression"
+---
+
+This comparison shows how a linear model with one predictor is conducted in SPSS and jamovi. The SPSS test follows the description in chapter 9.7 in [Field (2017)](https://edge.sagepub.com/field5e), especially figure 9.13, and output 9.2-9.4. It uses the data set **Album Sales.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>SPSS</strong></th>
+<th><strong>jamovi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In SPSS, the following steps activates a linear regression: <code>Analyze</code> → <code>Regression</code> → <code>Linear</code>.</td>
+<td>In jamovi, this can be done using: <code>Analyses</code> → <code>Regression</code> → <code>Linear Regression</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Menu_linReg1.png" alt="SPSS_Menu_linReg1" /></td>
+<td><blockquote>
+<p><img src="/images/s2j_jamovi_Menu_linReg1.png" alt="jamovi_Menu_linReg1" /></p>
+</blockquote></td>
+</tr>
+<tr>
+<td>In SPSS, move the variable <code>Sales</code> to the <code>Dependent</code> box and the variable <code>Adverts</code> to the <code>Independent(s)</code> box. Click <code>Ok</code>.</td>
+<td>In jamovi, move <code>Sales</code> to the <code>Dependent Variable</code> box and <code>Adverts</code> to the <code>Covariates</code> box.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_linReg1.png" alt="SPSS_Input_linReg1" /></td>
+<td><img src="/images/s2j_jamovi_Input_linReg1_1.png" alt="jamovi_Input_linReg1_1" /></td>
+</tr>
+<tr>
+<td></td>
+<td>Then, open the <code>Model Coefficients</code> window and press <code>ANOVA test</code> and <code>Standardized estimate</code>.</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="/images/s2j_jamovi_Input_linReg1_2.png" alt="jamovi_Input_linReg1_2" /></td>
+</tr>
+<tr>
+<td></td>
+<td>In the window called <code>Model Fit</code>, click <code>R</code>, <code>R²</code> and <code>Adjusted R²</code>.</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="/images/s2j_jamovi_Input_linReg1_3.png" alt="jamovi_Input_linReg1_3" /></td>
+</tr>
+<tr>
+<td colspan="2">Field (2017) recommends activating a bootstrapping for this analysis, but since this is not an alternative in jamovi it has been left out.</td>
+</tr>
+<tr>
+<td colspan="2">The results in SPSS and jamovi are essentially the same. However, jamovi does not display <code>Std. Error of the Estimate</code> and the total <code>Sum of Squares</code> in the ANOVA output.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Output_linReg1.png" alt="SPSS_Output_linReg1" /></td>
+<td><img src="/images/s2j_jamovi_Output_linReg1.png" alt="jamovi_Output_linReg1" /></td>
+</tr>
+<tr>
+<td>The table Model Summary shows the value of <em>R</em> (= .578) and <em>R²</em> (= .335) for model. The most important part of the ANOVA table is the value of <em>F</em> (= 99.587), and its significance <em>p</em> (&lt; .001). This shows that this model this model predicts album sales significantly. The Coefficients table shows the beta values and significance of these values.</td>
+<td>In jamovi, <em>R</em> and <em>R²</em> are found in the table called Model Fit Measures. The results from the ANOVA is found in the table called Omnibus ANOVA Test, and the beta values are found in the table Model Coefficients – Sales. In jamovi, the beta value is found in the section called Stand. Estimate, which is located at the far right of the table. As this analysis only has one predictor, the <em>R</em> value is the correlation between advertising and album sales. Furthermore, the value of <em>R²</em> indicates that money spent on advertising can account for 33.5% of the variance in sales of albums.</td>
+</tr>
+<tr>
+<td colspan="2">The numerical values for the statistics obtained from SPSS and jamovi are identical: <em>R</em> = 0.58, <em>R²</em> = 0.33, <em>F</em> = 99.59, <em>p</em> &lt; .001; <em>β</em> = 0.58, <em>p</em> &lt; .001.</td>
+</tr>
+<tr>
+<td colspan="2">If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to <code class="interpreted-text" role="ref">Rj &lt;rj_editor&gt;</code>). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.</td>
+</tr>
+<tr>
+<td><pre class="none"><code>REGRESSION
+   /MISSING LISTWISE
+   /STATISTICS COEFF OUTS R ANOVA
+   /CRITERIA=PIN(.05) POUT(.10)
+   /NOORIGIN
+   /DEPENDENT Sales
+   /METHOD=ENTER Adverts.</code></pre></td>
+<td><pre class="none"><code>jmv::linReg(
+    data = data,
+    dep = Sales,
+    covs = Adverts,
+    blocks = list(
+        list(&quot;Adverts&quot;)),
+    refLevels = list(),
+    r2Adj = TRUE,
+    anova = TRUE,
+    stdEst = TRUE)</code></pre></td>
+</tr>
+<tr>
+<td><a href="/output/s2j_Output_SPSS_linReg1.spv">SPSS output file containing the analyses</a></td>
+<td><a href="/output/s2j_Output_jamovi_linReg1.omv">jamovi file containing the analyses</a></td>
+</tr>
+</tbody>
+</table>
+
+**References**\
+Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)

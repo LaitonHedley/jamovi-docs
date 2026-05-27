@@ -1,0 +1,150 @@
+---
+title: "From SPSS to jamovi: Logistic Regression"
+---
+
+This comparison shows how a binary logistic regression is conducted in SPSS and jamovi. The SPSS test follows the description in chapter 20.5 - 20.6 in [Field (2017)](https://edge.sagepub.com/field5e), especially figure 20.7 - 20.10 and output 20.1 - 20.5 (bootstrap excluded). It uses the data file **Eel.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>SPSS</strong></th>
+<th><strong>jamovi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In SPSS you can run a binary logistic regression using: <code>Analyze</code> → <code>Regression</code> → <code>Binary Logistic</code>.</td>
+<td>In jamovi you do this using: <code>Analyses</code> → <code>Regression</code> → <code>2 Outcomes Binominal</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Menu_logReg1.png" alt="SPSS_Menu_logReg1" /></td>
+<td><img src="/images/s2j_jamovi_Menu_logReg1.png" alt="jamovi_Menu_logReg1" /></td>
+</tr>
+<tr>
+<td>In SPSS, move <code>Cured</code> to the <code>Dependent</code> variable box and <code>Intervention</code> to the <code>Covariates</code> variable box.</td>
+<td>In jamovi, move the variable <code>Cured</code> to <code>Dependent Variable</code> and the variables <code>Duration</code> and <code>Intervention</code> to <code>Covariates</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_logReg1_1.png" alt="SPSS_Input_logReg1_1" /></td>
+<td><img src="/images/s2j_jamovi_Input_logReg1_1.png" alt="jamovi_Input_logReg1_1" /></td>
+</tr>
+<tr>
+<td>Click <code>Next</code> and add <code>Duration</code> to this new block.</td>
+<td>Create two new blocks by clicking <code>+ Add New Block</code> in the <code>Model Builder</code> drop-down menu. Add the <code>Duration</code> variable to <code>Block 2</code>, and add <code>Duration</code> and <code>Intervention</code> to <code>Block 3</code> by marking them both and clicking <code>Interaction</code> in the drop-down menu.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_logReg1_2.png" alt="SPSS_Input_logReg1_2" /></td>
+<td><img src="/images/s2j_jamovi_Input_logReg1_2.png" alt="jamovi_Input_logReg1_2" /></td>
+</tr>
+<tr>
+<td>Create a third block by clicking <code>Next</code> one more time, and create an interaction by marking both <code>Intervention</code> and <code>Duration</code> and moving them to the block by pressing the arrow.</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_logReg1_3.png" alt="SPSS_Input_logReg1_3" /></td>
+<td></td>
+</tr>
+<tr>
+<td>Access the <code>Categorical</code> window and open the drop-down menu for <code>Contrast</code>. Here, choose <code>Indicator</code> and then check <code>First</code> as the <code>Reference Category</code>. Click <code>Change</code>.</td>
+<td>jamovi set the reference category automatically to the first category. If you were to change that, open the drop-down menu <code>Reference levels</code>, and change the reference level for each variable to the desired level (e.g., <code>Not Cured</code>).</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_logReg1_4.png" alt="SPSS_Input_logReg1_4" /></td>
+<td><img src="/images/s2j_jamovi_Input_logReg1_3.png" alt="jamovi_Input_logReg1_3" /></td>
+</tr>
+<tr>
+<td rowspan="5">Open the <code>Options</code> window and check the following boxes: <code>Classification plots</code>, <code>Hosmer-Lemeshow goodness-of-fit</code>, <code>Casewise listing of residuals</code>, <code>Outliers outside 2 std. dev.</code>, <code>Iteration history</code>, <code>CI for exp(B)</code>, <code>At each step</code>, and <code>Include constant in model</code>.</td>
+<td>Open the drop-down menu <code>Prediction</code> and tick <code>Classification table</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_jamovi_Input_logReg1_4.png" alt="jamovi_Input_logReg1_4" /></td>
+</tr>
+<tr>
+<td>In the drop-down menu <code>Model Coefficients</code>, tick <code>Odds ratio</code> and the <code>Confidence interval</code> to odds ratio.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_jamovi_Input_logReg1_5.png" alt="jamovi_Input_logReg1_5" /></td>
+</tr>
+<tr>
+<td>In the <code>Model Fit</code> window, check the boxes for <code>Deviance</code>, <code>AIC</code>, <code>Overall Model Test</code>, <code>Cox &amp; Snell's R²</code> and <code>Nagelkerke's R²</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_logReg1_6.png" alt="SPSS_Input_logReg1_6" /></td>
+<td><img src="/images/s2j_jamovi_Input_logReg1_6.png" alt="jamovi_Input_logReg1_6" /></td>
+</tr>
+<tr>
+<td>Open the <code>Save</code> window and check <code>Probabilities</code>, <code>Group membership</code>, <code>Cook's</code>, <code>Leverage values</code>, <code>DfBeta(s)</code>, <code>Standardized</code> (residuals), and <code>Include the covariance matrix</code>.</td>
+<td>jamovi permits you to save some of these values too. To do so, open the drop-down menu <code>Save</code> and tick <code>Predicted values</code>, <code>Residuals</code>, and <code>Cooks's distance</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_logReg1_5.png" alt="SPSS_Input_logReg1_5" /></td>
+<td><img src="/images/s2j_jamovi_Input_logReg1_7.png" alt="jamovi_Input_logReg1_7" /></td>
+</tr>
+<tr>
+<td colspan="2">If you compare the output from SPSS and jamovi, the results are essentially the same. However, the results from jamovi are shorter and better structured, whereas the SPSS results are much more extensive (likely to the more comprehensive choice of options, according to Field, 2017). jamovi, furthermore, first has an overview over the models and their comparison whereas SPSS provides those model indices within each model.</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="/images/s2j_jamovi_Output_logReg1_1.png" alt="jamovi_Output_logReg1_1" /></td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Output_logReg1_1.png" alt="SPSS_Output_logReg1_1" /></td>
+<td><img src="/images/s2j_jamovi_Output_logReg1_2.png" alt="jamovi_Output_logReg1_2" /></td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Output_logReg1_2.png" alt="SPSS_Output_logReg1_2" /></td>
+<td><img src="/images/s2j_jamovi_Output_logReg1_3.png" alt="jamovi_Output_logReg1_3" /></td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Output_logReg1_3.png" alt="SPSS_Output_logReg1_3" /></td>
+<td><img src="/images/s2j_jamovi_Output_logReg1_4.png" alt="jamovi_Output_logReg1_4" /></td>
+</tr>
+<tr>
+<td>In the output from SPSS you can find tables for <code>Model Summary</code>, <code>Variables in the Equation</code> and <code>Omnibus Tests of Model Coefficients</code> for each of the predictors in the model. The <code>Model Summary</code> tables shows the -2LL value for the model, as well as Cox &amp; Snell R² and Nagelkerke R². In the <code>Omnibus Tests of Model Coefficients</code> tables, χ²-values, degrees of freedom and significance values are found. Lastly, you can find <em>b</em>-values, <em>SE</em>-values, degrees of freedom and significance values in the <code>Variables in the Equation</code> table. This table also shows the odds ratio.</td>
+<td>In jamovi, -2LL values, Cox &amp; Snell R² and Nagelkerke R² values for all the predictors are found in the table called <code>Model Fit Measures</code>. χ²-values, degrees of freedom and significance levels are found in the <code>Model Comparisons</code> table. In addition, <em>b</em>-values, <em>SE</em>-values, significance level odds ratio and the confidence interval for it as well as the classification table are shown as separate parts of the output (one for each model). Only one model is shown at a time and the model can be selected by using the drop-down menu next to <code>Model Specific Results</code>.</td>
+</tr>
+<tr>
+<td colspan="2"><div class="line-block">SPSS produces a lot more output tables (some not shown) than jamovi, not the least due to Field (2017) asking for options that are not available in jamovi.<br />
+The numerical values for the results are the same.<br />
+Model 1: -2LL = 144.158, χ² = 9.926, df = 1, <em>p</em> = 0.002, <em>R²</em><sub>CS</sub> = 0.084, <em>R²</em><sub>N</sub> = 0.113, corr.<sub>NC</sub> = 66.667, corr.<sub>C</sub> = 63.077<br />
+Model 2: -2LL = 144.156, χ² = 9.928, df = 2, <em>p</em> = 0.007, <em>R²</em><sub>CS</sub> = 0.084, <em>R²</em><sub>N</sub> = 0.113, corr.<sub>NC</sub> = 66.667, corr.<sub>C</sub> = 63.077<br />
+Model 3: -2LL = 144.095, χ² = 9.989, df = 3, <em>p</em> = 0.019, <em>R²</em><sub>CS</sub> = 0.085, <em>R²</em><sub>N</sub> = 0.114, corr.<sub>NC</sub> = 66.667, corr.<sub>C</sub> = 63.077<br />
+It becomes clear that <code>Intervention</code> is the most decisive predictor whereas <code>Duration</code> and the interaction of <code>Intervention × Duration</code> don't really lead to better prediction: The number of correctly classified cases doesn't change between the models while Model 1 is the most parsimonuous; furthermore, the Deviance (-2LL) and χ² for Model 2 and 3 are more or less the same as for Model 1 (and since more df's are used in Model 2 and 3, the p-values increase (which is all emphasizing that Model 1 is the best model and should be selected).</div></td>
+</tr>
+<tr>
+<td colspan="2">If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to <code class="interpreted-text" role="ref">Rj &lt;rj_editor&gt;</code>). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.</td>
+</tr>
+<tr>
+<td><pre class="none"><code>LOGISTIC REGRESSION VARIABLES Cured
+   /METHOD=ENTER Intervention
+   /METHOD=ENTER Duration
+   /METHOD=ENTER Duration * Intervention
+   /CONTRAST (Intervention)=Indicator(1)
+   /SAVE=PRED PGROUP COOK LEVER DFBETA ZRESID
+   /CLASSPLOT
+   /CASEWISE OUTLIER(2)
+   /PRINT=GOODFIT ITER(1) CI(95)
+   /CRITERIA=PIN(0.05) POUT(0.10) ITERATE(20) CUT(0.5).</code></pre></td>
+<td><pre class="none"><code>jmv::logRegBin(
+    data = data,
+    dep = Cured,
+    covs = vars(Duration, Intervention),
+    blocks = list(list(&quot;Intervention&quot;),
+                  list(&quot;Duration&quot;),
+                  list(c(&quot;Duration&quot;, &quot;Intervention&quot;))),
+    refLevels = list(list(var=&quot;Cured&quot;, ref=&quot;Not Cured&quot;)),
+    pseudoR2 = c(&quot;r2mf&quot;, &quot;r2cs&quot;, &quot;r2n&quot;))</code></pre></td>
+</tr>
+<tr>
+<td><a href="/output/s2j_Output_SPSS_logReg.spv">SPSS output file containing the analyses</a></td>
+<td><a href="/output/s2j_Output_jamovi_logReg.omv">jamovi file containing the analyses</a></td>
+</tr>
+</tbody>
+</table>
+
+**References**\
+Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)

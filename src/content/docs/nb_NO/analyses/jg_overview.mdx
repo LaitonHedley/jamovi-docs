@@ -1,0 +1,43 @@
+---
+title: "Analyser: Introduksjon"
+---
+
+The aim of the following section is to provide short, non-technical tutorials on how to conduct common statistical procedures in jamovi, and was originally created by Jonas Rafi under the name jamovi guide. However, this is only intended as a brief overview. For a more in-depth treatment of these analyses, we\'d recommend you take a look at the many [community resources](https://www.jamovi.org/community.html) available.
+
+**A Note On Measurement Types**: The following documentation describes each of the analyses, and describes the variable measure types required. For example, it might explain that a particular analysis requires a continuous <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px" /> dependent variable, and a nominal <img src="/images/variable-nominal.svg" alt="nominal" style="width: 16px" /> grouping variable. However it\'s possible that the columns in your data set, for a number of different reasons, aren\'t set up with the correct measure types (as indicated in the column header). You can adjust the measure type of columns using the variable editor, however (for the most part) these measure types are really just a guide and don\'t need to be set correctly. If you assign a <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px" /> continuous variable to an analysis expecting a <img src="/images/variable-nominal.svg" alt="nominal" style="width: 16px" /> nominal one, the analysis will simply treat the variable as nominal. All this to say, if the documentation says that a particular measure type is required, the data simply needs to be the correct \'shape\', and you can save yourself the labour of setting the measure types correctly if you don\'t want to.
+
+# Descriptive statistics
+
+# t-tests
+
+t-testen brukes til å teste om gjennomsnittsverdien i et normalfordelt datasett avviker betydelig fra en nullhypotese (som påstår at det ikke er noen forskjell).
+
+Det finnes tre typer t-tester:
+
+::: admonition
+Community resources
+
+A more comprehensive introduction into the concept is presented in this [video](https://www.youtube.com/embed/mb7KCLYEis8?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi).
+:::
+
+# Analyses of Variance (ANOVA)
+
+Variansanalysen (ANOVA) er en statistisk metode som undersøker hvordan en eller flere faktorer påvirker en avhengig variabel. Disse faktorene er prediktor- / uavhengige variabler og er kategoriske. Vanligvis reflekterer slike faktorer en eksperimentell manipulasjon (f.eks. med eller uten intervensjon), men en faktor kan også representere grupper hvor det er ønskelig å kontrollere deres innflytelse (f.eks. kjønn: menn eller kvinner). Variansanalysen er basert på et konsept som ligner på t-testen, men det går utover det: Faktorer kan ha flere nivåer (t-tester tillater kun to) og flere faktorer kan undersøkes samtidig.
+
+Det finnes forskjellige typer variansanalyser, som varierer i antall faktorer som undersøkes - en eller flere faktorer - eller om de sammenligner mellom deltakere eller innenfor en deltaker (gjentatte målinger):
+
+::: admonition
+Community resources
+
+An introduction into the concept of an ANOVA is presented in this [video](https://www.youtube.com/embed/GcbMG6sizXs?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi).
+:::
+
+# Correlation and regression
+
+Korrelasjons- og regresjonsanalyser er statistiske metoder for å undersøke sammenhengene mellom en avhengig variabel og en eller flere prediktor- / uavhengige variabler. Mens *korrelasjon* undersøker *relasjonen* mellom én prediktor og én resultatvariabel, fokuserer *regresjon* hovedsakelig på *prediksjon* (hvor godt kan én eller flere variabler predikere / forklare en annen resultatvariabel). Ofte skilles det mellom lineær og ikke-lineær (f.eks. logistisk regresjon).
+
+::: admonition
+Community resources
+
+An introduction into the concept of regression analyses is presented in this [video](https://www.youtube.com/embed/gRhVjKNWiUs?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi).
+:::

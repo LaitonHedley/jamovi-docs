@@ -1,0 +1,106 @@
+---
+title: "From SPSS to jamovi: Analysis of frequencies"
+---
+
+This comparison shows how a loglinear analysis is conducted in SPSS and jamovi. The SPSS test follows the description in chapter 19.9.2 in [Field (2017)](https://edge.sagepub.com/field5e), especially figure 19.7 and output 19.7 - 19.10. It uses the data set **Cats and Dogs.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>SPSS</strong></th>
+<th><strong>jamovi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In SPSS, you can run a loglinear analysis using: <code>Analyze</code> → <code>Loglinear</code> → <code>Model Selection</code>.</td>
+<td>In jamovi, this can be done using: <code>Analyses</code> → <code>Frequencies</code> → <code>Log- Linear Regression</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Menu_logLinear.png" alt="SPSS_Menu_logLinear" /></td>
+<td><img src="/images/s2j_jamovi_Menu_logLinear.png" alt="jamovi_Menu_logLinear" /></td>
+</tr>
+<tr>
+<td>In SPSS, move the variables <code>Animal</code>, <code>Training</code> and <code>Dance</code> to the <code>Factor(s)</code> box. Then, mark all three variables and click <code>Define Range</code>. In this window, set <code>Minimum</code> as 0 and <code>Maximum</code> as 1. Click <code>Continue</code>. In the box called <code>Model Building</code>, click <code>Enter in single step</code>.</td>
+<td>In jamovi, move <code>Animal</code>, <code>Training</code> and <code>Dance</code> to <code>Factors</code>. Open the <code>Model Builder</code> window, click <code>+ Add New Block</code> and move the three variables to this block.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_logLinear_1.png" alt="SPSS_Input_logLinear_1" /></td>
+<td rowspan="2"><img src="/images/s2j_jamovi_Input_logLinear_1.png" alt="jamovi_Input_logLinear_1" /></td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_logLinear_2.png" alt="SPSS_Input_logLinear_2" /></td>
+</tr>
+<tr>
+<td></td>
+<td>Add another block. Mark all three variables and choose <code>All 2 way</code> from the drop-down menu. Then, add a third block and mark all three variables. Open the drop-down menu and click <code>All 3 way</code>.</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="/images/s2j_jamovi_Input_logLinear_2.png" alt="jamovi_Input_logLinear_2" /></td>
+</tr>
+<tr>
+<td></td>
+<td>Open <code>Model Fit</code> and tick the box for <code>Overall model test</code>. Lastly, tick <code>Likelihood ratio tests</code> in the <code>Model Coefficients</code> window.</td>
+</tr>
+<tr>
+<td></td>
+<td><img src="/images/s2j_jamovi_Input_logLinear_3.png" alt="jamovi_Input_logLinear_3" /></td>
+</tr>
+<tr>
+<td colspan="2">Only the results in the output tables <code>K-Way and Higher-Order Effects</code> and <code>Partial Associations</code> in SPSS are replicated in the jamovi analysis.</td>
+</tr>
+<tr>
+<td rowspan="2"><img src="/images/s2j_SPSS_Output_logLinear.png" alt="SPSS_Output_logLinear" /></td>
+<td><img src="/images/s2j_jamovi_Output_logLinear_1.png" alt="jamovi_Output_logLinear_1" /></td>
+</tr>
+<tr>
+<td><img src="/images/s2j_jamovi_Output_logLinear_2.png" alt="jamovi_Output_logLinear_2" /></td>
+</tr>
+<tr>
+<td>In the <code>K-Way and Higher-Order Effects</code> table, you can find <em>df</em>-values, likelihood ratio statistics and significance values when K = 1, 2 and 3. The SPSS results also contains Pearson chi-square statistics. The different rows show if any higher-order effects or one-way effects significantly affect the model fit. The <code>Partial Associations</code> table breaks the model into specific parts and tells us which two-way interactions that significantly affect the fit of the model. You can tell this by looking at the significance values for the different interactions and comparing them.</td>
+<td>In jamovi, the values that are found in the <code>K-Way and Higher-Order Effects</code> table in SPSS can be found in the <code>Model Fit Measures</code> and <code>Model Comparisons</code> tables. However, jamovi does not provide Pearson chi-square statistics and the number of iterations. The partial associations table in jamovi is called <code>Omnibus Likelihood Ratio Tests</code> and are presented in three separate tables (one for each model).</td>
+</tr>
+<tr>
+<td colspan="2"><p>Output from the SPSS analysis contains a lot of tables that are not included in the jamovi analysis. In addition, the results from the parameter estimates tables differ from each other, and are therefore not included here.</p>
+<p>The numerical values for the statistics are the same: <em>χ²</em> = 127.90, <em>p</em> &lt; .001; <em>χ²</em> = 200.16, <em>p</em> &lt; .001; <em>χ²</em> = 51.96, <em>p</em> &lt; .001: <em>χ²</em> = 20.30, <em>p</em> &lt; .001; <em>χ²</em> = 65.27, <em>p</em> &lt; .001; <em>χ²</em> = 61.15, <em>p</em> &lt; .001; <em>χ²</em> = 1.48; <em>χ²</em> = 13.76, <em>p</em> &lt; .001; <em>χ²</em> = 13.75, <em>p</em> &lt; .001; <em>χ²</em> = 8.61, <em>p</em> &lt; .01.</p></td>
+</tr>
+<tr>
+<td colspan="2">If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to <code class="interpreted-text" role="ref">Rj &lt;rj_editor&gt;</code>). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.</td>
+</tr>
+<tr>
+<td><pre class="none"><code>HILOGLINEAR Animal(0 1) Training(0 1) Dance(0 1)
+  /CRITERIA ITERATION(20) DELTA(.0)
+  /PRINT=FREQ RESID ASSOCIATION ESTIM
+  /DESIGN.</code></pre></td>
+<td><pre class="none"><code>jmv::logLinear(
+    data = data,
+    factors = vars(Animal, Training, Dance),
+    blocks = list(
+        list(&quot;Animal&quot;, &quot;Training&quot;, &quot;Dance&quot;),
+        list(c(&quot;Animal&quot;, &quot;Training&quot;), c(&quot;Animal&quot;, &quot;Dance&quot;),
+             c(&quot;Training&quot;, &quot;Dance&quot;)),
+        list(c(&quot;Animal&quot;, &quot;Training&quot;, &quot;Dance&quot;))),
+    refLevels = list(
+         list(var = &quot;Animal&quot;, ref = &quot;Cat&quot;),
+         list(var = &quot;Training&quot;, ref = &quot;Food as Reward&quot;),
+         list(var = &quot;Dance&quot;, ref = &quot;No&quot;)),
+     modelTest = TRUE,
+     dev = FALSE,
+     aic = FALSE,
+     pseudoR2 = NULL,
+     omni = TRUE)</code></pre></td>
+</tr>
+<tr>
+<td><a href="/output/s2j_Output_SPSS_logLinear.spv">SPSS output file containing the analyses</a></td>
+<td><a href="/output/s2j_Output_jamovi_logLinear.omv">jamovi file containing the analyses</a></td>
+</tr>
+</tbody>
+</table>
+
+**References**\
+Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)

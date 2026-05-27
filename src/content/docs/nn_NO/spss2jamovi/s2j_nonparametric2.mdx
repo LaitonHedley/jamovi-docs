@@ -1,0 +1,103 @@
+---
+title: "From SPSS to jamovi: Non-parametric analyses"
+---
+
+This comparison shows how a Wilcoxon signed-rank test is conducted in SPSS and jamovi. The SPSS test follows the description in chapter 7.5.2 in [Field (2017)](https://edge.sagepub.com/field5e), especially figure 7.9 and output 7.3 - 7.4. It uses the data set **Drug.sav** which can be downloaded from the [web page accompanying the book](https://edge.sagepub.com/field5e/student-resources/datasets).
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>SPSS</strong></th>
+<th><strong>jamovi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In SPSS, first split the file using <code>Data</code> → <code>Split File</code>.</td>
+<td rowspan="3">In jamovi, the <code>FILTER()</code>-function can be used to achieve a split. You need to create two new computed variables (ideally, those variables should be inserted before <code>Wednesay_BDI</code>). For the first, use <code>FILTER(Sunday_BDI, Drug == "Ecstasy")</code> as expression to be calculated and name the variable <code>Sunday_BDI_Ecstasy</code>. For the second, use <code>FILTER(Sunday_BDI, Drug == "Alcohol")</code> as expression and <code>Sunday_BDI_Alcohol</code> as name. Please note, that it is not necessary to split the second variable <code>Wednesday_BDI</code> since jamovi uses listwise exclusion.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Menu_nonParametric2_1.png" alt="SPSS_Menu_nonParametric2_1" /></td>
+</tr>
+<tr>
+<td>In the <code>Split File</code> window, click <code>Organize output by groups</code>. Then, move the <code>Drug</code> variable to the box called <code>Groups Based on</code>. Lastly, click <code>Sort the file by grouping variables</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_nonParametric2_1.png" alt="SPSS_Input_nonParametric2_1" /></td>
+<td><img src="/images/s2j_jamovi_Menu_nonParametric2_1.png" alt="jamovi_Menu_nonParametric2_1" /> <img src="/images/s2j_jamovi_Menu_nonParametric2_2.png" alt="jamovi_Menu_nonParametric2_2" /> <img src="/images/s2j_jamovi_Menu_nonParametric2_3.png" alt="jamovi_Menu_nonParametric2_3" /></td>
+</tr>
+<tr>
+<td>Then, create a Mann-Whitney test using: <code>Analyze</code> → <code>Nonparametric Tests</code> → <code>Related Samples</code>.</td>
+<td>Create a Wilcoxon signed-rank test using: <code>Analyses</code> → <code>T-tests</code> → <code>Paired Samples T-Test</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Menu_nonParametric2_2.png" alt="SPSS_Menu_nonParametric2_2" /></td>
+<td><img src="/images/s2j_jamovi_Menu_nonParametric2_4.png" alt="jamovi_Menu_nonParametric2_4" /></td>
+</tr>
+<tr>
+<td>In the <code>Nonparametric Tests</code> window, open <code>Fields</code> and click <code>Use custom field assignments</code>. Move the <code>Sunday</code> and <code>Wednesday</code> variables to the <code>Test Fields</code> box.</td>
+<td>Select <code>Wednesday_BDI</code> and <code>Sunday_BDI_Ecstasy</code>, and move them to the <code>Paired Variables</code> box. Then, untick <code>Student's</code> and tick the box for <code>Wilcoxon rank</code>. Afterwards, you can either right-click on the analysis you just created and select <code>Analysis</code> → <code>Duplicate</code> or repeat the previous step to set up a new analysis. This time, <code>Wednesday_BDI</code> and <code>Sunday_BDI_Ecstasy</code> have to be chosen as <code>Paired Variables</code>.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_nonParametric2_2.png" alt="SPSS_Input_nonParametric2_2" /></td>
+<td><img src="/images/s2j_jamovi_Input_nonParametric2.png" alt="jamovi_Input_nonParametric2" /></td>
+</tr>
+<tr>
+<td>Lastly, open <code>Settings</code> and click <code>Customize tests</code>. Tick the box for <code>Wilcoxon matched-pair signed-rank</code> as shown in the picture below.</td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Input_nonParametric2_3.png" alt="SPSS_Input_nonParametric2_3" /></td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2">Comparisons of the output show that the results in SPSS and jamovi are slightly different.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Output_nonParametric2_1.png" alt="SPSS_Output_nonParametric2_1" /> <img src="/images/s2j_SPSS_Output_nonParametric2_2.png" alt="SPSS_Output_nonParametric2_2" /></td>
+<td><img src="/images/s2j_jamovi_Output_nonParametric2.png" alt="jamovi_Output_nonParametric2" /></td>
+</tr>
+<tr>
+<td>In SPSS, the first output table is the model summary, which only shows the <em>p</em>-value for the test. If you double-click this table, you get the details of the analysis (see images underneath). There are two model summaries, on for each drug condition. The Wilcoxon Signed Rank test show the following values: <code>Total N</code>, <code>Test Statistic</code>, <code>Standard Error</code>, <code>Standardized Test Statistic</code> and <code>Asymptotic Sig. (2-sided test)</code>.</td>
+<td rowspan="2">Other than SPSS, the <code>Paired Samples T-Test</code> table only displays the test statistic and its significance value.</td>
+</tr>
+<tr>
+<td><img src="/images/s2j_SPSS_Output_nonParametric2_3.png" alt="SPSS_Output_nonParametric2_3" /> <img src="/images/s2j_SPSS_Output_nonParametric2_4.png" alt="SPSS_Output_nonParametric2_4" /></td>
+</tr>
+<tr>
+<td colspan="2">When comparing the output, none of the numerical values for the test statistic are the same. The reason for the difference in p-values is that jamovi applies <a href="https://www.oxfordreference.com/view/10.1093/oi/authority.20110803100131510">continuity correction</a> (where a discrete distribution – ranks – is approximated via a continuous one – the standard normal distribution) whereas SPSS doesn't.</td>
+</tr>
+<tr>
+<td colspan="2">If you wish to replicate those analyses using syntax, you can use the commands below (in jamovi, just copy to code below to <code class="interpreted-text" role="ref">Rj &lt;rj_editor&gt;</code>). Alternatively, you can download the SPSS output files and the jamovi files with the analyses from below the syntax.</td>
+</tr>
+<tr>
+<td><pre class="none"><code>NPTESTS
+   /RELATED TEST(Sunday_BDI Wednesday_BDI) WILCOXON
+   /MISSING SCOPE=ANALYSIS USERMISSING=EXCLUDE
+   /CRITERIA ALPHA=0.05 CILEVEL=95.</code></pre></td>
+<td><pre class="none"><code>jmv::ttestPS(
+    data = data,
+    pairs = list(
+        list(i1 = &quot;Wednesday_BDI&quot;, i2 = &quot;Sunday_BDI_Ecstasy&quot;)),
+    students = FALSE,
+    wilcoxon = TRUE)
+&#10;jmv::ttestPS(
+    data = data,
+    pairs = list(
+        list(i1 = &quot;Wednesday_BDI&quot;, i2 = &quot;Sunday_BDI_Alcohol&quot;)),
+    students = FALSE,
+    wilcoxon = TRUE)</code></pre></td>
+</tr>
+<tr>
+<td><a href="/output/s2j_Output_SPSS_nonParametric2.spv">SPSS output file containing the analyses</a></td>
+<td><a href="/output/s2j_Output_jamovi_nonParametric2.omv">jamovi file with the analyses</a></td>
+</tr>
+</tbody>
+</table>
+
+**References**\
+Field, A. (2017). *Discovering statistics using IBM SPSS statistics* (5th ed.). SAGE Publications. [https://edge.sagepub.com/field5e](https://edge.sagepub.com/field5e)

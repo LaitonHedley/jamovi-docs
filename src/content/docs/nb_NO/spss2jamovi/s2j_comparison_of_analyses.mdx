@@ -1,0 +1,380 @@
+---
+title: "Comparison of Which Analyses Are Available in SPSS and jamovi"
+---
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th><strong>SPSS</strong></th>
+<th><strong>jamovi</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/images/sj_SPSS_Analyze.png" alt="SPSS_Analyze" /></td>
+<td><p><img src="/images/sj_jamovi_Analyze.png" alt="jamovi_Analyze" /></p>
+<div class="line-block">Already at first glance, it becomes clear that jamovi currently has fewer features than SPSS. <strong>BUT</strong>:<br />
+(1) There is a (ever increasing) made available via modules (press the "+" sign in the right upper corner of the jamovi window to add them).<br />
+(2) The features implemented already cover "standard" needs (90% of the most frequently used analyses in psychology).<br />
+Feel free to check out which <a href="https://www.jamovi.org/library.html">modules</a> are available: There is also quite a wealth of modules covering functions that are not available in SPSS but very useful (e.g., for meta-analyses, structural equation models, etc.).<br />
+If you are willing to use some R code (e.g., in conjunction with the jamovi-module Rj) then you can (most presumably) do every analysis you can imagine.</div>
+<p><img src="/images/sj_jamovi_Modules.png" alt="jamovi_Modules" /></p></td>
+</tr>
+<tr>
+<td colspan="2"><strong>Reports</strong></td>
+</tr>
+<tr>
+<td>Reports → Codebook</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Reports → OLAP Cubes</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Reports → Case summaries</td>
+<td>Exploration → Descriptives <em>has the same functionality</em></td>
+</tr>
+<tr>
+<td>Reports → Reports Summaries in Rows</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Reports → Reports Summaries in Columns</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Descriptive Statistics</strong></td>
+</tr>
+<tr>
+<td>Descriptive Statistics → Frequencies</td>
+<td rowspan="3"><div class="line-block">Exploration → Descriptives combines all three procedures<br />
+<em>tick «Frequency tables» to get an output that is similar to that of «Frequencies» in SPSS</em></div></td>
+</tr>
+<tr>
+<td>Descriptive Statistics → Descriptives</td>
+</tr>
+<tr>
+<td>Descriptive Statistics → Explore</td>
+</tr>
+<tr>
+<td>Descriptive Statistics → Crosstabs</td>
+<td>Frequencies → (Contingency tables) → Independent samples</td>
+</tr>
+<tr>
+<td>Descriptive Statistics → Ratio</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Bayesian Statistics</strong></td>
+<td><em>requires the jamovi-module «jsq»</em></td>
+</tr>
+<tr>
+<td>Bayesian Statistics → One Sample Normal</td>
+<td>T-Test → Bayesian One Sample T-Test</td>
+</tr>
+<tr>
+<td>Bayesian Statistics → One Sample Binomial</td>
+<td>Frequencies → Bayesian Proportion Test</td>
+</tr>
+<tr>
+<td>Bayesian Statistics → One Sample Poisson</td>
+<td>Frequencies → Bayesian Contingency Tables</td>
+</tr>
+<tr>
+<td>Bayesian Statistics → Related Sample Normal</td>
+<td>T-Test → Bayesian Paired Samples T-Test</td>
+</tr>
+<tr>
+<td>Bayesian Statistics → Independent Samples Normal</td>
+<td>T-Test → Bayesian Independent Samples T-Test</td>
+</tr>
+<tr>
+<td>Bayesian Statistics → Pearson Correlation</td>
+<td>Regression → Bayesian Correlation Matrix / Bayesian Correlation Pairs</td>
+</tr>
+<tr>
+<td>Bayesian Statistics → Linear Regression</td>
+<td>Regression → Bayesian Linear Regression</td>
+</tr>
+<tr>
+<td>Bayesian Statistics → One-way ANOVA</td>
+<td>ANOVA → Bayesian ANOVA (<em>can handle several factors while SPSS is limited to one factor</em>)</td>
+</tr>
+<tr>
+<td>Bayesian Statistics → Log-Linear Models</td>
+<td>Frequencies → Bayesian Log-Linear Regression</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Compare Means</strong></td>
+</tr>
+<tr>
+<td>Compare Means → Means...</td>
+<td>Exploration → Descriptives <em>replaces / integrates that functionality, choose the drop-down menu «Statistics» and set ticks at «Mean», «N» and «Std. deviation»</em></td>
+</tr>
+<tr>
+<td>Compare Means → Independent-Samples T Test</td>
+<td>T-Test → Independent Samples T-Test</td>
+</tr>
+<tr>
+<td>Compare Means → Paired-Samples T Test</td>
+<td>T-Test → Paired Samples T-Test</td>
+</tr>
+<tr>
+<td>Compare Means → One-Sample T Test</td>
+<td>T-Test → One Sample T-Test</td>
+</tr>
+<tr>
+<td>Compare Means → One-Way ANOVA</td>
+<td>ANOVA → One-Way ANOVA</td>
+</tr>
+<tr>
+<td colspan="2"><strong>General Linear Model</strong></td>
+</tr>
+<tr>
+<td>General Linear Model → Univariate</td>
+<td>ANOVA → One-Way ANOVA</td>
+</tr>
+<tr>
+<td>General Linear Model → Multivariate</td>
+<td>ANOVA → MANCOVA</td>
+</tr>
+<tr>
+<td>General Linear Model → Repeated Measures</td>
+<td>ANOVA → Repeated Measures ANOVA</td>
+</tr>
+<tr>
+<td>General Linear Model → Variance Components</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Generalized Linear Models</strong></td>
+<td><em>requires the jamovi-module «GAMLj»</em></td>
+</tr>
+<tr>
+<td>Generalized Linear Models → Generalized Linear Models</td>
+<td></td>
+</tr>
+<tr>
+<td>Generalized Linear Models → Generalized Estimating Equations</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Mixed Models</strong></td>
+<td><em>requires the jamovi-module «GAMLj»</em></td>
+</tr>
+<tr>
+<td>Mixed Models → Linear</td>
+<td></td>
+</tr>
+<tr>
+<td>Mixed Models → Generalized Linear</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2"><strong>Correlate</strong></td>
+</tr>
+<tr>
+<td>Correlate → Bivariate</td>
+<td>Regression → Correlation Matrix</td>
+</tr>
+<tr>
+<td>Correlate → Partial</td>
+<td>Regression → Partial Correlation</td>
+</tr>
+<tr>
+<td>Correlate → Distances</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Regression</strong></td>
+</tr>
+<tr>
+<td>Regression → Automatic Linear Models</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Regression → Linear</td>
+<td>Regression → Linear Regression</td>
+</tr>
+<tr>
+<td>Regression → Ordinal</td>
+<td>Regression → (Logistic Regression) → Ordinal Outcomes</td>
+</tr>
+<tr>
+<td>Regression → Curve Estimation</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Regression → Partial Least Squares</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Loglinear</strong></td>
+</tr>
+<tr>
+<td>Loglinear → General</td>
+<td>Frequencies → Log-Linear Regression</td>
+</tr>
+<tr>
+<td>Loglinear → Logit</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Loglinear → Model Selection</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Classify</strong></td>
+</tr>
+<tr>
+<td>Classify → Nearest Neighbor</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Classify → Discriminant</td>
+<td>N/A, <em>can be calculated using</em> <span><a href="https://www.statmethods.net/advstats/discriminant.html">R-code</a> <em>and the R-library «MASS»</em></span></td>
+</tr>
+<tr>
+<td>Classify → TwoStep Cluster</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Classify → Hierarchical Cluster</td>
+<td rowspan="2">N/A, <em>can be calculated using</em> <span><a href="https://www.statmethods.net/advstats/cluster.html">R-code</a> <em>and the R-library «pvclust»</em></span></td>
+</tr>
+<tr>
+<td>Classify → K-Means Cluster</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Dimension Reduction</strong></td>
+</tr>
+<tr>
+<td>Dimension Reduction → Factor</td>
+<td><div class="line-block">Factor → (Data reduction) → Principal Component Analysis<br />
+Factor → (Data reduction) → Exploratory Factor Analysis<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></div></td>
+</tr>
+<tr>
+<td colspan="2"><strong>Scale</strong></td>
+</tr>
+<tr>
+<td>Scale → Reliability Analysis</td>
+<td>Factor → (Scale analysis) → Reliability analysis</td>
+</tr>
+<tr>
+<td>Scale → Multidimensional Scaling</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Nonparametric Tests</strong></td>
+</tr>
+<tr>
+<td>Nonparametric Tests → One Sample</td>
+<td rowspan="3">N/A, <em>the tests itself are available (see below), but not a common start menu that allows a selection based on your data (e.g., between- or within-subject)</em></td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Independent Samples</td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Related Samples</td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Legacy Dialogs → Chi-Square</td>
+<td>Frequencies → (One Sample Proportion Tests) → N Outcomes (x² goodness of fit)</td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Legacy Dialogs → Binomial</td>
+<td>Frequencies → (One Sample Proportion Tests) → 2 Outcomes (Binomial test)</td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Legacy Dialogs → Runs</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Legacy Dialogs → 1-Sample K-S</td>
+<td>Shapiro-Wilks available under Exploration → Descriptives, choose drop-down menu «Statistics» and <em>tick «Shapiro-Wilks»</em> (Kolmogoroff-Smirnov available via the additional module <em>moretests</em>)</td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Legacy Dialogs → 2 Independent Samples</td>
+<td>T-Test → Independent Samples T-Test, <em>set tick-box «Mann-Whitney U»</em></td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Legacy Dialogs → 2 Related Samples</td>
+<td>T-Test → Paired Samples T-Test, <em>set tick-box «Wilcoxon Rank»</em></td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Legacy Dialogs → K Independent Samples</td>
+<td>ANOVA → (Non-Parametric) → One-Way ANOVA (Kruskal-Wallis)</td>
+</tr>
+<tr>
+<td>Nonparametric Tests → Legacy Dialogs → K Related Samples</td>
+<td>ANOVA → (Non-Parametric) → Repeated Measures ANOVA (Friedman)</td>
+</tr>
+<tr>
+<td><strong>Survival</strong></td>
+<td><em>requires the jamovi-module «Death watch»</em></td>
+</tr>
+<tr>
+<td>Survival → Life Tables</td>
+<td></td>
+</tr>
+<tr>
+<td>Survival → Kaplan-Meier</td>
+<td></td>
+</tr>
+<tr>
+<td>Survival → Cox Regression</td>
+<td></td>
+</tr>
+<tr>
+<td>Survival → Cox w/ Time-Dep Cov</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2"><strong>Multiple Response</strong></td>
+</tr>
+<tr>
+<td>Multiple Response → Define Variable Sets</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Multiple Response → Frequencies</td>
+<td></td>
+</tr>
+<tr>
+<td>Multiple Response → Crosstabs</td>
+<td></td>
+</tr>
+<tr>
+<td colspan="2"><strong>ROC Curve</strong></td>
+</tr>
+<tr>
+<td>ROC Curve</td>
+<td>N/A, <em>accessible via R packages (e.g., ROCR eller pROC)</em></td>
+</tr>
+<tr>
+<td colspan="2"><strong>Simulation</strong></td>
+</tr>
+<tr>
+<td>Simulation</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td colspan="2"><strong>Spatial and Temporal Modeling</strong></td>
+</tr>
+<tr>
+<td>Spatial and Temporal Modeling → Spatial Modeling</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Whereas SPSS puts both methods into one procedure (<code>FACTOR</code>) makes jamovi a conceptual difference between Principal Component Analysis aiming at data reduction (i.e., reducing the number of dimension that are required to describe the data) and Exploratory Factor Analysis aiming at extracting underlying latent variables.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
