@@ -6,9 +6,9 @@ Read the file in full, then return feedback grouped under these headings:
 
 **Clarity** — steps that are ambiguous, assume unstated prerequisites, or would leave a first-time user stuck.
 
-**Jargon** — statistical or technical terms used without a plain-language explanation or a "More info" link.
+**Jargon** — statistical or technical terms used without a plain-language explanation or a link.
 
-**Incomplete content** — TODO markers, `*link*` placeholders, "WTF" comments, broken image references, or sections that trail off without content.
+**Incomplete content** — TODO markers, placeholder text, broken image references, broken links, or sections that trail off without content.
 
 **Structure** — sections in a confusing order, missing numbered steps where sequence matters, or headings that don't match the content beneath them.
 

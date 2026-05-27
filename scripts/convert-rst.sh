@@ -2,11 +2,12 @@
 set -euo pipefail
 
 SECTIONS=(usermanual analyses data howto spss2jamovi)
+RSTBASE="rst"
 OUTBASE="src/content/docs"
 
 for section in "${SECTIONS[@]}"; do
   mkdir -p "${OUTBASE}/${section}"
-  for rst in "${section}"/*.rst; do
+  for rst in "${RSTBASE}/${section}"/*.rst; do
     [ -f "$rst" ] || continue
     base=$(basename "$rst" .rst | tr '[:upper:]' '[:lower:]')
     out="${OUTBASE}/${section}/${base}.mdx"

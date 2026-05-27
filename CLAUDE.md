@@ -4,58 +4,52 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Sphinx documentation for [jamovi](https://www.jamovi.org), a free statistical software application. Published at https://jamovi.readthedocs.org and supports 25+ languages via Weblate translations.
+Documentation for [jamovi](https://www.jamovi.org), a free statistical software application. Built with [Astro Starlight](https://starlight.astro.build/) and published at [docs.jamovi.org](https://docs.jamovi.org). Supports 25+ languages via Weblate translations.
 
 ## Build commands
 
-The virtual environment lives in `.venv/` (not `_env` as the README says).
-
 ```bash
-# Activate the virtual environment
-source .venv/bin/activate
+# Install dependencies
+npm install
 
-# Install dependencies (first time or after updates)
-pip install -r requirements.txt
+# Start dev server (hot-reload)
+npm run dev
 
-# Build English HTML docs
-make html
+# Build for production
+npm run build
 
-# Build for a specific language (e.g. German)
-make html LANG=de
+# Preview production build
+npm run preview
 
-# Clean the build output
-make clean
+# Convert RST source files to MDX (requires pandoc)
+npm run convert
 
-# Check for broken links
-make checklinks
-
-# Live-reload server for local development
-sphinx-autobuild . _build/html/en
+# Generate translated MDX from _locale submodule
+npm run generate-translations
 ```
 
 ## Project structure
 
-- `index.rst` — master toctree that defines the site's navigation
-- `conf.py` — Sphinx configuration
-- `usermanual/` — Getting Started guides (`um_*.rst`)
-- `analyses/` — Step-by-step analysis walkthroughs (`jg_*.rst`)
-- `transformations/` — Data manipulation and transformation docs (`tr_*.rst`)
-- `developer/` — Module developer hub (`dh_*.rst`)
-- `spss2jamovi/` — SPSS-to-jamovi transition guides (`s2j_*.rst`)
-- `jmv/` — R package (`jmv`) API reference (`jmv_*.rst`)
-- `howto/` — Short how-to guides
-- `_images/` — All images referenced across all docs
-- `_locale/` — Git submodule containing translations (from Weblate at https://hosted.weblate.org/projects/jamovidocs/)
-- `_static/`, `_templates/` — Sphinx theme customisation
-- `.languages` — List of language codes to build when publishing all translations
+- `astro.config.mjs` — site config: logo, locales, sidebar navigation
+- `src/content/docs/` — page content as MDX files (one per page per language)
+- `src/components/` — custom Astro component overrides (currently: `SiteTitle.astro`)
+- `src/styles/jamovi.css` — custom CSS overrides
+- `src/assets/` — logo and built-in assets
+- `public/images/` — all images and converted animations (WebM/MP4/PNG)
+- `public/output/` — downloadable data files (.omv, .spv)
+- `public/fonts/` — web fonts
+- `scripts/` — RST→MDX conversion and translation generation scripts
+- `_images/` — original source images (referenced by RST source files)
+- `_locale/` — git submodule with Weblate translation PO files
+- `rst/` — RST source files (`analyses/`, `data/`, `howto/`, `spss2jamovi/`, `usermanual/`, `jmv/`)
 
 ## File naming conventions
 
-Files are prefixed by section and numbered: `um_4_spreadsheet.rst`, `jg_11_descriptive-analyses.rst`, `dh_tut_13-creating-an-analysis.rst`. New files should follow the same pattern for the section they belong to.
+MDX files mirror the RST source names, lowercased: `um_4_spreadsheet.mdx`, `jg_11_descriptive-analyses.mdx`, `s2j_correlation.mdx`. Adding new pages: place the MDX in the correct `src/content/docs/` subdirectory and add a `{ slug: '...' }` entry to the sidebar in `astro.config.mjs`.
 
 ## Working on documentation content
 
-Apply the following expertise automatically whenever writing, editing, reviewing, or discussing RST content in this project — without being asked.
+Apply the following expertise automatically whenever writing, editing, reviewing, or discussing MDX content in this project — without being asked.
 
 ### Audience
 
@@ -66,22 +60,14 @@ Researchers, students, and scientists who want to analyse their data. They chose
 - **Direct and instructional** — tell the reader exactly what to click, select, or type
 - **Second person** — "click the Data tab", "select Append", not "the user should click..."
 - **Friendly but not chatty** — no filler phrases, no over-explaining what was just done
-- When a statistical concept is necessary, name it plainly and add a `More info <url>__` link where one exists in the existing docs
+- When a statistical concept is necessary, name it plainly and add a link where relevant
 
-### RST conventions
+### MDX conventions
 
-- Images: defined as substitutions at the bottom of the file, referenced inline as `|name|`:
-  ```rst
-  |image_name|
-
-  .. |image_name| image:: ../_images/filename.png
-     :alt: Description of the image.
-     :class: centered
-     :width: 42%
-  ```
-- Cross-file links: `:doc:` for pages, `:ref:` for labelled anchors
-- Tabular examples: `.. list-table::` with `:header-rows: 1`
-- Author credit: `.. sectionauthor:: Name` at the top of the file
+- Images: use standard Markdown `![alt](/images/filename.png)` or `<img>` for sized images
+- Cross-page links: absolute paths from root, e.g. `[page title](/data/data_2_computed_variables)`
+- Asides (notes/warnings): Starlight syntax `:::note`, `:::caution`, `:::tip`, `:::danger`
+- Downloadable files: link to `/output/filename.omv`
 
 ### Automatic user-perspective review
 
@@ -89,30 +75,25 @@ After producing or substantially modifying documentation content, silently do a 
 
 - Would a first-time user know exactly what to do at each step? Are steps in the right order?
 - Is any jargon or statistical term used without explanation or a link?
-- Are there TODO markers, `*link*` placeholders, "WTF" comments, or broken image references still present?
+- Are there TODO markers, placeholder text, or broken image/link references still present?
 - Does the section heading match the content beneath it?
 
 ### Explicit slash commands
 
-For a structured full-page review or a focused writing session, two commands are available in `.claude/commands/`:
-
 - `/review-docs <file>` — structured user-perspective review of a complete page
 - `/write-docs <task>` — writing session with full style context loaded
+- `/parallel-docs <tasks>` — coordinate work across multiple independent sections
 
 ## Workflow
 
 - **Plan before implementing** — for any non-trivial change (new section, page restructure, content rework), propose a plan first and wait for the user to approve it before making edits.
-- **Build after rework** — once edits are finalised, run `source .venv/bin/activate && make html` to confirm the docs still build cleanly. Report any warnings or errors before asking the user to review the result.
-- **Parallel work** — when asked to work on two or more independent sections or files simultaneously, spawn parallel sub-agents with `isolation: "worktree"`. Each agent must: (1) read `CLAUDE.md` at the start so it has full project context, (2) complete its task, (3) run `source .venv/bin/activate && make html` to verify the build. Report back the branch name, a summary of changes, and build status for each.
+- **Build after rework** — once edits are finalised, run `npm run build` to confirm the site still builds cleanly. Report any errors before asking the user to review the result.
+- **Parallel work** — when asked to work on two or more independent sections or files simultaneously, spawn parallel sub-agents with `isolation: "worktree"`. Each agent must: (1) read `CLAUDE.md` at the start, (2) complete its task, (3) run `npm run build` to verify. Report back the branch name, a summary of changes, and build status for each.
 
 ## Committing
 
 - **Small logical commits** — break changes into small, focused commits with a single purpose.
 - **Commit title** — a single sentence in imperative mood, max 50 characters, no trailing dot, no type prefixes (e.g. no "feat:", "fix:").
-- **Optional description** — only to clarify functional choices (the "what" and "why"). Do not explain the "how" or anything already evident from the diff. Max line length 72 characters.
+- **Optional description** — only to clarify functional choices. Do not explain the "how" or anything already evident from the diff. Max line length 72 characters.
 - **No AI mentions** — never mention AI assistants or tools in commit messages.
 - **Propose first** — always propose a draft commit message for the user to approve before committing.
-
-## Deployment
-
-ReadTheDocs reads `.readthedocs.yaml` and builds with `conf.py`. The `fail_on_warning: false` setting means warnings won't break the build. PRs pushed to `main` (and the `_locale` submodule) are automatically picked up by ReadTheDocs.

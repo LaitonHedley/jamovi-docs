@@ -1,25 +1,13 @@
-# .weblate and .gitignore
 .DS_Store
 .weblate
 
-# remove files
+# Remove files
 *.rmv
-
-# directory for unused files
-.not_used/
-
-# _build and _env
-_build
-_env
 
 # Astro build output and cache
 dist/
 .astro/
 node_modules/
-
-# OpenDocument-files (templates for
-# further analyses) in spss2jamovi
-spss2jamovi/s2j*.odt
 
 # Generated translated MDX (built from _locale .po files at build time)
 src/content/docs/ar/
