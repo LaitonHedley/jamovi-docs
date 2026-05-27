@@ -8,7 +8,7 @@ for section in "${SECTIONS[@]}"; do
   mkdir -p "${OUTBASE}/${section}"
   for rst in "${section}"/*.rst; do
     [ -f "$rst" ] || continue
-    base=$(basename "$rst" .rst)
+    base=$(basename "$rst" .rst | tr '[:upper:]' '[:lower:]')
     out="${OUTBASE}/${section}/${base}.mdx"
     pandoc "$rst" \
       -f rst \

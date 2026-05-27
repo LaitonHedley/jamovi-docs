@@ -58,6 +58,12 @@ def process_file(path: Path) -> None:
         '', text, flags=re.DOTALL
     )
 
+    # 2a. Remove pandoc fenced divs for toctree/contents directives.
+    #     These appear as :::: {.toctree ...}\n...\n:::: or inside blockquotes.
+    text = re.sub(r'>{0,2}\s*:{3,4}\s*\{\.(?:toctree|contents)[^}]*\}.*?:{3,4}', '', text, flags=re.DOTALL)
+    # Clean up any empty blockquote lines left behind
+    text = re.sub(r'(^>\s*\n)+', '', text, flags=re.MULTILINE)
+
     # 2. Convert pandoc note/warning/tip fenced divs to Starlight asides.
     #    Pandoc outputs 4-colon outer divs:
     #      :::: note
@@ -94,21 +100,41 @@ def process_file(path: Path) -> None:
     # 4. Fix any remaining bare _images/ paths not caught above
     text = re.sub(r'src="/_images/', 'src="/images/', text)
     text = re.sub(r'src="../_images/', 'src="/images/', text)
+    # Fix gif-player data-src paths pointing to _static/gifs/
+    text = re.sub(r'data-anim-src="[^"]*_static/gifs/([^"]+)"', r'data-anim-src="/images/\1"', text)
+    text = re.sub(r'data-static-src="[^"]*_static/gifs/([^"]+)"', r'data-static-src="/images/\1"', text)
 
-    # 5. Convert :doc: cross-refs left by pandoc as interpreted-text spans
-    #    Form: `slug`{.interpreted-text role="doc"}
+    # 5. Convert :doc: cross-refs left by pandoc as interpreted-text spans.
+    #    Simple form:  `slug`{.interpreted-text role="doc"}
+    #    Titled form:  `display text <path>`{.interpreted-text role="doc"}
     def doc_ref(m: re.Match) -> str:
-        slug = m.group(1).strip()
-        label = Path(slug).name
-        return f'[{label}](../{slug}.mdx)'
+        content = m.group(1).strip()
+        # Strip blockquote markers ("> ") from multiline content
+        content = re.sub(r'\n>\s*', ' ', content).strip()
+        titled = re.match(r'^(.+?)\s*<([^>]+)>$', content, re.DOTALL)
+        if titled:
+            label = titled.group(1).strip()
+            path = re.sub(r'^(\.\./)+', '', titled.group(2).strip())
+            return f'[{label}](/{path})'
+        else:
+            slug = re.sub(r'\s+', '-', content)
+            label = Path(slug).name
+            return f'[{label}](/{slug})'
 
     text = re.sub(
         r'`([^`]+)`\{\.interpreted-text\s+role="doc"\}',
         doc_ref, text
     )
 
-    # 6. Strip :ref: spans — keep just the label text
-    text = re.sub(r'`([^`]+)`\{\.interpreted-text\s+role="ref"\}', r'\1', text)
+    # 6. Strip :ref: spans — keep display text only.
+    #    Titled form: `display text <label>`{...} → "display text"
+    #    Simple form: `label`{...} → "label"
+    def ref_label(m: re.Match) -> str:
+        content = m.group(1)
+        titled = re.match(r'^(.+?)\s*<[^>]+>$', content)
+        return titled.group(1).strip() if titled else content
+
+    text = re.sub(r'`([^`]+)`\{\.interpreted-text\s+role="ref"\}', ref_label, text)
 
     # 7. Add MDX frontmatter if missing
     if not text.startswith('---'):
@@ -117,6 +143,14 @@ def process_file(path: Path) -> None:
         # Escape double quotes in title
         title = title.replace('"', '\\"')
         text = f'---\ntitle: "{title}"\n---\n\n' + text
+
+    # 8a. Strip pandoc inline span attributes [text]{.class} → text
+    #     and heading ID anchors {#some-id} — MDX treats {} as JSX
+    text = re.sub(r'\[([^\]]+)\]\{[^}]+\}', r'\1', text)
+    text = re.sub(r'(\s*\{#[^}]+\})', '', text)
+
+    # 8b. Convert bare autolinks <https://url> → [url](url)
+    text = re.sub(r'<(https?://[^>]+)>', lambda m: f'[{m.group(1)}]({m.group(1)})', text)
 
     # 8. Collapse runs of 3+ blank lines
     text = re.sub(r'\n{3,}', '\n\n', text)

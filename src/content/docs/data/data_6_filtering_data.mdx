@@ -43,5 +43,5 @@ To remove a filter entirely, open the filter editor and click the red **×** ico
 :::note
 **Variable functions** (e.g., `VMEAN()`, `VSTDEV()`) cannot be used directly inside a filter expression. This is because filters exclude data, which would change the very statistic (like the mean) you are trying to filter by, creating a \"circular\" calculation that never ends.
 
-If you need to filter based on a whole-column statistic (like \"only rows above the mean\"), first create a [Computed Variable <data_2_computed_variables>](../Computed Variable <data_2_computed_variables>.mdx) using the V function, then filter based on that new column. This \"freezes\" the statistic so the filter can use it reliably.
+If you need to filter based on a whole-column statistic (like \"only rows above the mean\"), first create a [Computed Variable](/data_2_computed_variables) using the V function, then filter based on that new column. This \"freezes\" the statistic so the filter can use it reliably.
 :::

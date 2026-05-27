@@ -6,7 +6,7 @@ title: "Use the R-version of the PROCESS-macro from within jamovi"
 
 In preparation: You need to install Rj and to download the most recent version of the [PROCESS-macro](from http://processmacro.org/download.html). Open the ZIP-file that you downloaded, go into the folder `PROCESS v... for R` and extract the `process.R`-file into your `Documents`-directory.
 
-Open a data file that you want to use for your analyses. Afterwards, open `Rj` using the `R`-symbol in the `Analyses`-icon-bar (`Rj` is a jamovi module; if you have not installed it yet, you may check [Install modules in jamovi <howto_Install_modules>](../Install modules in jamovi <howto_Install_modules>.mdx)).
+Open a data file that you want to use for your analyses. Afterwards, open `Rj` using the `R`-symbol in the `Analyses`-icon-bar (`Rj` is a jamovi module; if you have not installed it yet, you may check [Install modules in jamovi](/howto_Install_modules)).
 
 Now you are ready to write R-code inside jamovi. Run the following code in the `Rj` text box for commands. You may just copy-and-paste the following code.
 
@@ -39,7 +39,7 @@ Workshop schedule at http://haskayne.ucalgary.ca/CCRAM
 
 Afterwards, the PROCESS-macro is initialized and you can comment the line out (by putting a `#` at the start of the line) → `# source(…`
 
-Now you are set to run analyses. Please note that the [PROCESS-macro for R uses a different random number generator than SPSS and SAS]{.red}[^1] and that therefore the [bootstrapping confidence intervals for the Indirect effect(s) of X on Y are different]{.red} from what the output shown in the book. Furthermore, does the current version of the [PROCESS-macro for R accept data only in numeric format]{.red}.[^2] Thus, factors must be converted to numeric form (e.g., `0` and `1`) prior to their use in a PROCESS command. This can be done using the following command in `Rj` (just copy-and-paste it).
+Now you are set to run analyses. Please note that the PROCESS-macro for R uses a different random number generator than SPSS and SAS[^1] and that therefore the bootstrapping confidence intervals for the Indirect effect(s) of X on Y are different from what the output shown in the book. Furthermore, does the current version of the PROCESS-macro for R accept data only in numeric format.[^2] Thus, factors must be converted to numeric form (e.g., `0` and `1`) prior to their use in a PROCESS command. This can be done using the following command in `Rj` (just copy-and-paste it).
 
 > ``` R
 > for (C in names(data)[sapply(data, is.factor)]) {

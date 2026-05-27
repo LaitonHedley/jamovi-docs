@@ -54,7 +54,7 @@ export default defineConfig({
             { slug: 'usermanual/um_3_analyses' },
             { slug: 'usermanual/um_4_spreadsheet' },
             { slug: 'usermanual/um_5_updating_data' },
-            { slug: 'usermanual/um_6_jamovi_and_R' },
+            { slug: 'usermanual/um_6_jamovi_and_r' },
           ],
         },
         {
@@ -82,15 +82,15 @@ export default defineConfig({
           label: 'How to…',
           items: [
             { slug: 'howto/howto_overview' },
-            { slug: 'howto/howto_Filtering_data' },
-            { slug: 'howto/howto_Install_modules' },
-            { slug: 'howto/howto_Use_PROCESS' },
+            { slug: 'howto/howto_filtering_data' },
+            { slug: 'howto/howto_install_modules' },
+            { slug: 'howto/howto_use_process' },
           ],
         },
         {
           label: 'From SPSS to jamovi',
           items: [
-            { slug: 'spss2jamovi/s2j_Comparison_of_analyses' },
+            { slug: 'spss2jamovi/s2j_comparison_of_analyses' },
             { slug: 'spss2jamovi/s2j_side-by-side' },
           ],
         },
