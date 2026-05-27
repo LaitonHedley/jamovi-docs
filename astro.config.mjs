@@ -8,6 +8,7 @@ export default defineConfig({
       title: 'jamovi Documentation',
       logo: {
         src: './src/assets/header-logo.svg',
+        replacesTitle: true,
       },
       favicon: '/jamovi-v.svg',
       defaultLocale: 'root',
@@ -55,6 +56,34 @@ export default defineConfig({
           label: 'Analyses',
           items: [
             { slug: 'analyses/jg_overview' },
+            { slug: 'analyses/jg_11_descriptive-analyses' },
+            {
+              label: 't-tests',
+              collapsed: true,
+              items: [
+                { slug: 'analyses/jg_21_t-test-independent' },
+                { slug: 'analyses/jg_22_t-test-paired' },
+                { slug: 'analyses/jg_23_t-test-onesample' },
+              ],
+            },
+            {
+              label: 'ANOVA',
+              collapsed: true,
+              items: [
+                { slug: 'analyses/jg_31_unianova' },
+                { slug: 'analyses/jg_32_anova-factorial' },
+                { slug: 'analyses/jg_33_anova-rm' },
+                { slug: 'analyses/jg_34_anova-mixed' },
+              ],
+            },
+            {
+              label: 'Regression',
+              collapsed: true,
+              items: [
+                { slug: 'analyses/jg_42_regression-linear' },
+                { slug: 'analyses/jg_43_regression-logistic' },
+              ],
+            },
           ],
         },
         {
@@ -85,10 +114,76 @@ export default defineConfig({
           label: 'From SPSS to jamovi',
           items: [
             { slug: 'spss2jamovi/s2j_comparison_of_analyses' },
-            { slug: 'spss2jamovi/s2j_side-by-side' },
+            {
+              label: 'Side-by-Side Comparison',
+              collapsed: true,
+              items: [
+                { slug: 'spss2jamovi/s2j_side-by-side' },
+                {
+                  label: 't-tests',
+                  collapsed: true,
+                  items: [
+                    { slug: 'spss2jamovi/s2j_ttestis' },
+                    { slug: 'spss2jamovi/s2j_ttestps' },
+                    { slug: 'spss2jamovi/s2j_ttestps2' },
+                  ],
+                },
+                {
+                  label: 'ANCOVA',
+                  collapsed: true,
+                  items: [
+                    { slug: 'spss2jamovi/s2j_ancova' },
+                    { slug: 'spss2jamovi/s2j_ancova2' },
+                    { slug: 'spss2jamovi/s2j_ancova3' },
+                    { slug: 'spss2jamovi/s2j_ancova4' },
+                    { slug: 'spss2jamovi/s2j_ancova5' },
+                  ],
+                },
+                {
+                  label: 'Correlation',
+                  collapsed: true,
+                  items: [
+                    { slug: 'spss2jamovi/s2j_correlation' },
+                    { slug: 'spss2jamovi/s2j_correlation2' },
+                    { slug: 'spss2jamovi/s2j_correlation3' },
+                    { slug: 'spss2jamovi/s2j_correlation4' },
+                    { slug: 'spss2jamovi/s2j_correlation5' },
+                  ],
+                },
+                {
+                  label: 'Linear Regression',
+                  collapsed: true,
+                  items: [
+                    { slug: 'spss2jamovi/s2j_linreg' },
+                    { slug: 'spss2jamovi/s2j_linreg2' },
+                  ],
+                },
+                { slug: 'spss2jamovi/s2j_logreg' },
+                {
+                  label: 'Non-parametric',
+                  collapsed: true,
+                  items: [
+                    { slug: 'spss2jamovi/s2j_nonparametric' },
+                    { slug: 'spss2jamovi/s2j_nonparametric2' },
+                    { slug: 'spss2jamovi/s2j_nonparametric3' },
+                  ],
+                },
+                {
+                  label: 'Frequencies',
+                  collapsed: true,
+                  items: [
+                    { slug: 'spss2jamovi/s2j_frequencies' },
+                    { slug: 'spss2jamovi/s2j_frequencies2' },
+                  ],
+                },
+              ],
+            },
           ],
         },
       ],
+      components: {
+        SiteTitle: './src/components/SiteTitle.astro',
+      },
       customCss: ['./src/styles/jamovi.css'],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/jamovi/jamovi' },

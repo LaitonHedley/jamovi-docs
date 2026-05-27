@@ -2,3 +2,32 @@
   --sl-color-accent: #2d7dd2;
   --sl-color-accent-high: #1a5fa8;
 }
+
+/* Sidebar sub-group labels: normal weight instead of bold */
+.large {
+  font-weight: 400 !important;
+}
+
+@media (min-width: 50rem) {
+  /* Replace asymmetric grid (sidebar-width | 1fr | auto) with symmetric
+     (1fr | auto | 1fr) so the search column is truly centred in the viewport */
+  header > div {
+    grid-template-columns: 1fr auto 1fr !important;
+  }
+
+  /* Pin logo to the left edge of its column */
+  header > div > :first-child {
+    justify-self: start;
+  }
+
+  /* Pin controls to the right edge of their column */
+  header > div > :last-child {
+    justify-self: end;
+  }
+
+  /* Search button fills the centred column, capped at 800 px */
+  site-search button[data-open-modal] {
+    width: min(50rem, calc(100vw - 18rem)) !important;
+    max-width: 50rem !important;
+  }
+}
