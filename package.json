@@ -1,11 +1,7 @@
 {
   "name": "jamovi-docs",
   "version": "1.0.0",
-  "description": "jamovi documentation using Sphinx. The documentation is available at https://jamovi.readthedocs.org (and translations can be chosen by clicking at the menu that unfolds after pressing at «Read the Docs» at the bottom). Whoever would like to contribute with translations, please read a little [further down](#translate).",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "description": "Documentation for jamovi, available at https://docs.jamovi.org",
   "scripts": {
     "dev": "astro dev",
     "build": "npm run generate-translations && astro build",
@@ -19,16 +15,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/raviselker/jamovi-docs.git"
+    "url": "git+https://github.com/jamovi/jamovi-docs.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/raviselker/jamovi-docs/issues"
+    "url": "https://github.com/jamovi/jamovi-docs/issues"
   },
-  "homepage": "https://github.com/raviselker/jamovi-docs#readme",
+  "homepage": "https://github.com/jamovi/jamovi-docs#readme",
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",
     "astro": "^6.3.8"
