@@ -114,7 +114,7 @@ def process_file(src: Path, dest: Path, translations: dict[str, str]) -> None:
             body, translated, total = translate_block(parts[2], translations)
             if total > 0:
                 coverage = translated / total
-                translation_outdated = 0.10 <= coverage < 0.90
+                translation_outdated = coverage < 0.90
             frontmatter = parts[1]
             if translation_outdated:
                 frontmatter = frontmatter.rstrip() + '\ntranslationOutdated: true\n'

@@ -1,14 +1,13 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/Banner.astro';
 
-const { entry } = Astro.props as Props;
-const isOutdated = (entry?.data as Record<string, unknown>)?.translationOutdated === true;
+const data = Astro.locals.starlightRoute.entry.data as Record<string, unknown>;
+const isOutdated = data.translationOutdated === true;
 ---
 
 {isOutdated && (
   <div class="translation-notice">
-    This page is partially translated. Some sections may appear in English.
+    This page is not fully translated (yet). Some sections may appear in English.
   </div>
 )}
 <Default {...Astro.props} />
