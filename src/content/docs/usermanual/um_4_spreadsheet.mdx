@@ -27,7 +27,7 @@ When starting with a blank spreadsheet and typing values in, the data and measur
 
 The variable editor can be invoked by selecting `Setup` from the `Data` tab, double-clicking on the column header, or by pressing `F3`. The variable editor allows you to change the name of the variable, and (for data variables) the data type, the measure type, the order of the levels, and the label displayed for each level. The variable editor can be dismissed by clicking the close arrow, or by pressing `F3` again.
 
-<video autoplay loop muted playsinline poster="/images/um_changeName.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_changeName.webm" type="video/webm" /><source src="/images/um_changeName.mp4" type="video/mp4" /></video>
+<video controls loop muted playsinline poster="/images/um_changeName.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_changeName.webm" type="video/webm" /><source src="/images/um_changeName.mp4" type="video/mp4" /></video>
 
 New variables can be inserted or appended to the data set using the `Add` button from the data ribbon. The `Add` button also allows the addition of *Computed variables*.
 
@@ -67,7 +67,7 @@ While computed variables are great for a lot of operations (e.g., calculating su
 
 **Creating transformed variables**
 
-<video autoplay loop muted playsinline poster="/images/um_transform_overview.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_transform_overview.webm" type="video/webm" /><source src="/images/um_transform_overview.mp4" type="video/mp4" /></video>
+<video controls loop muted playsinline poster="/images/um_transform_overview.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_transform_overview.webm" type="video/webm" /><source src="/images/um_transform_overview.mp4" type="video/mp4" /></video>
 
 When transforming or recoding variables in jamovi, a second "transformed variable" is created for the original "source variable". This way, you will always have access to the original, untransformed data if need be. To transform a variable, first select the column(s) you would like to transform. You can select a block of columns by clicking on the first column header in the block and then clicking on the last column header in the block while holding the shift key. Alternatively, you can select / deselect individual columns by clicking on the column headers while holding down the Ctrl / Cmd key. Once selected, you can either select `Transform` from the data tab, or right click and choose `Transform` from the menu.
 
@@ -105,7 +105,7 @@ The transform editor contains these elements.
 
 4.  *Transformation*: This section contains the rules and formulas for the transformation. You can use all the same functions that are available in computed variables, and to refer to the values in the source column (so you can transform them), you can use the special `$source` keyword. If you want to recode a variable into multiple groups, it's easiest to use multiple conditions. To add additional conditions (i.e., if-statements), you click on the `Add recode condition` button:
 
-    <video autoplay loop muted playsinline poster="/images/um_transform_edit2.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_transform_edit2.webm" type="video/webm" /><source src="/images/um_transform_edit2.mp4" type="video/mp4" /></video>
+    <video controls loop muted playsinline poster="/images/um_transform_edit2.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_transform_edit2.webm" type="video/webm" /><source src="/images/um_transform_edit2.mp4" type="video/mp4" /></video>
 
 5.  *Used by*: Indicates how many variables are using this particular transformation. If you click on the number it will list these variables.
 
@@ -145,7 +145,7 @@ The filters in jamovi are build on top of jamovi's *computed variable* formula s
 
 jamovi filters are demonstrated using the `Tooth Growth` data set which is included with jamovi (`☰` → `Open` → `Data Library`). Select the `Filters button` from the `Data` ribbon. This opens the filter view and creates a new filter called `Filter 1`.
 
-<video autoplay loop muted playsinline poster="/images/um_filter1.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_filter1.webm" type="video/webm" /><source src="/images/um_filter1.mp4" type="video/mp4" /></video>
+<video controls loop muted playsinline poster="/images/um_filter1.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_filter1.webm" type="video/webm" /><source src="/images/um_filter1.mp4" type="video/mp4" /></video>
 
 In the short video, we specify a filter to exclude the 9th row. Perhaps we know that the 9th participant was someone just testing the survey system, and not a proper participant (`Tooth Growth` is actually about the length of guinea pig teeth, so perhaps we know that the 9th participant was a rabbit). We can simply exclude them with the formula:
 
@@ -174,7 +174,7 @@ There are a lot of functions available in jamovi, and you can see them by clicki
 
 Now let's add this z-score formula to a separate filter by clicking the large `+` to the left of the filters, and adding it to `Filter 2`.
 
-<video autoplay loop muted playsinline poster="/images/um_filter2.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_filter2.webm" type="video/webm" /><source src="/images/um_filter2.mp4" type="video/mp4" /></video>
+<video controls loop muted playsinline poster="/images/um_filter2.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_filter2.webm" type="video/webm" /><source src="/images/um_filter2.mp4" type="video/mp4" /></video>
 
 With multiple filters, the filtered rows cascade from one filter into the next. So only the rows allowed through by `Filter 1` are used in the calculations for `Filter 2`. In this case, the mean and standard deviation for the z-score will be based only on the vitamin C rows (and also not on row 9). In contrast, if we'd specified our `Z()` filter as an additional expression in `Filter 1`, then the mean and standard deviation for the z-score would be based on the entire dataset. In this way you can specify arbitrarily complex rules for when a row should be included in analyses or not (but you should pre-register your rules).[^1]
 
@@ -193,7 +193,7 @@ The first argument to the `FILTER()` function (in this example dose) is what val
 
 We might also change the name of the column to something more descriptive, like `dose 5,10`. Similarly we can create a column `dose 10,20` with the formula `FILTER(dose, dose != 500)`. Now we can run two separate ANOVAs (or t-tests) using `len` as the dependent variable, and `dose 5,10` as one grouping variable in the first analysis, and `dose 10,20` in the other. In this way we can use different filters for different analyses. Contrast this with row filters which are applied to *all* the analyses.
 
-<video autoplay loop muted playsinline poster="/images/um_filter3.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_filter3.webm" type="video/webm" /><source src="/images/um_filter3.mp4" type="video/mp4" /></video>
+<video controls loop muted playsinline poster="/images/um_filter3.png" title="" style="width: 80%; display: block; margin: 1rem 0"><source src="/images/um_filter3.webm" type="video/webm" /><source src="/images/um_filter3.mp4" type="video/mp4" /></video>
 
 It may also have occurred to you, that with `FILTER()` we can do what might be called a "poor man's split variables": You can create splits using `FILTER()`. For example, we could split `len` into two new columns `len_VC` and `len_OJ` with the functions `FILTER(len, supp == 'VC')` and `FILTER(len, supp == 'OJ')` respectively. This results in two separate columns which can be analysed side-by-side.
 

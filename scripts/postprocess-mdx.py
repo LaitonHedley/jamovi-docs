@@ -136,7 +136,7 @@ def process_file(path: Path) -> None:
         poster = re.sub(r'^/_images/', '/images/', poster)
         alt = title.group(1) if title else ''
         return (
-            f'<video autoplay loop muted playsinline poster="{poster}" '
+            f'<video controls loop muted playsinline poster="{poster}" '
             f'title="{alt}" style="width: 80%; display: block; margin: 1rem 0">'
             f'<source src="{base}.webm" type="video/webm" />'
             f'<source src="{base}.mp4" type="video/mp4" />'
