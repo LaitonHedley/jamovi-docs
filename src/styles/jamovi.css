@@ -9,6 +9,45 @@
   vertical-align: middle;
 }
 
+/* ── Tables ─────────────────────────────────────────────────────── */
+
+/* Restore left/right padding on edge cells (Starlight zeroes these out) */
+.sl-markdown-content :is(th:first-child, td:first-child):not(:where(.not-content *)) {
+  padding-inline-start: 0.75rem;
+}
+.sl-markdown-content :is(th:last-child, td:last-child):not(:where(.not-content *)) {
+  padding-inline-end: 0.75rem;
+}
+
+/* Jamovi-blue top border caps the table */
+.sl-markdown-content thead tr:first-child th:not(:where(.not-content *)) {
+  border-top: 2px solid var(--sl-color-accent);
+}
+
+/* Light blue header background */
+.sl-markdown-content th:not(:where(.not-content *)) {
+  background-color: color-mix(in srgb, var(--sl-color-accent) 10%, transparent);
+}
+
+/* Blue-tinted separator between header and body */
+.sl-markdown-content thead tr:last-child th:not(:where(.not-content *)) {
+  border-bottom: 2px solid color-mix(in srgb, var(--sl-color-accent) 35%, var(--sl-color-gray-5));
+}
+
+/* Very subtle blue zebra striping */
+.sl-markdown-content tbody tr:nth-child(even) td:not(:where(.not-content *)) {
+  background-color: color-mix(in srgb, var(--sl-color-accent) 4%, transparent);
+}
+
+/* Table caption: italic-only paragraph immediately after a table */
+.sl-markdown-content table + p:has(> em:only-child) {
+  margin-top: 0.25rem;
+  padding-inline-start: 0.5rem;
+  font-size: 0.8125em;
+  color: var(--sl-color-gray-3);
+  border-left: 2px solid color-mix(in srgb, var(--sl-color-accent) 40%, transparent);
+}
+
 /* Sidebar sub-group labels: normal weight instead of bold */
 .large {
   font-weight: 400 !important;
