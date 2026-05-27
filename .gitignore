@@ -15,3 +15,30 @@ _env
 # OpenDocument-files (templates for
 # further analyses) in spss2jamovi
 spss2jamovi/s2j*.odt
+
+# Generated translated MDX (built from _locale .po files at build time)
+src/content/docs/ar/
+src/content/docs/da/
+src/content/docs/de/
+src/content/docs/es/
+src/content/docs/fi/
+src/content/docs/fr/
+src/content/docs/hr/
+src/content/docs/is/
+src/content/docs/it/
+src/content/docs/ja/
+src/content/docs/ko/
+src/content/docs/nb/
+src/content/docs/nn/
+src/content/docs/pl/
+src/content/docs/pt/
+src/content/docs/ru/
+src/content/docs/si/
+src/content/docs/sl/
+src/content/docs/sv/
+src/content/docs/ta/
+src/content/docs/tr/
+src/content/docs/uk/
+src/content/docs/vi/
+src/content/docs/zh_CN/
+src/content/docs/zh_TW/
