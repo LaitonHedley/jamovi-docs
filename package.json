@@ -9,9 +9,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "npm run generate-translations && astro build",
-    "generate-translations": "git submodule update --init _locale && python3 scripts/generate-translations.py",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "convert": "bash scripts/convert-rst.sh && python3 scripts/postprocess-mdx.py",
+    "convert:rst": "bash scripts/convert-rst.sh",
+    "convert:post": "python3 scripts/postprocess-mdx.py",
+    "generate-translations": "git submodule update --init _locale && python3 scripts/generate-translations.py"
   },
   "repository": {
     "type": "git",
