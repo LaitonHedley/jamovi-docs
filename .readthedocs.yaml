@@ -1,5 +1,6 @@
 # .readthedocs.yaml
-# Read the Docs configuration file
+# Read the Docs configuration file (preserved for reference during Astro migration)
+# The new site uses Astro Starlight — see astro.config.mjs and package.json.
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 # Required

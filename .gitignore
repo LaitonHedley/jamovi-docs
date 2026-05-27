@@ -12,6 +12,11 @@
 _build
 _env
 
+# Astro build output and cache
+dist/
+.astro/
+node_modules/
+
 # OpenDocument-files (templates for
 # further analyses) in spss2jamovi
 spss2jamovi/s2j*.odt
