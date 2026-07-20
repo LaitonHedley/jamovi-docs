@@ -1,0 +1,56 @@
+---
+title: "Multiple Linear Regression"
+---
+
+Use multiple linear regression when you want to predict one continuous outcome from two or more predictors.
+
+## What this analysis does
+
+- Estimates the combined effect of multiple predictors on one outcome.
+- Shows each predictor's unique contribution while controlling for the others.
+- Provides model fit statistics and coefficient estimates.
+
+## Set up the analysis
+
+1. Prepare your data
+- Use one continuous dependent variable.
+- Add two or more predictor variables.
+- Predictors can be continuous (covariates) and/or categorical (factors).
+
+{/* TODO: Add data-format screenshot */}
+{/* <img src="/images/jg_data_format_regression_multiple_linear.png" alt="data_format_regression_multiple_linear" style="width: 40.0%" /> */}
+
+2. Open the analysis in jamovi
+- Click `Analyses` -> `Regression` -> `Linear Regression`.
+
+{/* TODO: Add menu screenshot */}
+{/* <img src="/images/jg_select_regression_multiple_linear.png" alt="select_regression_multiple_linear" style="width: 40.0%" /> */}
+
+3. Assign variables
+- Move your outcome variable into `Dependent Variable`.
+- Move continuous predictors into `Covariates`.
+- Move categorical predictors into `Factors`.
+
+{/* TODO: Add setup screenshot */}
+{/* <img src="/images/jg_add_var_regression_multiple_linear.png" alt="add_var_regression_multiple_linear" style="width: 70.0%" /> */}
+
+4. Choose key options
+- In `Model Fit`, request overall model statistics.
+- In `Model Coefficients`, request estimates and confidence intervals.
+- Optionally request collinearity diagnostics and residual plots.
+
+{/* TODO: Add options screenshot */}
+{/* <img src="/images/jg_options_regression_multiple_linear.png" alt="options_regression_multiple_linear" style="width: 70.0%" /> */}
+
+## What the output means
+
+- Start with model fit to see how well predictors explain the outcome.
+- Read each coefficient to interpret direction and size of predictor effects.
+- Use p-values and confidence intervals to assess evidence for each predictor.
+
+{/* TODO: Add output screenshot */}
+{/* <img src="/images/jg_output_regression_multiple_linear.png" alt="output_regression_multiple_linear" style="width: 70.0%" /> */}
+
+:::tip
+If you are familiar with SPSS, compare the workflow here: [From SPSS to jamovi: Linear Regression (multiple)](/spss2jamovi/s2j_linreg2).
+:::

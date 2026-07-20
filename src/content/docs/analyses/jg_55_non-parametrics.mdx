@@ -1,0 +1,55 @@
+---
+title: "Non-parametric tests"
+---
+
+Use non-parametric tests when parametric assumptions are not met, or when outcomes are ordinal.
+
+## What this analysis does
+
+- Provides rank-based alternatives to t-tests and ANOVA.
+- Supports independent and paired designs.
+- Lets you test group differences with fewer distributional assumptions.
+
+## Set up the analysis
+
+1. Prepare your data
+- Decide whether your design is independent groups or paired/repeated.
+- Choose the non-parametric test that matches your design.
+
+{/* TODO: Add data-format screenshot */}
+{/* <img src="/images/jg_data_format_non_parametrics.png" alt="data_format_non_parametrics" style="width: 40.0%" /> */}
+
+2. Open the analysis in jamovi
+- Two independent groups: `Analyses` -> `T-Tests` -> `Independent Samples T-Test` and select non-parametric options.
+- Paired groups: `Analyses` -> `T-Tests` -> `Paired Samples T-Test` and select non-parametric options.
+- More than two groups: `Analyses` -> `ANOVA` -> `One-Way ANOVA` and select `Kruskal-Wallis`.
+
+{/* TODO: Add menu screenshot */}
+{/* <img src="/images/jg_select_non_parametrics.png" alt="select_non_parametrics" style="width: 40.0%" /> */}
+
+3. Assign variables
+- Place outcome and grouping/paired variables into the required fields.
+
+{/* TODO: Add setup screenshot */}
+{/* <img src="/images/jg_add_var_non_parametrics.png" alt="add_var_non_parametrics" style="width: 70.0%" /> */}
+
+4. Choose key options
+- Tick effect sizes where available.
+- Request pairwise comparisons when relevant.
+- Include descriptive summaries to support interpretation.
+
+{/* TODO: Add options screenshot */}
+{/* <img src="/images/jg_options_non_parametrics.png" alt="options_non_parametrics" style="width: 70.0%" /> */}
+
+## What the output means
+
+- Focus on the test statistic and p-value for the chosen test.
+- Use medians/ranks and effect sizes for practical interpretation.
+- Report the exact test used (for example Mann-Whitney U, Wilcoxon signed-rank, Kruskal-Wallis).
+
+{/* TODO: Add output screenshot */}
+{/* <img src="/images/jg_output_non_parametrics.png" alt="output_non_parametrics" style="width: 70.0%" /> */}
+
+:::tip
+If you are familiar with SPSS, compare the workflow here: [From SPSS to jamovi: Nonparametric tests](/spss2jamovi/s2j_nonparametric).
+:::

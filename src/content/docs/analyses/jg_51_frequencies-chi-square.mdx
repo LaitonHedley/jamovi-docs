@@ -1,0 +1,54 @@
+---
+title: "Chi-square test of association"
+---
+
+Use this analysis when you want to test whether two categorical variables are associated.
+
+## What this analysis does
+
+- Produces a contingency table for two categorical variables.
+- Runs a chi-square test of independence (test of association).
+- Shows whether observed counts differ from expected counts.
+
+## Set up the analysis
+
+1. Prepare your data
+- Use two categorical variables (nominal or ordinal).
+- Make sure each row is one case.
+
+{/* TODO: Add data-format screenshot */}
+{/* <img src="/images/jg_data_format_frequencies_chi_square.png" alt="data_format_frequencies_chi_square" style="width: 40.0%" /> */}
+
+2. Open the analysis in jamovi
+- Click `Analyses` -> `Frequencies` -> `Contingency Tables` -> `Independent Samples`.
+
+{/* TODO: Add menu screenshot */}
+{/* <img src="/images/jg_select_frequencies_chi_square.png" alt="select_frequencies_chi_square" style="width: 40.0%" /> */}
+
+3. Assign variables
+- Put one categorical variable in `Rows` and one in `Columns`.
+- Add a variable to `Layers` if you want to split tables by a third variable.
+
+{/* TODO: Add setup screenshot */}
+{/* <img src="/images/jg_add_var_frequencies_chi_square.png" alt="add_var_frequencies_chi_square" style="width: 70.0%" /> */}
+
+4. Choose key options
+- In `Statistics`, tick `Chi-square`.
+- In `Cells`, tick the counts and percentages you need.
+- If available and needed, request effect size statistics.
+
+{/* TODO: Add options screenshot */}
+{/* <img src="/images/jg_options_frequencies_chi_square.png" alt="options_frequencies_chi_square" style="width: 70.0%" /> */}
+
+## What the output means
+
+- Start with the contingency table to see the pattern of counts.
+- In the chi-square table, use the p-value to decide whether the variables are associated.
+- Report an effect size (for example, Cramer's V) to describe association strength.
+
+{/* TODO: Add output screenshot */}
+{/* <img src="/images/jg_output_frequencies_chi_square.png" alt="output_frequencies_chi_square" style="width: 70.0%" /> */}
+
+:::tip
+If you are familiar with SPSS, compare the workflow here: [From SPSS to jamovi: Analysis of frequencies](/spss2jamovi/s2j_frequencies).
+:::

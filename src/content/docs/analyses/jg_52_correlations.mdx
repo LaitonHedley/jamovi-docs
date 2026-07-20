@@ -1,0 +1,53 @@
+---
+title: "Correlations"
+---
+
+Use correlation analysis when you want to quantify the relationship between two or more variables.
+
+## What this analysis does
+
+- Estimates Pearson, Spearman, and Kendall correlations.
+- Tests whether each correlation is different from zero.
+- Produces a matrix so you can compare multiple relationships at once.
+
+## Set up the analysis
+
+1. Prepare your data
+- Use continuous variables for Pearson correlation.
+- Use ranked or non-normal data for Spearman or Kendall.
+
+{/* TODO: Add data-format screenshot */}
+{/* <img src="/images/jg_data_format_correlations.png" alt="data_format_correlations" style="width: 40.0%" /> */}
+
+2. Open the analysis in jamovi
+- Click `Analyses` -> `Regression` -> `Correlation Matrix`.
+
+{/* TODO: Add menu screenshot */}
+{/* <img src="/images/jg_select_correlations.png" alt="select_correlations" style="width: 40.0%" /> */}
+
+3. Assign variables
+- Move all variables of interest into `Variables`.
+
+{/* TODO: Add setup screenshot */}
+{/* <img src="/images/jg_add_var_correlations.png" alt="add_var_correlations" style="width: 70.0%" /> */}
+
+4. Choose key options
+- Select which correlation coefficient(s) to report.
+- Tick significance values and confidence intervals.
+- Optionally tick `Flag significant correlations` and `N`.
+
+{/* TODO: Add options screenshot */}
+{/* <img src="/images/jg_options_correlations.png" alt="options_correlations" style="width: 70.0%" /> */}
+
+## What the output means
+
+- The sign (+/-) shows relationship direction.
+- The absolute value shows relationship strength.
+- The p-value tells you whether the correlation differs from zero.
+
+{/* TODO: Add output screenshot */}
+{/* <img src="/images/jg_output_correlations.png" alt="output_correlations" style="width: 70.0%" /> */}
+
+:::tip
+If you are familiar with SPSS, compare the workflow here: [From SPSS to jamovi: Correlation](/spss2jamovi/s2j_correlation).
+:::
