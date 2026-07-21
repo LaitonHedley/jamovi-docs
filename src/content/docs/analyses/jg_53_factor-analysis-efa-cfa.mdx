@@ -2,49 +2,30 @@
 title: "Exploratory factor analysis (EFA)"
 ---
 
-Use exploratory factor analysis when you want to identify latent factor structure from observed items.
+How to perform an exploratory factor analysis in jamovi:
 
-## What this analysis does
+1.  You need item variables that are expected to measure shared constructs (typically <img src="/images/variable-ordinal.svg" alt="ordinal" style="width: 16px; vertical-align: middle" /> ordinal Likert items or <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px; vertical-align: middle" /> continuous items).
+    Example: 12 items with 5-point Likert responses, testing how the items load onto an unknown number of factors.
+	A correct setup should look similar to this:
+	<img src="/images/jg_data_format_factor_analysis.png" alt="data_format_factor_analysis" style="width: 70.0%" />
 
-- Identifies how items cluster into factors.
-- Helps you decide how many factors to retain.
-- Supports early-stage scale development and construct exploration.
+2.  Select `Analyses` -> `Factor` -> `Exploratory Factor Analysis`.
 
-## Set up the analysis
+	<img src="/images/jg_select_factor_analysis.png" alt="select_factor_analysis" style="width: 70.0%" />
 
-1. Prepare your data
-- Use item-level variables that are expected to measure common constructs.
-- Use a sample size suitable for factor analysis.
+3.  Drag your item variables into the variable box.
 
-{/* TODO: Add data-format screenshot */}
-{/* <img src="/images/jg_data_format_factor_analysis.png" alt="data_format_factor_analysis" style="width: 40.0%" /> */}
+	<img src="/images/jg_add_var_factor_analysis.png" alt="add_var_factor_analysis" style="width: 70.0%" />
 
-2. Open the analysis in jamovi
-- Click `Analyses` -> `Factor` -> `Exploratory Factor Analysis`.
+4.  In the options panel, choose an appropriate extraction and rotation method, and tick Scree plot.
 
-{/* TODO: Add menu screenshot */}
-{/* <img src="/images/jg_select_factor_analysis.png" alt="select_factor_analysis" style="width: 40.0%" /> */}
+	<img src="/images/jg_options_factor_analysis.png" alt="options_factor_analysis" style="width: 70.0%" />
 
-3. Assign variables
-- Move your item variables into the main variable box.
+5.  The result is shown in the right panel. Use the scree plot to help decide how many factors to retain, then use the loadings to see which items define each factor.
 
-{/* TODO: Add setup screenshot */}
-{/* <img src="/images/jg_add_var_factor_analysis.png" alt="add_var_factor_analysis" style="width: 70.0%" /> */}
+	<img src="/images/jg_scree_factor_analysis.png" alt="scree_factor_analysis" style="width: 70.0%" />
 
-4. Choose key options
-- Choose extraction method and factor-retention rule.
-- Choose a rotation method.
-- Request loading tables and diagnostics.
+	<img src="/images/jg_output_factor_analysis.png" alt="output_factor_analysis" style="width: 70.0%" />
 
-{/* TODO: Add options screenshot */}
-{/* <img src="/images/jg_options_factor_analysis.png" alt="options_factor_analysis" style="width: 70.0%" /> */}
 
-## What the output means
-
-- Inspect factor loadings to identify which items define each factor.
-- Use retention and diagnostic outputs to justify the number of factors.
-- Report extraction, rotation, and factor-retention decisions clearly.
-
-{/* TODO: Add output screenshot */}
-{/* <img src="/images/jg_output_factor_analysis.png" alt="output_factor_analysis" style="width: 70.0%" /> */}
 
