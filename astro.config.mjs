@@ -82,7 +82,6 @@ export default defineConfig({
               items: [
                 { slug: 'analyses/jg_52_correlations' },
                 { slug: 'analyses/jg_42_regression-linear' },
-                { slug: 'analyses/jg_44_regression-multiple-linear' },
                 { slug: 'analyses/jg_43_regression-logistic' },
               ],
             },
