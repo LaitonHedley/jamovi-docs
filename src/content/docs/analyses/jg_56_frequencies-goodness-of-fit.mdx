@@ -3,49 +3,26 @@ title: "Chi-square goodness of fit"
 slug: analyses/jg_56_frequencies-goodness-of-fit
 ---
 
-Use this analysis when you want to test whether observed category counts match expected proportions.
+How to perform a chi-square goodness-of-fit test in jamovi:
 
-## What this analysis does
+1.  You need one <img src="/images/variable-nominal.svg" alt="nominal" style="width: 16px; vertical-align: middle" /> nominal (categorical) variable. Example: data from rolling a die 60 times.
 
-- Produces one-way frequency counts for a categorical variable.
-- Runs a chi-square goodness-of-fit test.
-- Tests whether observed counts differ from expected counts.
+	A correct setup should look similar to this (alternatively, one row per category with a second column for observed counts is also acceptable):
 
-## Set up the analysis
+	<img src="/images/jg_data_format_chi_square_gof.png" alt="data_format_chi_square_gof" style="width: 20.0%" />
 
-1. Prepare your data
-- Use one categorical variable.
-- Make sure each row is one case, or provide a count variable if needed.
+2.  Select `Analyses` -> `Frequencies` -> `One Sample Proportion Tests` -> `N Outcome (Chi-square Goodness of Fit)`.
 
-{/* TODO: Add data-format screenshot */}
-{/* <img src="/images/jg_data_format_chi_square_gof.png" alt="data_format_chi_square_gof" style="width: 40.0%" /> */}
+	<img src="/images/jg_select_chi_square_gof.png" alt="select_chi_square_gof" style="width: 70.0%" />
 
-2. Open the analysis in jamovi
-- Click `Analyses` -> `Frequencies` -> `One Sample` -> `Chi-square Goodness of Fit`.
+3.  Drag your categorical variable into the variable box.
 
-{/* TODO: Add menu screenshot */}
-{/* <img src="/images/jg_select_chi_square_gof.png" alt="select_chi_square_gof" style="width: 40.0%" /> */}
+	<img src="/images/jg_add_var_chi_square_gof.png" alt="add_var_chi_square_gof" style="width: 70.0%" />
 
-3. Assign variables
-- Move your categorical variable into the variable box.
-- If required, enter expected proportions for each category.
+4.  In the options panel, click `Expected counts`. If you have specific expected proportions, enter them under `Expected Proportions`; otherwise jamovi assumes equal proportions across all categories.
 
-{/* TODO: Add setup screenshot */}
-{/* <img src="/images/jg_add_var_chi_square_gof.png" alt="add_var_chi_square_gof" style="width: 70.0%" /> */}
+	<img src="/images/jg_options_chi_square_gof.png" alt="options_chi_square_gof" style="width: 70.0%" />
 
-4. Choose key options
-- Tick `Chi-square` statistics.
-- Request effect size or residual information if available.
-- Confirm expected proportions sum correctly.
+5.  The result is shown in the right panel. Compare observed and expected counts, then use the chi-square p-value to decide whether differences are larger than chance.
 
-{/* TODO: Add options screenshot */}
-{/* <img src="/images/jg_options_chi_square_gof.png" alt="options_chi_square_gof" style="width: 70.0%" /> */}
-
-## What the output means
-
-- Compare observed and expected counts across categories.
-- Use the chi-square p-value to decide whether differences are larger than chance.
-- Report the chi-square statistic, degrees of freedom, p-value, and sample size.
-
-{/* TODO: Add output screenshot */}
-{/* <img src="/images/jg_output_chi_square_gof.png" alt="output_chi_square_gof" style="width: 70.0%" /> */}
+	<img src="/images/jg_output_chi_square_gof.png" alt="output_chi_square_gof" style="width: 40.0%" />
