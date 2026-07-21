@@ -5,32 +5,20 @@ title: "Chi-square test of association"
 How to perform a chi-square test of association in jamovi:
 
 1.  You need two <img src="/images/variable-nominal.svg" alt="nominal" style="width: 16px; vertical-align: middle" /> nominal (categorical) variables, with each row representing one case.
-
+    Example: Study method (alone vs group) and exam outcome (pass vs fail), with one row per person.
 	A correct setup should look similar to this:
+	<img src="/images/jg_data_format_frequencies_chi_square.png" alt="data_format_frequencies_chi_square" style="width: 40.0%" />
 
-	{/* TODO: Add data-format screenshot */}
-	{/* <img src="/images/jg_data_format_frequencies_chi_square.png" alt="data_format_frequencies_chi_square" style="width: 40.0%" /> */}
+2.  Select `Analyses` -> `Frequencies` -> `Contingency Tables` -> `Independent Samples (Chi-sqaure test of association)`.
 
-2.  Select `Analyses` -> `Frequencies` -> `Contingency Tables` -> `Independent Samples`.
-
-	{/* TODO: Add menu screenshot */}
-	{/* <img src="/images/jg_select_frequencies_chi_square.png" alt="select_frequencies_chi_square" style="width: 40.0%" /> */}
+	<img src="/images/jg_select_frequencies_chi_square.png" alt="select_frequencies_chi_square" style="width: 70.0%" />
 
 3.  Put one variable in `Rows` and the other in `Columns`.
 
-	{/* TODO: Add variable assignment screenshot */}
-	{/* <img src="/images/jg_add_var_frequencies_chi_square.png" alt="add_var_frequencies_chi_square" style="width: 70.0%" /> */}
+	<img src="/images/jg_add_var_frequencies_chi_square.png" alt="add_var_frequencies_chi_square" style="width: 70.0%" />
 
-4.  In the options panel, tick `Chi-square` under `Statistics`. Tick the counts and percentages you want shown in `Cells`.
+4.  The result is shown in the right panel.
 
-	{/* TODO: Add options screenshot */}
-	{/* <img src="/images/jg_options_frequencies_chi_square.png" alt="options_frequencies_chi_square" style="width: 70.0%" /> */}
+	<img src="/images/jg_output_frequencies_chi_square.png" alt="output_frequencies_chi_square" style="width: 50.0%" />
 
-5.  The result is shown in the right panel. Check the contingency table for the pattern of counts, then use the chi-square p-value to decide whether the variables are associated. Report an effect size (for example, Cramer's V) to describe the strength of association.
 
-	{/* TODO: Add output screenshot */}
-	{/* <img src="/images/jg_output_frequencies_chi_square.png" alt="output_frequencies_chi_square" style="width: 70.0%" /> */}
-
-:::tip
-If you are familiar with SPSS, compare the workflow here: [From SPSS to jamovi: Analysis of frequencies](/spss2jamovi/s2j_frequencies).
-:::
