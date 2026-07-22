@@ -86,11 +86,12 @@ export default defineConfig({
               ],
             },
             {
-              label: 'Chi-squared',
+              label: 'Frequency Tests',
               collapsed: true,
               items: [
                 { slug: 'analyses/jg_56_frequencies-goodness-of-fit' },
                 { slug: 'analyses/jg_51_frequencies-chi-square' },
+                { slug: 'analyses/jg_58_frequencies-binomial' },
               ],
             },
             {

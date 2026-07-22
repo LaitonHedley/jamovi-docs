@@ -1,0 +1,29 @@
+---
+title: "Binomial test"
+slug: analyses/jg_58_frequencies-binomial
+---
+
+How to perform a binomial test in jamovi:
+
+1.  You need one <img src="/images/variable-nominal.svg" alt="nominal" style="width: 16px; vertical-align: middle" /> nominal variable with two outcomes (for example, success/failure), with each row representing one case.
+	Example: heads or tails from repeated coin flips.
+
+	A correct setup should look similar to this:
+
+	<img src="/images/jg_data_format_binomial.png" alt="data_format_binomial" style="width: 40.0%" />
+
+2.  Select `Analyses` -> `Frequencies` -> `One Sample Proportion Tests` -> `2 Outcome (Binomial Test)`.
+
+	<img src="/images/jg_select_binomial.png" alt="select_binomial" style="width: 70.0%" />
+
+3.  Drag your binary variable into the variable box.
+
+	<img src="/images/jg_add_var_binomial.png" alt="add_var_binomial" style="width: 70.0%" />
+
+4.  In the options panel, set the test proportion for the outcome you are testing. For a fair coin toss, leave the default value of `0.5`.
+
+	<img src="/images/jg_options_binomial.png" alt="options_binomial" style="width: 70.0%" />
+
+5.  The result is shown in the right panel.
+
+	<img src="/images/jg_output_binomial.png" alt="output_binomial" style="width: 70.0%" />
