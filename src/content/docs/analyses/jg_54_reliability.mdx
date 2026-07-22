@@ -1,33 +1,33 @@
 ---
-title: "Reliability analysis"
+title: "Reliability Analysis"
 ---
 
 How to perform a reliability analysis in jamovi:
 
 1.  You need item variables that are intended to measure the same construct.
-	Example: a questionnaire scale with several Likert-type items measuring one trait.
+	Example: a questionnaire scale with several Likert-type items measuring one latent construct.
 
 	A correct setup should look similar to this:
-
-	{/* TODO: Add data-format screenshot */}
-	{/* <img src="/images/jg_data_format_reliability.png" alt="data_format_reliability" style="width: 40.0%" /> */}
+	<img src="/images/jg_data_format_reliability.png" alt="data_format_reliability" style="width: 50.0%" />
 
 2.  Select `Analyses` -> `Factor` -> `Reliability Analysis`.
 
-	{/* TODO: Add menu screenshot */}
-	{/* <img src="/images/jg_select_reliability.png" alt="select_reliability" style="width: 40.0%" /> */}
+	<img src="/images/jg_select_reliability.png" alt="select_reliability" style="width: 70.0%" />
 
-3.  Drag your scale items into the `Variables` box.
+3.  Drag your scale items into the `Items` box.
 
-	{/* TODO: Add setup screenshot */}
-	{/* <img src="/images/jg_add_var_reliability.png" alt="add_var_reliability" style="width: 70.0%" /> */}
+	<img src="/images/jg_add_var_reliability.png" alt="add_var_reliability" style="width: 70.0%" />
 
-4.  In the options panel, tick the reliability coefficient(s) you want to report and any item diagnostics you need.
+4.  In the options panel, under Item Statistics tick Cronbach's Alpha (if item is dropped). Note, under Scale Statistics Cronbach's Alpha will be ticked by defualt.
 
-	{/* TODO: Add options screenshot */}
-	{/* <img src="/images/jg_options_reliability.png" alt="options_reliability" style="width: 70.0%" /> */}
+	In most cases, leave the default Scale Statistics option selected and tick Item Statistics if you want item-dropped values.
 
-5.  The result is shown in the right panel. Start with the overall reliability coefficient, then use the item diagnostics to see whether any items are weakening the scale.
+	<img src="/images/jg_options_reliability.png" alt="options_reliability" style="width: 70.0%" />
 
-	{/* TODO: Add output screenshot */}
-	{/* <img src="/images/jg_output_reliability.png" alt="output_reliability" style="width: 70.0%" /> */}
+5.  Under Reverse Scaled Items, move any items that need to be reverse coded.
+
+    <img src="/images/jg_reverse_reliability.png" alt="output_reliability" style="width: 70.0%" />
+
+6.  The result is shown in the right panel. Start with the Scale Reliability Statistics table, then check Item Reliability Statistics to see whether any items are weakening the scale.
+
+	<img src="/images/jg_output_reliability.png" alt="output_reliability" style="width: 30.0%" />

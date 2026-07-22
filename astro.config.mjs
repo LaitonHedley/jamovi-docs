@@ -100,6 +100,7 @@ export default defineConfig({
               items: [
                 { slug: 'analyses/jg_53_factor-analysis-efa-cfa' },
                 { slug: 'analyses/jg_57_factor-analysis-cfa' },
+                { slug: 'analyses/jg_54_reliability', label: 'Reliability Analysis' },
               ],
             },
           ],
