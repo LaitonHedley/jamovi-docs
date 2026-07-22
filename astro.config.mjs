@@ -94,7 +94,7 @@ export default defineConfig({
               ],
             },
             {
-              label: 'Factor analysis',
+              label: 'Factor Analysis',
               collapsed: true,
               items: [
                 { slug: 'analyses/jg_53_factor-analysis-efa-cfa' },
