@@ -2,53 +2,31 @@
 title: "Confirmatory factor analysis (CFA)"
 ---
 
-Use confirmatory factor analysis when you want to test whether a hypothesized factor model fits your data.
+How to perform a confirmatory factor analysis in jamovi:
 
-## What this analysis does
+1.  You need item variables that are expected to measure specific latent constructs (typically <img src="/images/variable-ordinal.svg" alt="ordinal" style="width: 16px; vertical-align: middle" /> ordinal or <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px; vertical-align: middle" /> continuous responses).
+	Example: Depression Anxiety Stress Scale (DASS) 21 item version, with three latent factors (Depression, Anxiety, Stress) and a four-category ordered response scale.
 
-- Tests a predefined latent-factor structure.
-- Evaluates model fit using fit indices.
-- Estimates standardized factor loadings.
+	A correct setup should look similar to this:
 
-## Set up the analysis
+	<img src="/images/jg_data_format_factor_analysis_cfa.png" alt="data_format_factor_analysis_cfa" style="width: 70.0%" />
 
-1. Prepare your data
-- Use item variables that are linked to specific latent constructs.
-- Define your expected model before running the analysis.
+2.  Select `Analyses` -> `Factor` -> `Confirmatory Factor Analysis`.
 
-{/* TODO: Add data-format screenshot */}
-{/* <img src="/images/jg_data_format_factor_analysis_cfa.png" alt="data_format_factor_analysis_cfa" style="width: 40.0%" /> */}
+	<img src="/images/jg_select_factor_analysis_cfa.png" alt="select_factor_analysis_cfa" style="width: 70.0%" />
 
-2. Open the analysis in jamovi
-- Click `Analyses` -> `Factor` -> `Confirmatory Factor Analysis` (if available in your installation).
+3.  Define your factors by naming each latent factor (for example, Depression, Anxiety, and Stress).
 
-{/* TODO: Add menu screenshot */}
-{/* <img src="/images/jg_select_factor_analysis_cfa.png" alt="select_factor_analysis_cfa" style="width: 40.0%" /> */}
+	<img src="/images/jg_label_factor_analysis_cfa.png" alt="label_factor_analysis_cfa" style="width: 70.0%" />
 
-3. Assign variables and define the model
-- Move item variables into the analysis.
-- Specify which items load onto each latent factor.
+4.  Move the item variables into the variable box and specify which items should load onto each factor.
 
-{/* TODO: Add setup screenshot */}
-{/* <img src="/images/jg_add_var_factor_analysis_cfa.png" alt="add_var_factor_analysis_cfa" style="width: 70.0%" /> */}
+	<img src="/images/jg_add_var_factor_analysis_cfa.png" alt="add_var_factor_analysis_cfa" style="width: 70.0%" />
 
-4. Choose key options
-- Request model fit indices.
-- Request standardized loadings and residual information.
-- Add model comparison output if testing alternative models.
+5.  The result is shown in the right panel.
 
-{/* TODO: Add options screenshot */}
-{/* <img src="/images/jg_options_factor_analysis_cfa.png" alt="options_factor_analysis_cfa" style="width: 70.0%" /> */}
+    Check the loadings to see how well which item relates to each factor:
+	<img src="/images/jg_output_factor_analysis_cfa.png" alt="output_factor_analysis_cfa" style="width: 50.0%" />
 
-## What the output means
-
-- Use fit indices to evaluate overall model fit.
-- Inspect standardized loadings to assess item-factor relationships.
-- Revise models cautiously and report all model changes transparently.
-
-{/* TODO: Add output screenshot */}
-{/* <img src="/images/jg_output_factor_analysis_cfa.png" alt="output_factor_analysis_cfa" style="width: 70.0%" /> */}
-
-:::note
-CFA availability depends on installed modules and your jamovi version.
-:::
+	Use the fit indices to judge how well the model fits.
+	<img src="/images/jg_model_fit_factor_analysis_cfa.png" alt="model_fit_factor_analysis_cfa" style="width: 45.0%" />
