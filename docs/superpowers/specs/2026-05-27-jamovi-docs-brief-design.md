@@ -85,7 +85,7 @@ typical result.
 frequencies and chi-square, correlations, factor analysis (EFA/CFA),
 reliability, and non-parametrics.
 
-**Current state:** Descriptives, t-tests, ANOVA, and regression are
+**Current state:** Descriptives, t-tests, ANOVA, regression, chi-square, correlations, factor analysis (EFA/CFA), are
 partially covered. The section needs to be completed and made consistent.
 
 ---
