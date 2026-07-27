@@ -98,8 +98,7 @@ data recipes.
 
 **Audience:** Users preparing their data before analysis.
 
-**Current state:** Already fairly comprehensive (10 pages). Can grow
-organically as new use cases surface.
+**Current state:** Already fairly comprehensive (10 pages). Can grow organically as new use cases surface.
 
 ---
 
