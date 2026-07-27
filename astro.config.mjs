@@ -53,6 +53,20 @@ export default defineConfig({
           ],
         },
         {
+          label: 'User Manual',
+          items: [
+            { slug: 'ui_reference/ur_overview' },
+            { slug: 'ui_reference/ur_file_menu' },
+            { slug: 'ui_reference/ur_variable_tab' },
+            { slug: 'ui_reference/ur_data_tab' },
+            { slug: 'ui_reference/ur_analyses_tab' },
+            { slug: 'ui_reference/ur_plots_tab' },
+            { slug: 'ui_reference/ur_edit_tab' },
+            { slug: 'ui_reference/ur_module_library' },
+            { slug: 'ui_reference/ur_options_menu' },
+          ],
+        },
+        {
           label: 'Analyses',
           items: [
             { slug: 'analyses/jg_overview' },
