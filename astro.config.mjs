@@ -56,7 +56,19 @@ export default defineConfig({
           label: 'User Manual',
           items: [
             { slug: 'ui_reference/ur_overview' },
-            { slug: 'ui_reference/ur_file_menu' },
+            {
+              label: 'File Menu',
+              collapsed: true,
+              items: [
+                { slug: 'ui_reference/ur_file_menu' },
+                { slug: 'ui_reference/ur_file_menu_new' },
+                { slug: 'ui_reference/ur_file_menu_open' },
+                { slug: 'ui_reference/ur_file_menu_import' },
+                { slug: 'ui_reference/ur_file_menu_save' },
+                { slug: 'ui_reference/ur_file_menu_save_as' },
+                { slug: 'ui_reference/ur_file_menu_export' },
+              ],
+            },
             { slug: 'ui_reference/ur_variable_tab' },
             { slug: 'ui_reference/ur_data_tab' },
             { slug: 'ui_reference/ur_analyses_tab' },
