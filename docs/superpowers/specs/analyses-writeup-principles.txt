@@ -1,0 +1,113 @@
+ANALYSES WRITE-UP PRINCIPLES
+Playful, Example-First Documentation Guide
+Version: 2026-08-06
+
+PURPOSE
+This guide defines how we write analysis pages so they are:
+- Easy for first-time jamovi users
+- Grounded in one clear, follow-along example
+- More playful and engaging, while still precise
+- Consistent in structure, visuals, and downloadable assets
+
+CORE IDEA
+Teach each analysis as a short story:
+1) Start with a simple CSV example
+2) Walk through the analysis in jamovi step by step
+3) End with a ready-to-open OMV result file
+
+If a reader follows the page once, they should be able to reproduce the workflow.
+
+AUDIENCE
+Researchers, students, and scientists who know what they want to test, but may be new to software workflows.
+
+VOICE AND TONE
+- Use direct second-person instructions: click, select, drag, choose
+- Be friendly but concise
+- Prefer plain language over jargon
+- Explain statistical terms briefly only when needed
+
+PLAYFUL STYLE (WITHOUT LOSING CLARITY)
+- Use relatable scenarios (study habits, sleep, reaction time, coffee, treatment vs control)
+- Keep headings action-oriented
+- Add short interpretation lines ("What this means:")
+- Alternate text and visuals to avoid dense text blocks
+- Avoid jokes that reduce clarity or trust
+
+RECOMMENDED PAGE FLOW
+1. Quick hook
+- One sentence: what question this analysis answers
+- One sentence: when to use it
+
+2. Follow-along example
+- Brief scenario
+- Variable meanings
+- CSV link (starting data)
+- OMV link (final file after setup)
+
+3. Data setup check
+- Required variable types
+- Required group structure
+- One screenshot of correct data format
+- Optional "common mistake" note
+
+4. Run the analysis
+- Numbered click path
+- Assign variables
+- Select key options
+
+5. Read the output
+- What to look at first
+- What key numbers mean in plain language
+- What to report
+
+6. Next steps
+- Link to related analyses
+- Optional SPSS side-by-side link
+- Keep this section short
+
+SCREENSHOT STANDARDS
+- Crop to relevant panels only
+- Use consistent sizing and framing
+- Keep labels readable
+- Alt text should explain what the reader should notice, not just the file name
+
+VIDEO STANDARDS
+- Use video only when motion matters (drag/drop, panel changes, toggles)
+- Keep clips short and task-specific
+- Include poster image
+- Add one-line purpose before embed
+
+DATA ASSET STRATEGY
+Minimum now:
+- Include CSV and OMV links directly in each relevant analysis page
+
+Scale later:
+- Build a shared examples data module/index
+- Reuse scenarios across pages
+- Keep naming consistent and predictable
+
+QUALITY CHECKLIST
+Before publishing:
+- Can a first-time user complete the task without guessing?
+- Does the page begin with a concrete example?
+- Are variable requirements explicit?
+- Are steps in execution order?
+- Do screenshots match current UI?
+- Are CSV/OMV links valid where promised?
+- Is wording concise, friendly, and direct?
+- Are there no placeholder notes or broken references?
+
+INDEPENDENT SAMPLES T-TEST EXAMPLE DIRECTION
+Preferred scenario:
+"Does a short study-skills workshop improve exam scores compared to a control group?"
+
+Variables:
+- ExamScore (continuous dependent variable)
+- Group (nominal with two levels: Workshop, Control)
+
+This scenario is intuitive, easy to screenshot, and fits the CSV-to-OMV teaching flow.
+
+CHANGE POLICY
+- Keep this guide lightweight and practical
+- Update when patterns are repeated across 2+ analyses
+- Prioritize consistency over novelty
