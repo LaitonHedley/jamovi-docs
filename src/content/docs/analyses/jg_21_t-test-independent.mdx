@@ -4,14 +4,15 @@ title: "t-test: Independent samples"
 
 Use an independent samples t-test to compare the mean of one continuous variable between two independent groups.
 
-In this example, we have a data set of a between subjects manipulation where some mice were randomly allocated to be given either caffeine or a control dose of water.
-
-test whether mice that received caffeine ran farther than mice in a control group.
-
 :::note[Follow-along example]
 - Download the starting dataset: [Caffeinated_Mice.csv](/output/Caffeinated_Mice.csv)
-- Completed jamovi file (.omv): coming soon
+- Download the completed jamovi file: [Caffeinated_Mice.omv](/output/Caffeinated_Mice.omv)
 :::
+
+The data come from a between-subjects experiment: each mouse was randomly assigned to receive either caffeine or water (the control condition).
+Because these are two independent groups and `Distance (Meters)` is continuous, use an independent samples t-test to test whether mice given caffeine ran farther than mice given water.
+Follow the steps below to run and interpret this example in jamovi.
+
 
 ## Run the analysis
 
@@ -43,6 +44,12 @@ test whether mice that received caffeine ran farther than mice in a control grou
     Under `Hypothesis`, select `Group 1 > Group 2` to test whether caffeine makes mice run farther than the control group. This is a one-tailed test.
 
     <img src="/images/jg_options_ttest_independent.jpg" alt="Independent samples t-test options in jamovi" style="width: 70.0%" />
+
+:::note[Community resources]
+This [video](https://www.youtube.com/embed/SM-DN9dpPd4?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) gives a broader introduction to this test.
+For a deeper explanation, read the "Learning statistics with jamovi" [web documentation](https://davidfoxcroft.github.io/lsj-book/), or chapters 11.3 and 11.4 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
+:::
+{/* https://lsj.readthedocs.io/en/latest/lsj/Ch11_tTest_03.html - broken link hence removed... */}
 
 5.  Read the output.
 
@@ -80,8 +87,6 @@ If you have previous experience with SPSS, see the [side-by-side comparison](/sp
     Mice in the caffeiene group (*M* = 72.8, *SD* = 13.4) ran significantly farther than mice in the control group (*M* = 44.3, *SD* = 11.3), *t*(18) = 5.15, *p* < .001.
     All assumptions were met.
 
-:::note[Community resources]
-This [video](https://www.youtube.com/embed/SM-DN9dpPd4?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) gives a broader introduction to this test.
-
-For a deeper explanation, read the relevant section in the "Learning statistics with jamovi" [web documentation](https://lsj.readthedocs.io/en/latest/lsj/Ch11_tTest_03.html), or chapters 11.3 and 11.4 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
+:::note
+This is a common APA 7-style write-up. Check your discipline's or journal's style guide for additional reporting requirements.
 :::
