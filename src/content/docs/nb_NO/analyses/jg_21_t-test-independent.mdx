@@ -3,31 +3,78 @@ title: "Uavhengig t-test"
 translationOutdated: true
 ---
 
-Slik gjennomfører du en uavhengig t-test i jamovi:
+Use an independent samples t-test to compare the mean of one continuous variable between two independent groups.
 
-1.  You need at least one <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px" /> continuous dependent variable, and a <img src="/images/variable-nominal.svg" alt="nominal" style="width: 16px" /> grouping variable with two levels (e.g. treatment / control).
+In this example, we have a data set of r between subjects manipulation where some mice were randomly allocated to be given either caffeine or a control dose of water.
 
-    Et riktig oppsett skal se slik ut:
+test whether mice that received caffeine ran farther than mice in a control group.
 
-    <img src="/images/jg_data_format_ttest_independent.jpg" alt="data_format_ttest_independent" style="width: 40.0%" />
+:::note[Follow-along example]
+- Download the starting dataset: [Caffeinated_Mice.csv](/output/Caffeinated_Mice.csv)
+- Completed jamovi file (.omv): coming soon
+:::
+
+## Run the analysis
+
+1.  Open `Caffeinated_Mice.csv` in jamovi and check that the variables are set up correctly.
+
+    You need:
+
+    - one <img src="/images/variable-continuous.svg" alt="continuous measure icon" style="width: 16px" /> continuous dependent variable: `Distance (Meters)`
+    - one <img src="/images/variable-nominal.svg" alt="nominal measure icon" style="width: 16px" /> grouping variable with two levels: `Condition` (`Caffeine` and `Control`)
+
+    Your data should be arranged like this:
+
+    <img src="/images/jg_data_format_ttest_independent.jpg" alt="Data with one continuous outcome and one two-level grouping variable" style="width: 60.0%" />
 
 2.  Select `Analyses` → `T-Tests` → `Independent Samples T-Test`.
 
-    <img src="/images/jg_select_ttest_independent.jpg" alt="select_ttest_independent" style="width: 40.0%" />
+    <img src="/images/jg_select_ttest_independent.jpg" alt="Opening the Independent Samples T-Test from the Analyses menu" style="width: 60.0%" />
 
-3.  Drag and drop your outcome variable to `Dependent Variables` and your grouping variable to `Grouping Variable`.
+3.  Drag `Distance (Meters)` to `Dependent Variables` and `Condition` to `Grouping Variable`.
 
-    <img src="/images/jg_add_var_ttest_independent.jpg" alt="add_var_ttest_independent" style="width: 70.0%" />
+    <img src="/images/jg_add_var_ttest_independent.jpg" alt="Assigning Distance as dependent variable and Condition as grouping variable" style="width: 70.0%" />
 
-4.  The result is shown in the right panel.
+4.  Select the options you need for the output.
 
-    <img src="/images/jg_output_ttest_independent.jpg" alt="output_ttest_independent" style="width: 70.0%" />
+    Under `Additional Statistics`, select `Descriptives` and `Descriptive plots`. This adds a table of group means and a plot showing the difference between groups. Select confidence intervals and effect sizes if you need them.
+
+    Under `Assumption Checks`, select `Normality test` and `Equality of variances test`.
+
+    Under `Hypothesis`, select `Group 1 > Group 2` if your planned directional hypothesis is that caffeine causes mice to run farther than the control group. This runs a one-tailed test.
+
+    <img src="/images/jg_options_ttest_independent.jpg" alt="Independent samples t-test options in jamovi" style="width: 70.0%" />
+
+5.  Read the output in the results panel.
+
+    Start with the descriptive statistics table. Compare the group means to see which group ran farther on average. Here, mice in the caffeine group ran farther on average than mice in the control group. The descriptive plot shows the same pattern.
+
+    <img src="/images/jg_options_ttest_desc.jpg" alt="Comparing Means in jamovi via descriptive statstics table and figure" style="width: 70.0%" />
+
+    Next, read the p value in the Independent Samples T-Test table. A `p` value below `.05` suggests that the difference in average distance is unlikely to be due to chance alone. In this example, the result supports the conclusion that the caffeine group ran farther than the control group since the p-value is < 0.001 and therefore less than 0.05.
+
+    <img src="/images/jg_output_ttest_infe.jpg" alt="testing for significant effect with inferental table" style="width: 70.0%" />
+
+6.  Check the assumptions.
+
+    Before interpreting the result, make sure your study has one continuous outcome, one grouping variable with two independent groups, and that each mouse contributes only one observation. These are design requirements, so you check them from how the study was set up rather than from the output.
+
+    In the `Normality Test` table, check the Shapiro–Wilk `p` values for both groups. A `p` value greater than `.05` means there is no evidence that a group's distances depart from a normal distribution. In this example, the normality test has `p = .478`, so the normality assumption is met.
+
+    Then check the `Homogeneity of Variances Test` table. This is Levene's test, which checks whether the two groups have similar variability. A `p` value greater than `.05` means there is no evidence that the group variances differ. Here, `p = .549`, so the equal-variances assumption is met.
+
+    <img src="/images/jg_output_ttest_assumptions.jpg" alt="Normality Test and Homogeneity of Variances Test tables showing the assumption checks for the independent samples t-test" style="width: 70.0%" />
+
+:::note
+To check which groups jamovi used as Group 1 and Group 2, read the hypothesis note below the Independent Samples T-Test table. In this example, the note states that the mean distance for the caffeine group is expected to be greater than the mean distance for the control group.
+:::
 
 :::tip
-Those who have previous experience with SPSS may want to have a look at the [side-by-side-comparison](/spss2jamovi/s2j_ttestis) of how a t-test for independent samples is conducted in SPSS and jamovi.
+If you have previous experience with SPSS, see the [side-by-side comparison](/spss2jamovi/s2j_ttestis) of how an independent samples t-test is run in SPSS and jamovi.
 :::
 
 :::note[Community resources]
-This [video](https://www.youtube.com/embed/SM-DN9dpPd4?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) provides a more comprehensive introduction into this test.]
-For those, aiming to stretch even further to an in-depth introduction, you can read the respective section in the "Learning statistics with jamovi" [web documentation](https://lsj.readthedocs.io/en/latest/lsj/Ch11_tTest_03.html) or chapter 11.3 / 11.4 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
+This [video](https://www.youtube.com/embed/SM-DN9dpPd4?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) gives a broader introduction to this test.
+
+For a deeper explanation, read the relevant section in the "Learning statistics with jamovi" [web documentation](https://lsj.readthedocs.io/en/latest/lsj/Ch11_tTest_03.html), or chapters 11.3 and 11.4 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
 :::
