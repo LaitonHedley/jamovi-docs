@@ -4,7 +4,9 @@ title: "t-test: Independent samples"
 
 Use an independent samples t-test to compare the mean of one continuous variable between two independent groups.
 
-In this example, you will test whether mice that received caffeine ran farther than mice in a control group.
+In this example, we have a data set of a between subjects manipulation where some mice were randomly allocated to be given either caffeine or a control dose of water.
+
+test whether mice that received caffeine ran farther than mice in a control group.
 
 :::note[Follow-along example]
 - Download the starting dataset: [Caffeinated_Mice.csv](/output/Caffeinated_Mice.csv)
@@ -32,35 +34,51 @@ In this example, you will test whether mice that received caffeine ran farther t
 
     <img src="/images/jg_add_var_ttest_independent.jpg" alt="Assigning Distance as dependent variable and Condition as grouping variable" style="width: 70.0%" />
 
-4.  Select the options you need for the output.
+4.  Select the options you need.
 
-    Under `Additional Statistics`, select `Descriptives` and `Descriptive plots`. This adds a table of group means and a plot showing the difference between groups. Select confidence intervals and effect sizes if you need them.
+    Under `Additional Statistics`, select `Descriptives` and `Descriptive plots` to show the group means and a plot. Select confidence intervals and effect sizes if needed.
 
-    Under `Assumption Checks`, select the checks required for your analysis.
+    Under `Assumption Checks`, select `Normality test` and `Equality of variances test`.
 
-    Under `Hypothesis`, select `Group 1 > Group 2` if your planned directional hypothesis is that caffeine causes mice to run farther than the control group. This runs a one-tailed test.
+    Under `Hypothesis`, select `Group 1 > Group 2` to test whether caffeine makes mice run farther than the control group. This is a one-tailed test.
 
     <img src="/images/jg_options_ttest_independent.jpg" alt="Independent samples t-test options in jamovi" style="width: 70.0%" />
 
-5.  Read the output in the results panel.
+5.  Read the output.
 
-    Start with the descriptive statistics table. Compare the group means to see which group ran farther on average. Here, mice in the caffeine group ran farther on average than mice in the control group. The descriptive plot shows the same pattern.
+    Start with the descriptive statistics table. The caffeine group ran farther on average than the control group. The descriptive plot shows the same pattern.
 
     <img src="/images/jg_options_ttest_desc.jpg" alt="Comparing Means in jamovi via descriptive statstics table and figure" style="width: 70.0%" />
 
-    Next, read the `p` value in the Independent Samples T-Test table. A `p` value below `.05` suggests that the difference in average distance is unlikely to be due to chance alone. In this example, the result supports the conclusion that the caffeine group ran farther than the control group.
+    In the `Independent Samples T-Test` table, check the `p` value. A value below `.05` indicates evidence of a difference between the group means. Here, `p < .001`, supporting the conclusion that the caffeine group ran farther.
 
     <img src="/images/jg_output_ttest_infe.jpg" alt="testing for significant effect with inferental table" style="width: 70.0%" />
 
 :::note
-To check which groups jamovi used as Group 1 and Group 2, read the hypothesis note below the Independent Samples T-Test table. In this example, the note states that the mean distance for the caffeine group is expected to be greater than the mean distance for the control group.
+Check the hypothesis note below the `Independent Samples T-Test` table to see which categories jamovi used as Group 1 and Group 2.
 :::
 
+6.  Check the assumptions.
+
+    Confirm that your study has one continuous outcome, two independent groups, and one observation per mouse. Check these from your study design, not the output.
+
+    In the `Normality Test` table, a Shapiro–Wilk `p` value above `.05` means there is no evidence of non-normal data. Here, `p = .478`, so this assumption is met.
+
+    In the `Homogeneity of Variances Test` table, Levene's `p` value above `.05` means the groups have similar variability. Here, `p = .549`, so the equal-variances assumption is met.
+
+    <img src="/images/jg_output_ttest_assumptions.jpg" alt="Normality Test and Homogeneity of Variances Test tables showing the assumption checks for the independent samples t-test" style="width: 70.0%" />
 
 
 :::tip
 If you have previous experience with SPSS, see the [side-by-side comparison](/spss2jamovi/s2j_ttestis) of how an independent samples t-test is run in SPSS and jamovi.
 :::
+
+
+7.  Write up the results.
+
+    An independent-samples *t* test was used to compare if mice given caffeiene ran further than mice in the control group.
+    Mice in the caffeiene group (*M* = 72.8, *SD* = 13.4) ran significantly farther than mice in the control group (*M* = 44.3, *SD* = 11.3), *t*(18) = 5.15, *p* < .001.
+    All assumptions were met.
 
 :::note[Community resources]
 This [video](https://www.youtube.com/embed/SM-DN9dpPd4?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) gives a broader introduction to this test.
