@@ -2,31 +2,78 @@
 title: "t-test: Paired samples"
 ---
 
-How to perform a paired samples t-test in jamovi:
+Use a paired samples t-test to compare the means of two related measurements taken from the same participants or sample.
 
-1.  You need two <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px" /> continuous variables, with each row representing a subject. i.e. the pair of values taken from each row represent paired measurements.
+:::note[Follow-along example]
+- Download the starting dataset and follow along: [Jump_Height_Training.csv](/output/Jump_Height_Training.csv)
+- Download the completed jamovi file to see each output already created: [Jump_Height_Training.omv](/output/Jump_Height_Training.omv)
+:::
 
-    A correct setup should look similar to this:
+The data comes from a repeated-measures design: each basketball player was measured twice, before and after a training program designed to increase jump height (measured in cm).
+Because these are paired measurements and jump height is continuous, use a paired-samples t-test to test whether jump height increased after training.
+Follow the steps below to run and interpret this example in jamovi.
 
-    <img src="/images/jg_data_format_ttest_paired.jpg" alt="data_format_ttest_paired" style="width: 40.0%" />
+## Run the analysis
+
+1.  Open `Jump_Height_Training.csv` in jamovi and check that the variables are set up correctly.
+
+    You need:
+    - two <img src="/images/variable-continuous.svg" alt="continuous measure icon" style="width: 16px" /> continuous variable columns: `Pre_Jump_Height` and `Post_Jump_Height`
+
+    The data should be arranged like this:
+
+    <img src="/images/jg_data_format_ttest_paired.jpg" alt="Data with two continuous variables, one per condition, each row representing one participant" style="width: 70.0%; max-width: 100%; height: auto;" />
 
 2.  Select `Analyses` → `T-Tests` → `Paired Samples T-Test`.
 
-    <img src="/images/jg_select_ttest_paired.jpg" alt="select_ttest_paired" style="width: 40.0%" />
+    <img src="/images/jg_select_ttest_paired.jpg" alt="Opening the Paired Samples T-Test from the Analyses menu" style="width: 60.0%; max-width: 100%; height: auto;" />
 
-3.  Drag and drop your two variables to `Paired Variables` (you can drag these one at a time, or select both variables in a pair by holding down the Ctrl-key while clicking on each, before dragging them across).
+3.  Drag `Pre_Jump_Height` and `Post_Jump_Height` to `Paired Variables`, both variables should be side-by-side.
 
-    <img src="/images/jg_add_var_ttest_paired.jpg" alt="add_var_ttest_paired" style="width: 70.0%" />
+    <img src="/images/jg_add_var_ttest_paired.jpg" alt="Assigning both continuous variables to Paired Variables" style="width: 70.0%; max-width: 100%; height: auto;" />
 
-4.  The result is shown in the right panel.
+4.  Select the options you need.
 
-    <img src="/images/jg_output_ttest_paired.jpg" alt="output_ttest_paired" style="width: 70.0%" />
+    Under `Additional Statistics`, select `Mean Difference`, `Descriptives`, and `Descriptive plots` to show the table of means and SD and a plot.
+
+    Under `Hypothesis`, select `Measure 1 < Measure 2` for a directional test. In this example, we expect jump height to increase from the pre-training measure to the post-training measure.
+    If you do not have a directional prediction, use `Measure 1 ≠ Measure 2`.
+    Under `Assumption Checks`, select `Normality test` to check whether the differences between paired measurements are normally distributed.
+
+    <img src="/images/jg_options_ttest_paired.jpg" alt="Paired Samples T-Test options in jamovi" style="width: 70.0%; max-width: 100%; height: auto;" />
+
+5.  Read the output.
+
+    Start with the descriptive statistics table. This shows the mean jump height before and after the training program. The post-training mean is higher, and the descriptive plot shows the same pattern.
+
+    <img src="/images/jg_desc_output_ttest_paired.jpg" alt="Comparing means and plotting the paired-samples data in jamovi" style="width: 70.0%; max-width: 100%; height: auto;" />
+
+    In the `Paired Samples T-Test` table, check the `p` value. A value below `.05` indicates evidence that the two measurements differ. Here, the p value is below `.05`, which suggests that mean jump height was greater after training than before.
+
+    <img src="/images/jg_output_ttest_paired.jpg" alt="Paired Samples T-Test output showing the test result" style="width: 80.0%; max-width: 100%; height: auto;" />
+
+6.  Check the assumptions.
+
+    In the `Normality Test` table, the Shapiro–Wilk `p` value is above `.05`, meaning there is no evidence that the average difference between the pre- and post-training jump heights is non-normal. Therefore, the assumption of normality is met.
+    Similarly, in the `Homogeneity of Variances Test` table, we can test the assumption of equal variance. Levene's test provides a `p` value above `.05`, meaning there is no evidence of unequal variance between the two groups.
+    Therefore, the assumption of equal variance is met.
+    <img src="/images/jg_output_ttest_assumptions.jpg" alt="Normality Test table checking the paired-samples t-test assumption" style="width: 70.0%; max-width: 100%; height: auto;" />
+
+## Write up the Analysis
+
+    A paired-samples *t* test was used to test whether jump height improved (increased) after a training program compared to before the training program.
+    Jump height was significantly higher after training (*M* = 44.4, *SD* = 5.65) than before training (*M* = 36.3, *SD* = 4.87), *t*(39) = -8.19, *p* < .001.
+    All assumptions were met.
+
+    :::note
+    This is a common APA 7-style write-up. Check your discipline's or journal's style guide for additional reporting requirements.
+    :::
 
 :::tip
-Those who have previous experience with SPSS may want to have a look at the [side-by-side-comparison](/spss2jamovi/s2j_ttestps2) of how a t-test for paired samples is conducted in SPSS and jamovi.
+Those with previous SPSS experience may want to see the [side-by-side comparison](/spss2jamovi/s2j_ttestps2) of how a paired samples t-test is conducted in SPSS and jamovi.
 :::
 
-:::note[Further help from the community resources]
-This [video](https://www.youtube.com/embed/lSjfYYiJG6E?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) provides a more comprehensive introduction into this test.]
-For those, aiming to stretch even further to an in-depth introduction, you can read the respective section in the "Learning statistics with jamovi" [web documentation](https://lsj.readthedocs.io/en/latest/lsj/Ch11_tTest_05.html) or chapter 11.5 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
+:::note[Community resources]
+This [video](https://www.youtube.com/embed/lSjfYYiJG6E?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) gives a broader introduction to this test.
+For a deeper explanation, read the "Learning statistics with jamovi" [web documentation](https://davidfoxcroft.github.io/lsj-book/), or chapter 11.5 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
 :::

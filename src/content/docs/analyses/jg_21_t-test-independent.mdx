@@ -10,7 +10,7 @@ Use an independent samples t-test to compare the means of a continuous outcome b
 :::
 
 The data come from a between-subjects experiment: each mouse was randomly assigned to receive either caffeine or water (the control condition).
-Because these are two independent groups and `Distance (Meters)` is continuous, use an independent samples t-test to test whether mice given caffeine ran farther than mice given water.
+Because these are two independent groups and `Distance (Meters)` is continuous, use an independent samples t-test to test whether mice given caffeine ran a greater distance than mice given water.
 Follow the steps below to run and interpret this example in jamovi.
 
 
@@ -23,7 +23,7 @@ Follow the steps below to run and interpret this example in jamovi.
     - one <img src="/images/variable-continuous.svg" alt="continuous measure icon" style="width: 16px" /> continuous dependent variable: `Distance (Meters)`
     - one <img src="/images/variable-nominal.svg" alt="nominal measure icon" style="width: 16px" /> grouping variable with two levels: `Condition` (`Caffeine` and `Control`)
 
-    Your data should be arranged like this:
+    The data should be arranged like this:
 
     <img src="/images/jg_data_format_ttest_independent.jpg" alt="Data with one continuous outcome and one two-level grouping variable" style="width: 60.0%" />
 
@@ -44,8 +44,7 @@ Follow the steps below to run and interpret this example in jamovi.
     Under `Hypothesis`, select `Group 1 > Group 2` to test whether caffeine makes mice run farther than the control group. This is a one-tailed test.
 
     :::note
-    jamovi assigns Group 1 and Group 2 based on the order groups appear in the data — since Caffeine appears first, it becomes Group 1.
-    Confirm the assignment in the note beneath the `Independent Samples T-Test` table.
+    jamovi assigns Group 1 and Group 2 based on the order groups appear in the data. Since Caffeine appears first, it becomes Group 1.
     :::
 
     <img src="/images/jg_options_ttest_independent.jpg" alt="Independent samples t-test options in jamovi" style="width: 70.0%" />
@@ -61,23 +60,21 @@ Follow the steps below to run and interpret this example in jamovi.
     <img src="/images/jg_output_ttest_infe.jpg" alt="Independent Samples T-Test table showing inferential statistics" style="width: 70.0%" />
 
     :::note
-    The note below the table confirms Caffeine Mice as Group 1 and Control Mice as Group 2, as expected.
+    Below the `Independent Samples T-Test` table, Group 1 is confirmed to be the Caffeine Mice and Group 2 as the Control Mice.
     :::
 
 6.  Check the assumptions.
 
-    Confirm that your study has one continuous outcome, two independent groups, and one observation per mouse. Check these from your study design, not the output.
+    In the `Normality Test` table, a Shapiro–Wilk `p` value above `.05` means there is no evidence of non-normal data. Here, `p = .478`, this assumption is met.
 
-    In the `Normality Test` table, a Shapiro–Wilk `p` value above `.05` means there is no evidence of non-normal data. Here, `p = .478`, so this assumption is met.
-
-    In the `Homogeneity of Variances Test` table, Levene's `p` value above `.05` means the groups have similar variability. Here, `p = .549`, so the equal-variances assumption is met.
+    In the `Homogeneity of Variances Test` table, Levene's `p` value above is `.05`, `p = .549`. Therefore, there is no evidence of unequal variability and the assumption is met.
 
     <img src="/images/jg_output_ttest_assumptions.jpg" alt="Normality Test and Homogeneity of Variances Test tables showing the assumption checks for the independent samples t-test" style="width: 70.0%" />
 
-7.  Write up the results.
+## Write up the Analysis
 
     An independent-samples *t* test was used to test whether mice given caffeine ran farther than mice in the control group.
-    Mice in the caffeine group (*M* = 72.8, *SD* = 13.4) ran significantly farther than mice in the control group (*M* = 44.3, *SD* = 11.3), *t*(18) = 5.15, *p* < .001.
+    Mice in the caffeine group (*M* = 72.8, *SD* = 13.4) ran a significant greater distance than mice in the control group (*M* = 44.3, *SD* = 11.3), *t*(18) = 5.15, *p* < .001.
     All assumptions were met.
 
     :::note

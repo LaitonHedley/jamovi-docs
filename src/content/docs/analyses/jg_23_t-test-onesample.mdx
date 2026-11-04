@@ -2,31 +2,79 @@
 title: "t-test: One sample"
 ---
 
-How to perform a one-sample t-test in jamovi:
+Use a one-sample t-test to compare the mean of one continuous variable to a known or expected value.
 
-1.  You need one <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px" /> continuous variable and a mean to test against (typically the mean being tested is zero).
+:::note[Follow-along example]
+- Download the starting dataset and follow along: [Sea_Salt_Hair_Spray.csv](/output/Sea_Salt_Hair_Spray.csv)
+- Download the completed jamovi file to see each output already created: [Sea_Salt_Hair_Spray.omv](/output/Sea_Salt_Hair_Spray.omv)
+:::
 
-    A correct setup should look similar to this:
+In this example, a hair product company expects its new sea salt hair spray to contain an average salt concentration of `4.5%`.
+Because `Salt Concentration (%)` is continuous and the sample mean is compared to a reference value (`4.5`), a one-sample t-test is appropriate.
+Follow the steps below to run and interpret this one-sample t-test example in jamovi.
 
-    <img src="/images/jg_data_format_ttest_onesample.jpg" alt="data_format_ttest_onesample" style="width: 30.0%" />
+## Run the analysis
+
+1.  Open `Sea_Salt_Hair_Spray.csv` in jamovi and verify that the variables are set up correctly.
+
+    Required structure:
+    - one <img src="/images/variable-continuous.svg" alt="continuous measure icon" style="width: 16px" /> continuous dependent variable, for example: `Salt Concentration (%)`
+
+    The data should be arranged like this:
+
+    <img src="/images/jg_data_format_ttest_onesample.jpg" alt="Data with one continuous variable for one-sample t-test" style="width: 30.0%; max-width: 100%; height: auto;" />
 
 2.  Select `Analyses` → `T-Tests` → `One Sample T-Test`.
 
-    <img src="/images/jg_select_ttest_onesample.jpg" alt="select_ttest_onesample" style="width: 40.0%" />
+    <img src="/images/jg_select_ttest_onesample.jpg" alt="Opening the One Sample T-Test from the Analyses menu" style="width: 60.0%; max-width: 100%; height: auto;" />
 
-3.  Drag and drop your dependent variable to `Dependent Variables`.
+3.  Drag `Salt Concentration` to the `Dependent Variables` box.
 
-    <img src="/images/jg_add_var_ttest_onesample.jpg" alt="add_var_ttest_onesample" style="width: 70.0%" />
+    <img src="/images/jg_add_var_ttest_onesample.jpg" alt="Assigning Salt Concentration as the dependent variable" style="width: 70.0%; max-width: 100%; height: auto;" />
 
-4.  Locate the section `Hypothesis` further down, this is where you enter the mean you want to test against.
+4.  Select the required options.
 
-    <img src="/images/jg_options_ttest_onesample.jpg" alt="options_ttest_onesample" style="width: 70.0%" />
+    Under `Additional Statistics`, select `Mean Difference`, `Descriptives` and `Descriptive plots`.
 
-5.  The result is shown in the right panel.
+    Under `Hypothesis`, enter `4.5` as the `Test Value` to reference value. The default value is `0`, so this must be changed to the reference value.
 
-    <img src="/images/jg_output_ttest_onesample.jpg" alt="output_ttest_onesample" style="width: 70.0%" />
+    In this example, the alternative hypothesis is left as the default `≠` because the goal is to test whether the product mean salt concentration differs from `4.5%`.
+
+    Under `Assumption Checks`, select `Normality test`.
+
+    <img src="/images/jg_options_ttest_onesample.jpg" alt="One-sample t-test options in jamovi" style="width: 70.0%; max-width: 100%; height: auto;" />
+
+5.  Read the output.
+
+    Start with the descriptive statistics table. Compare the sample mean for salt concentration to the expected value (`4.5%`). It appears that the mean of the sampled Sea Salt Hair Spray concentration (4.26) is less than the expected 4.5%.
+    As shown in the `One Sample T-Test` table the mean difference -0.231, sugeesting the sample mean is on average 0.231% less than the expected 4.5%.
+
+    <img src="/images/jg_output_desc_ttest_onesample.jpg" alt="One-sample t-test output showing descriptive and inferential results" style="width: 70.0%; max-width: 100%; height: auto;" />
+
+    In the `One Sample T-Test` table, check the `p` value.
+    A value below `.05` indicates evidence that the sample mean significantly differs from the expected value (`4.5%`) and in this case is significantly lower.
+
+    <img src="/images/jg_output_table_ttest_onesample.jpg" alt="need to add..." style="width: 70.0%; max-width: 100%; height: auto;" />
+
+
+6.  Check the assumptions.
+
+    The normality assumption is met, as the `Normality Test` table provides a Shapiro–Wilk `p` value above `.05` (`p = .830`). Therefore, there is no evidence of non-normality.
+
+    <img src="/images/jg_output_assumps_ttest_onesample.jpg" alt="need to add..." style="width: 40.0%; max-width: 100%; height: auto;" />
+
+
+## Write up the Analysis
+
+    A one-sample *t* test was used to test whether the mean salt concentration of the new sea salt spray differed from the expected value of 4.5%.
+    The mean Sea Salt Hair Spray concentration (M = 4.27, SD = 0.22) was significantly lower than the expected 4.5%, *t*(48) = -7.41, *p* < .001.
+    The assumption of normality was met (*p* = 0.830).
+
+    :::note
+    This is a common APA 7-style write-up. Check your discipline's or journal's style guide for additional reporting requirements.
+    :::
 
 :::note[Further help from the community resources]
-This [video](https://www.youtube.com/embed/DrBT4ezYIL8?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) provides a more comprehensive introduction into this test.]
+This [video](https://www.youtube.com/embed/DrBT4ezYIL8?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) provides a more comprehensive introduction to this test.
 For those, aiming to stretch even further to an in-depth introduction, you can read the respective section in the "Learning statistics with jamovi" [web documentation](https://lsj.readthedocs.io/en/latest/lsj/Ch11_tTest_02.html) or chapter 11.2 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
 :::
