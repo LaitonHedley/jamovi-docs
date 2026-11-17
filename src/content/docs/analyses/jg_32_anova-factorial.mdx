@@ -2,27 +2,137 @@
 title: "ANOVA"
 ---
 
-How to perform a factorial ANOVA in jamovi:
+Use a **factorial ANOVA** to examine how two or more categorical variables (or *factors*) affect a continuous outcome variable.
 
-1.  You need one <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px" /> continuous dependent variable, and one or more <img src="/images/variable-nominal.svg" alt="nominal" style="width: 16px" /> grouping variables.
+Factorial ANOVAs also test for **interaction effects**. An interaction occurs when the effect of one factor on the outcome variable depends on the level of another factor.
 
-    A correct setup should look similar to this:
+:::note[Follow-along example]
+- Download the starting dataset and follow along: [Exam_Scores.csv](/output/Exam_Scores.csv)
+- Download the completed jamovi file to see the factorial ANOVA output: [Exam_Scores_ANOVA_Factorial.omv](/output/Exam_Scores_ANOVA_Factorial.omv)
+:::
 
-    <img src="/images/jg_data_format_anova_factorial.jpg" alt="data_format_anova_factorial" style="width: 50.0%" />
+The example data come from students who took their final exam on white, blue, or red paper. Within each paper-colour group, half took the exam in dim lighting and half in bright lighting. Each student's exam score (out of 75) was recorded.
+
+This is a 3 × 2 factorial design: paper colour has three levels (white, blue, and red), and lighting has two levels (dim and bright). Together, these factors form six independent groups, one for each combination of paper colour and lighting conditions:
+
+1. Blue-Bright: students taking the exam on blue paper under bright lighting
+2. Blue-Dim: students taking the exam on blue paper under dim lighting
+3. White-Bright: students taking the exam on white paper under bright lighting
+4. White-Dim: students taking the exam on white paper under dim lighting
+5. Red-Bright: students taking the exam on red paper under bright lighting
+6. Red-Dim: students taking the exam on red paper under dim lighting
+
+It was predicted that students using red paper in dim lighting would have the lowest exam scores of the other five colour-and-lighting groups. In other words, the effect of red paper on exam scores was expected to depend on lighting, indicating an interaction between paper colour and lighting.
+
+Follow the steps below to run and interpret this example in jamovi.
+
+## Run the analysis
+
+1.  Open `Exam_Scores.csv` in jamovi and check that the variables are set up correctly.
+
+    You need:
+
+    - one <img src="/images/variable-continuous.svg" alt="continuous measure icon" style="width: 16px" /> continuous dependent variable: `Exam_Score`
+    - one <img src="/images/variable-nominal.svg" alt="nominal measure icon" style="width: 16px" /> factor with three levels: `Colour` (`White`, `Blue`, and `Red`)
+    - one <img src="/images/variable-nominal.svg" alt="nominal measure icon" style="width: 16px" /> factor with two levels: `Lighting` (`Dim` and `Bright`)
+
+    Each row should contain one student's exam score, paper colour, and lighting condition. Each student belongs to one of the six colour-and-lighting combinations.
+
+    Your data should be arranged like this:
+
+    <img src="/images/jg_data_format_anova_factorial.jpg" alt="Exam data with Exam_Score, Colour, and Lighting used for the factorial ANOVA" style="width: 100.0%" />
+
+    :::note
+    Only `Exam_Score`, `Colour`, and `Lighting` are needed for this analysis. The exam-component columns are used in the related [repeated-measures ANOVA](/analyses/jg_33_anova-rm) and [mixed ANOVA](/analyses/jg_34_anova-mixed) examples.
+    To compare exam scores across the three paper-colour groups alone, see the [One-Way ANOVA](/analyses/jg_31_unianova).
+    :::
 
 2.  Select `Analyses` → `ANOVA` → `ANOVA`.
 
-    <img src="/images/jg_select_anova_factorial.jpg" alt="select_anova_factorial" style="width: 40.0%" />
+    <img src="/images/jg_select_anova_factorial.jpg" alt="Opening ANOVA from the Analyses menu" style="width: 45.0%" />
 
-3.  Drag and drop your outcome variable to `Dependent Variable` and your grouping variables to `Fixed Factors`.
+3.  Drag `Exam_Score` to `Dependent Variable`, then drag `Colour` and `Lighting` to `Fixed Factors`.
 
-    <img src="/images/jg_add_var_anova_factorial.jpg" alt="add_var_anova_factorial" style="width: 70.0%" />
+    <img src="/images/jg_add_var_anova_factorial.jpg" alt="Assigning Exam_Score as the outcome and Colour and Lighting as fixed factors" style="width: 70.0%" />
 
-4.  The results are shown in the right panel:
+    :::note
+    To report an effect size, select `Eta Squared` (`η²`) below the assignment boxes.
+    :::
 
-    <img src="/images/jg_output_anova_factorial.jpg" alt="output_anova_factorial" style="width: 70.0%" />
+4.  Select the options you need.
 
-:::note[Further help from the community resources]
-A more comprehensive introduction into this statistical method is provided by this [video](https://www.youtube.com/embed/TJoJTVgDyqY?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi).]
-For those, aiming to stretch even further to an in-depth introduction, you can read the respective section in the "Learning statistics with jamovi" [web documentation](https://lsj.readthedocs.io/en/latest/lsj/Ch14_ANOVA2_01.html) or chapter 14.1 - 4 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
+    Under `Assumption Checks`, select `Homogeneity test` and `Normality test`.
+
+    <img src="/images/jg_assumption_checks_options_anova_factorial.jpg" alt="Factorial ANOVA assumption check options in jamovi" style="width: 70.0%" />
+
+    Under `Post Hoc Tests`, move `Colour`, `Lighting`, and their interaction, `Colour * Lighting`, into the box on the right.
+    Under `Corrections`, untick the default `Tukey` and select `Bonferroni` for stronger protection against Type I errors.
+
+    <img src="/images/jg_post_hoc_options_anova_factorial.jpg" alt="Factorial ANOVA post hoc test options in jamovi" style="width: 70.0%" />
+
+    Under `Estimated Marginal Means`, add `Colour` and `Lighting` together as a single term in the same box.
+    Select `Marginal means tables` and `Marginal means plots` to display the means for all six combinations in a table and plot.
+
+    <img src="/images/jg_marginal_means_options_anova_factorial.jpg" alt="Factorial ANOVA estimated marginal means options in jamovi" style="width: 70.0%" />
+
+5.  Read the output.
+
+    Start with the estimated marginal means table and plot. Both show that students in the Red-Dim group had the lowest mean exam score of the six groups.
+
+    <img src="/images/jg_interaction_plot_anova_factorial.jpg" alt="Estimated marginal means plot comparing exam scores across paper colours under dim and bright lighting" style="width: 70.0%" />
+    <img src="/images/jg_descriptives_table_anova_factorial.jpg" alt="Mean exam scores and standard deviations for each paper colour and lighting combination" style="width: 70.0%" />
+
+    In the ANOVA table, the first two rows show the main effects of lighting and paper colour. The third row shows their interaction. All three `p` values are below `.05`, indicating that both main effects and the interaction are significant.
+
+    <img src="/images/jg_output_anova_factorial.jpg" alt="ANOVA table showing the main effects of Colour and Lighting and their interaction" style="width: 70.0%" />
+
+    The lighting main effect shows that mean scores differed between dim and bright conditions, averaged across paper colours.
+    The paper-colour main effect shows that at least one colour group's mean exam score differed from the others, averaged across lighting conditions.
+    The interaction shows that the effect of paper colour on exam scores was dependent on lighting.
+
+    Use the `Post Hoc Comparisons` tables to see which groups differ. The `pbonferroni` column shows whether each difference is significant, and the signed values in `Mean Difference` show its direction:
+
+    - `Lighting`: whether exam scores were higher in dim or bright conditions.
+    - `Colour`: which paper-colour groups differed.
+    - `Colour * Lighting`: which of the six combinations differed, showing how the effect of paper colour depended on lighting.
+
+    Lighting post hoc comparisons showed that scores were significantly lower in dim than in bright lighting (`p = .012`).
+    <img src="/images/jg_post_hoc_lighting_anova_factorial.jpg" alt="Post hoc comparison of exam scores between dim and bright lighting" style="width: 70.0%" />
+
+    Paper-colour post hoc comparisons showed that scores in the Red group were significantly lower than in both the Blue and White groups (both `p` values < `.001`).
+    <img src="/images/jg_post_hoc_colour_anova_factorial.jpg" alt="Post hoc comparisons of exam scores across paper colours" style="width: 70.0%" />
+
+    :::note
+    The sign of the `Mean Difference` shows the direction of each comparison. Subtract the second group listed under `Comparison` from the first: a positive value means the first group had a higher mean, and a negative value means it had a lower mean.
+
+    For example, a Blue–Red mean difference of 17 means the Blue group scored 17 points higher than the Red group on average. A Red–White difference of −13 means the Red group scored 13 points lower than the White group on average.
+    :::
+
+    Interaction post hoc comparisons showed that the Red-Dim group scored significantly lower than each of the other five groups (all adjusted `p` values < `.05`). No other pairwise differences were significant. This indicates that the effect of paper colour on exam scores was dependent on the lighting condition.
+
+    <img src="/images/jg_post_hoc_colour_lighting_anova_factorial.jpg" alt="Post hoc comparisons across all paper colour and lighting combinations" style="width: 70.0%" />
+
+6.  Check the assumptions.
+
+    Confirm from the study design that each student contributes one exam score and that observations are independent.
+    In the `Homogeneity of Variances Test (Levene's)` table, a `p` value above `.05` means there is no evidence of unequal variances across the six groups.
+    Use the `Normality Test (Shapiro–Wilk)` table to assess the normality of residuals (the differences between observed scores and the scores predicted by the model). A `p` value above `.05` means the test has not detected a departure from normality.
+
+    <img src="/images/jg_assumptions_anova_factorial.jpg" alt="Levene's and Shapiro-Wilk tests for the factorial ANOVA" style="width: 70.0%" />
+
+## Write up the Analysis
+
+A 3 × 2 between-subjects ANOVA examined the effects of paper colour (white, blue, or red) and lighting (dim or bright) on exam scores. All assumptions were met.
+There was a significant main effect of paper colour, *F*(2, 24) = 22.16, *p* < .001, and a significant main effect of lighting, *F*(1, 24) = 7.41, *p* = .012.
+These main effects were qualified by a significant interaction between paper colour and lighting, *F*(2, 24) = 4.74, *p* = .018.
+Bonferroni-adjusted post hoc comparisons showed that students in the Red-Dim condition scored significantly lower than students in all five other conditions (all adjusted *p*s < .05). No other combinations of paper colour and lighting differed significantly.
+These findings suggest that the effect of paper colour on exam scores was dependent on the lighting condition.
+
+:::note
+This is a common APA 7-style write-up. Check your discipline's or journal's style guide for additional reporting requirements.
+:::
+
+:::note[Community resources]
+This [video](https://www.youtube.com/embed/TJoJTVgDyqY?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) gives a broader introduction to this test.
+For a deeper explanation, read the "Learning statistics with jamovi" [web documentation](https://davidfoxcroft.github.io/lsj-book/), or sections 14.1–14.4 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
 :::
