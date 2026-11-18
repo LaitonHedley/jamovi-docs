@@ -2,33 +2,101 @@
 title: "ANOVA: Repeated Measures"
 ---
 
-How to perform a repeated measures ANOVA in jamovi:
+Use a repeated-measures ANOVA to compare the means of a continuous outcome across three or more conditions measured on the same cases.
 
-1.  You need one <img src="/images/variable-continuous.svg" alt="continuous" style="width: 16px" /> continuous dependent variable for each measurement occasion.
+:::note[Follow-along example]
+- Download the starting dataset and follow along: [Exam_Scores.csv](/output/Exam_Scores.csv)
+- Completed jamovi file (coming soon): `Exam_Scores_Repeated_Measures_ANOVA.omv`
+:::
 
-    A correct setup should look similar to this:
+In this example, each student completed three parts of a final exam: multiple choice, short answer, and essay. Each part was worth 25 marks, and each student received a score for all three parts.
+Exam component is the within-subjects factor, with three levels: multiple choice, short answer, and essay.
+We predicted that students would score lowest on the essay component compared with the multiple-choice and short-answer components.
 
-    <img src="/images/jg_data_format_anova_repeated.jpg" alt="data_format_anova_repeated" style="width: 40.0%" />
+Follow the steps below to run and interpret this example in jamovi.
+
+## Run the analysis
+
+1.  Open `Exam_Scores.csv` in jamovi and check that the variables are set up correctly.
+
+    You need three <img src="/images/variable-continuous.svg" alt="continuous measure icon" style="width: 16px" /> continuous variables, one for each exam component:
+
+    - `Multi_Choice_PT1` for the multiple-choice component
+    - `Short_Answer_PT2` for the short-answer component
+    - `Essay_PT3` for the essay component
+
+    Each row should contain one student's scores for all three components.
+
+    <img src="/images/jg_data_format_anova_repeated_exam.jpg" alt="Exam data with one row per student and scores for multiple-choice, short-answer, and essay components" style="width: 80.0%" />
 
 2.  Select `Analyses` → `ANOVA` → `Repeated Measures ANOVA`.
 
-    <img src="/images/jg_select_anova_repeated.jpg" alt="select_anova_repeated" style="width: 40.0%" />
+    <img src="/images/jg_select_anova_repeated.jpg" alt="Opening Repeated Measures ANOVA from the Analyses menu" style="width: 45.0%" />
 
-3.  In the box `Repeated Measures Factors`: write the name of your outcome variable (e.g., `My_scale`) and name the levels for each measurement occasion (e.g., `Pre`, `Post` and `12 month follow-up`). The images below shows the box with default values (left) and when the values has been set (right).
+3.  Define the within-subjects factor and assign variables.
 
-    <img src="/images/jg_add_var_anova_repeated_naming_1.jpg" alt="add_var_anova_repeated_naming_1" style="width: 35.0%" /> `→` <img src="/images/jg_add_var_anova_repeated_naming_2.jpg" alt="add_var_anova_repeated_naming_2" style="width: 35.0%" />
+    Under `Repeated Measures Factors`, rename `RM Factor 1` to `Exam_Component` and set its levels to `Multiple choice`, `Short answer`, and `Essay`.
+    In `Repeated Measures Cells`, assign `Multi_Choice_PT1` to `Multiple choice`, `Short_Answer_PT2` to `Short answer`, and `Essay_PT3` to `Essay`.
 
-4.  Drag and drop your outcome variables to their respective cells in `Repeated Measures Cells`.
+    <img src="/images/jg_factor_anova_repeated_exam.jpg" alt="Defining and assigning the Exam_Components: multiple-choice, short-answer, and essay levels" style="width: 70.0%" />
 
-    <img src="/images/jg_add_var_anova_repeated.jpg" alt="add_var_anova_repeated" style="width: 70.0%" />
+4.  Select the options needed.
 
-5.  To test the equality of the variance with the Levene test, open the `Assumption Checks` drop-down menu and set the `Homogeneity test` tick box. It is also a good idea to check that the variances at the different steps of the repetition factor are the same (Sphericity). To do so, open the `Assumption  Checks` drop-down menu and set the `Sphericity tests` tick box.
+    Under `Assumption Checks`, select `Sphericity tests` and `Q-Q plot`.
 
-6.  The results are shown in the right panel:
+    <img src="/images/jg_assumption_options_anova_repeated_exam.jpg" alt="Repeated-measures ANOVA assumption check options for sphericity and normality" style="width: 70.0%" />
 
-    <img src="/images/jg_output_anova_repeated.jpg" alt="output_anova_repeated" style="width: 70.0%" />
+    Under `Estimated Marginal Means`, add `Exam_Component` and select the marginal means table and plot.
 
-:::note[Further help from the community resources]
-A more comprehensive introduction into this statistical method is provided by this [video](https://www.youtube.com/embed/m5JNwPgiMso?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi).]
-For those, aiming to stretch even further to an in-depth introduction, you can read the respective section in the "Learning statistics with jamovi" [web documentation](https://lsj.readthedocs.io/en/latest/lsj/Ch13_ANOVA_07.html) or chapter 13.7 of the [e-book](https://www.learnstatswithjamovi.com/) by Danielle J. Navarro and David R. Foxcroft.
+    <img src="/images/jg_marginal_means_options_anova_repeated_exam.jpg" alt="Estimated marginal means options for a table and plot" style="width: 70.0%" />
+
+    Under `Post Hoc Tests`, move `Exam_Component` into the post hoc tests box. Keep the default `Tukey` correction for the pairwise comparisons.
+
+    <img src="/images/jg_post_hoc_options_anova_repeated_exam.jpg" alt="Post hoc comparison options for exam components" style="width: 70.0%" />
+
+5.  Read the output.
+
+    Start with the estimated marginal means table and plot to compare scores across the three exam components. Check whether the essay component has the lowest mean, as predicted.
+
+    <img src="/images/jg_descriptives_table_plot_anova_repeated_exam.jpg" alt="a table and a plot comparing the mean and standard deviation of scores for multiple-choice, short-answer, and essay exam components" style="width: 70.0%" />
+
+    In the `Within Subjects Effects` table, check the `p` value for `Exam_Component`. A value below `.05` indicates evidence that mean scores differ across exam components.
+
+    <img src="/images/jg_output_anova_repeated_exam.jpg" alt="Repeated-measures ANOVA output for exam component scores" style="width: 70.0%" />
+
+    Use the post hoc comparisons to identify which exam components differ. Check the adjusted `p` values for significance and the mean differences for the direction of each comparison.
+    Essay scores were significantly different from both multiple-choice scores (`p < .001`) and short-answer scores (`p < .001`).
+
+    <img src="/images/jg_post_hoc_anova_repeated_exam.jpg" alt="Tukey-adjusted pairwise comparisons among exam components" style="width: 70.0%" />
+
+6.  Check the assumptions.
+
+    In `Mauchly's Test of Sphericity`, a `p` value above `.05` means there is no evidence that sphericity is violated.
+
+    :::note
+    If Mauchly's test has a `p` value below `.05`, sphericity may be violated. In the `Within Subjects Effects` table, report the Greenhouse–Geisser-corrected results rather than the `Sphericity Assumed` results.
+    :::
+
+    Use the Q–Q plot to assess whether the residuals are approximately normally distributed. Here, the points follow the diagonal reference line closely, so there is no clear evidence of a departure from normality.
+
+    <img src="/images/jg_assumptions_anova_repeated_exam.jpg" alt="Mauchly's test of sphericity and normality diagnostic for the repeated-measures ANOVA" style="width: 70.0%" />
+
+
+
+## Write up the Analysis
+
+A repeated-measures ANOVA tested whether mean scores differed across three different exam componenets.
+The multiple-choice section had the greatest score (*M* = 17.80, *SD* = 0.68), followed by the short-answer (*M* = 15.90, *SD* = 0.87), and lastly the essay component (*M* = 11.90, *SD* = 0.91).
+The effect of exam component was significant, *F*(2, 58) = 20.6, *p* < .001.
+Tukey-adjusted comparisons showed that essay scores were significantly lower than multiple-choice scores, *p* < .001, and short-answer scores, *p* < .001.
+Multiple-choice and short-answer scores did not differ significantly, *p* = .110.
+Both assumptions of sphericity and normaltiy were met.
+
+:::note
+This is a common APA 7-style write-up. Check your discipline's or journal's style guide for additional reporting requirements.
+:::
+
+:::note[Community resources]
+This [video](https://www.youtube.com/embed/m5JNwPgiMso?list=PLkk92zzyru5OAtc_ItUubaSSq6S_TGfRn) by [Barton Poulson](https://datalab.cc/jamovi) introduces repeated-measures ANOVA.
+For more detail, read the relevant section of "Learning statistics with jamovi" [web documentation](https://lsj.readthedocs.io/en/latest/lsj/Ch13_ANOVA_07.html) or chapter 13.7 of the [e-book](https://www.learnstatswithjamovi.com/) by [Danielle J. Navarro](https://djnavarro.net/) and [David R. Foxcroft](https://www.davidfoxcroft.com/).
 :::
